@@ -1,4 +1,4 @@
-package com.example.pianopatienttracker;
+package com.example.pianopatienttracker.admin;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,22 +8,22 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class FlagSpinnerAdapter extends BaseAdapter {
+import com.example.pianopatienttracker.R;
+
+public class ProductSpinnerAdapter extends BaseAdapter {
     Context context;
-    int flags[];
-    String[] countryNames;
+    int products[];
     LayoutInflater inflter;
 
-    public FlagSpinnerAdapter(Context applicationContext, int[] flags, String[] countryNames) {
+    public ProductSpinnerAdapter(Context applicationContext, int[] flags) {
         this.context = applicationContext;
-        this.flags = flags;
-        this.countryNames = countryNames;
+        this.products = flags;
         inflter = (LayoutInflater.from(applicationContext));
     }
 
     @Override
     public int getCount() {
-        return flags.length;
+        return products.length;
     }
 
     @Override
@@ -38,11 +38,10 @@ public class FlagSpinnerAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflter.inflate(R.layout.item_flag_spinner, null);
+        view = inflter.inflate(R.layout.item_product_spinner, null);
         ImageView icon = (ImageView) view.findViewById(R.id.imageView);
         TextView names = (TextView) view.findViewById(R.id.textView);
-        icon.setImageResource(flags[i]);
-        names.setText(countryNames[i]);
+        icon.setImageResource(products[i]);
         return view;
     }
 }

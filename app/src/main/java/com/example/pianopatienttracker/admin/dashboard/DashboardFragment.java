@@ -1,4 +1,4 @@
-package com.example.pianopatienttracker;
+package com.example.pianopatienttracker.admin.dashboard;
 
 import android.os.Bundle;
 
@@ -10,6 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
+
+import com.example.pianopatienttracker.admin.FlagSpinnerAdapter;
+import com.example.pianopatienttracker.admin.ProductSpinnerAdapter;
+import com.example.pianopatienttracker.R;
 
 public class DashboardFragment extends Fragment {
 

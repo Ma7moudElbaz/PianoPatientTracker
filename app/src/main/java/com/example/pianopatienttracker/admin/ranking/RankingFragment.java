@@ -1,4 +1,4 @@
-package com.example.pianopatienttracker;
+package com.example.pianopatienttracker.admin.ranking;
 
 import android.os.Bundle;
 
@@ -10,17 +10,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class TargetFragment extends Fragment {
+import com.example.pianopatienttracker.R;
+
+
+public class RankingFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_target, container, false);
+        return inflater.inflate(R.layout.fragment_ranking, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
+
 }

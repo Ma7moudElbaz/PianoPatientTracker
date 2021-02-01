@@ -1,4 +1,4 @@
-package com.example.pianopatienttracker;
+package com.example.pianopatienttracker.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,8 +8,13 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.pianopatienttracker.admin.dashboard.DashboardFragment;
+import com.example.pianopatienttracker.admin.ranking.RankingFragment;
+import com.example.pianopatienttracker.admin.sectors.SectorsFragment;
+import com.example.pianopatienttracker.admin.target.TargetFragment;
+import com.example.pianopatienttracker.admin.users.UsersFragment;
+import com.example.pianopatienttracker.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 
 public class Admin_home extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 

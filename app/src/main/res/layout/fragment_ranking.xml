@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/login_bg"
     android:orientation="vertical"
-    tools:context=".RankingFragment">
+    tools:context=".admin.ranking.RankingFragment">
 
     <LinearLayout
         android:id="@+id/topPanel"

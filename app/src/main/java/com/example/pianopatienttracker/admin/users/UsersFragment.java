@@ -1,4 +1,4 @@
-package com.example.pianopatienttracker;
+package com.example.pianopatienttracker.admin.users;
 
 import android.os.Bundle;
 
@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.pianopatienttracker.R;
 
 public class UsersFragment extends Fragment {
     @Override
