@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/piano_logo"
+        android:src="@drawable/logo_piano"
         android:padding="80dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"/>
