@@ -13,4 +13,11 @@
     <string name="users">Users</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ranking">Ranking</string>
+    <string name="hospitals">Hospitals</string>
+    <string name="reps">Reps</string>
+    <string name="hc_sectors">HC Sectors</string>
+    <string name="period">Period</string>
+    <string name="filter">Filter</string>
+    <string name="doctors">Doctors</string>
 </resources>
