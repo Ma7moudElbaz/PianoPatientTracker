@@ -8,47 +8,49 @@
     tools:context=".admin.sectors.SectorsFragment">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:weightSum="3">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp"
-            android:background="@color/white">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/hc_sectors"
+            android:textColor="@color/light_blue"
+            android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/hc_sectors"
-                android:textColor="@color/light_blue"
-                android:textSize="18sp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/hospitals"
+            android:textColor="@color/light_gray"
+            android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/hospitals"
-                android:textColor="@color/light_gray"
-                android:textSize="18sp" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/doctors"
+            android:textColor="@color/light_gray"
+            android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/doctors"
-                android:textColor="@color/light_gray"
-                android:textSize="18sp" />
+    </LinearLayout>
 
-        </LinearLayout>
-
-
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        tools:listitem="@layout/item_sectors_doctors" />
 
 
 </LinearLayout>

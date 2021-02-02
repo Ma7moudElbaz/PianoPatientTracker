@@ -12,9 +12,9 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/img_description"
         android:padding="5dp"
-        android:src="@drawable/logo_novartis"
-        android:contentDescription="@string/img_description" />
+        android:src="@drawable/logo_novartis" />
 
     <TextView
         android:id="@+id/textView"
