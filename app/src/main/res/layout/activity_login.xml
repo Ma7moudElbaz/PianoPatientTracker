@@ -29,7 +29,7 @@
                 android:layout_marginEnd="50dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/img_description"
-                android:src="@drawable/logo_piano" />
+                android:src="@drawable/logo_blue" />
 
 
             <TextView

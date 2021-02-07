@@ -15,6 +15,6 @@
         android:contentDescription="@string/img_description"
         android:padding="80dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/logo_piano" />
+        android:src="@drawable/logo_white" />
 
 </RelativeLayout>

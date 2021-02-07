@@ -20,7 +20,9 @@ public class DashboardFragment extends Fragment {
     String[] countryNames = {"SA", "SA"};
     int flags[] = {R.drawable.flag_sa, R.drawable.flag_sa};
 
-    int products[] = {R.drawable.product_jakavi, R.drawable.product_revolade};
+    int products[] = {R.drawable.jakavi_logo, R.drawable.revolade_logo, R.drawable.adakveo_logo
+            , R.drawable.tasigna_logo, R.drawable.palbociclib_logo, R.drawable.abemaciclib_logo
+            , R.drawable.piqary_logo,R.drawable.afinitor_logo, R.drawable.kisqali_logo};
 
 
     @Override
