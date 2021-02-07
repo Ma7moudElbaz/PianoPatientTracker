@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.Admin_home">
-
+    tools:context=".rep.Rep_home">
 
     <FrameLayout
         android:id="@+id/contentLayout"
@@ -20,6 +19,6 @@
         android:layout_alignParentBottom="true"
         android:background="@color/white"
         app:labelVisibilityMode="auto"
-        app:menu="@menu/admin_bottom_nav" />
+        app:menu="@menu/rep_bottom_nav" />
 
 </RelativeLayout>

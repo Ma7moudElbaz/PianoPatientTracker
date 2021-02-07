@@ -20,4 +20,9 @@
     <string name="period">Period</string>
     <string name="filter">Filter</string>
     <string name="doctors">Doctors</string>
+    <string name="profile">Profile</string>
+    <string name="doctors">Doctors</string>
+    <string name="ranking">Ranking</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
 </resources>
