@@ -38,7 +38,7 @@ public class DashboardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        flagSpinner = view.findViewById(R.id.flagSpinnner);
+        flagSpinner = view.findViewById(R.id.flagSpinner);
         productSpinner = view.findViewById(R.id.productSpinner);
 
         FlagSpinnerAdapter flagSpinnerAdapter = new FlagSpinnerAdapter(view.getContext(), flags, countryNames);

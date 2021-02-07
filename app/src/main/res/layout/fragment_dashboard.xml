@@ -37,10 +37,11 @@
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/white"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="2">
 
         <Spinner
-            android:id="@+id/flagSpinnner"
+            android:id="@+id/flagSpinner"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -57,11 +58,11 @@
         <Spinner
             android:id="@+id/productSpinner"
             android:layout_width="0dp"
-            android:drawSelectorOnTop = "true"
             android:layout_height="match_parent"
             android:layout_weight="1"
             tools:listitem="@layout/item_product_spinner"
-            android:spinnerMode="dropdown"/>
+            android:spinnerMode="dropdown"
+            android:dropDownWidth="match_parent"/>
 
     </LinearLayout>
 
