@@ -14,7 +14,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/img_description"
         android:padding="5dp"
-        android:src="@drawable/logo_novartis" />
+        android:src="@drawable/flag_sa" />
 
     <TextView
         android:id="@+id/textView"

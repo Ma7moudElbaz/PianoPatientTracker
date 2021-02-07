@@ -43,20 +43,25 @@
             android:id="@+id/flagSpinnner"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:spinnerMode="dropdown"/>
 
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@color/light_gray" />
+            android:background="@color/light_gray"
+            tools:listitem="@layout/item_flag_spinner"/>
 
         <Spinner
             android:id="@+id/productSpinner"
             android:layout_width="0dp"
+            android:drawSelectorOnTop = "true"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            tools:listitem="@layout/item_product_spinner"
+            android:spinnerMode="dropdown"/>
 
     </LinearLayout>
 
