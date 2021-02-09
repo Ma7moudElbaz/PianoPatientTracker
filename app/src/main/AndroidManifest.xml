@@ -1,41 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.pianopatienttracker">
+    package="com.cat.pianopatienttracker">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".rep.Rep_home"></activity>
+        <activity
+            android:name=".rep.Rep_home"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".admin.Admin_home"
-            android:screenOrientation="portrait">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".LoginActivity"
+            android:name="LoginActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait">
 
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
 
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

@@ -34,7 +34,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.pianopatienttracker"
+        applicationId "com.cat.pianopatienttracker"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
@@ -58,7 +58,7 @@ android {
     variantFilter { variant ->
         def flavorName = variant.flavors*.name
         if (findProject(':msal') == null && flavorName.contains("local")) {
-            setIgnore(true);
+            setIgnore(true)
         }
     }
 }
@@ -66,7 +66,7 @@ android {
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
