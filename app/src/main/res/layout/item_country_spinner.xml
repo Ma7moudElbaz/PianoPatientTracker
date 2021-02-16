@@ -14,17 +14,19 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/img_description"
         android:padding="5dp"
-        android:src="@drawable/flag_sa" />
+        android:src="@drawable/flag_sa"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:text="Demo"
-        android:textColor="#000"
-        android:textSize="20sp" />
+        android:text="KSA"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:padding="5dp"/>
 
 
 </LinearLayout>

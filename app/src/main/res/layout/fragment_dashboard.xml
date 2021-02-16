@@ -41,7 +41,7 @@
         android:weightSum="2">
 
         <Spinner
-            android:id="@+id/flagSpinner"
+            android:id="@+id/countriesSpinner"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -53,7 +53,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@color/light_gray"
-            tools:listitem="@layout/item_flag_spinner" />
+            tools:listitem="@layout/item_country_spinner" />
 
         <Spinner
             android:id="@+id/productSpinner"
