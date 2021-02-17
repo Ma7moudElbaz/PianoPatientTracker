@@ -46,14 +46,7 @@ public class DashboardFragment extends Fragment {
     ArrayList<Brand_item> brands_list = new ArrayList<>();
     ArrayList<Country_item> countries_list = new ArrayList<>();
 
-
-    String[] countryNames = {"SA", "SA"};
-    int flags[] = {R.drawable.flag_sa, R.drawable.flag_sa};
     String[] tagList = new String[]{"Hello1", "Hello2", "Hello3", "Hello4", "Hello5", "Hello6", "Hello7"};
-
-    int products[] = {R.drawable.jakavi_logo, R.drawable.revolade_logo, R.drawable.adakveo_logo
-            , R.drawable.tasigna_logo, R.drawable.palbociclib_logo, R.drawable.abemaciclib_logo
-            , R.drawable.piqary_logo, R.drawable.afinitor_logo, R.drawable.kisqali_logo};
 
 
     private static DecimalFormat df2 = new DecimalFormat("#.##");
