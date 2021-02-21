@@ -8,12 +8,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cat.pianopatienttracker.LoginActivity;
@@ -66,11 +70,17 @@ public class DashboardFragment extends Fragment {
     AnimatedPieViewConfig productChartConfig, dosesChartConfig, targetChartConfig;
 
 
+    ArrayList<Ranking_dashboard_item> ranking_list = new ArrayList<>();
     ArrayList<Ranking_dashboard_item> ranking_rep_list = new ArrayList<>();
     ArrayList<Ranking_dashboard_item> ranking_sector_list = new ArrayList<>();
     ArrayList<Ranking_dashboard_item> ranking_hospital_list = new ArrayList<>();
     ArrayList<Ranking_dashboard_item> ranking_doctor_list = new ArrayList<>();
 
+    RecyclerView rankingRecycler;
+    Ranking_dashboard_adapter ranking_adapter;
+
+    TextView rankingRepsBtn, rankingDoctorsBtn, rankingSectorsBtn, rankingHospitalsBtn;
+    TextView targetTotal;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -94,7 +104,39 @@ public class DashboardFragment extends Fragment {
 
         accessToken = "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZXYucHRyYWNrZXIub3JnXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjEzNTYwNzMyLCJleHAiOjE2MTM5OTI3MzIsIm5iZiI6MTYxMzU2MDczMiwianRpIjoiQnRBQWswa0lJelZzYnRIUCIsInN1YiI6NiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.hxt-l-9E-raEsqWIJSno5ERjI1ozRJ5wtjeVzDJ-a0Q";
 
+        targetTotal = view.findViewById(R.id.target_total_tv);
+        rankingRepsBtn = view.findViewById(R.id.ranking_reps_btn);
+        rankingDoctorsBtn = view.findViewById(R.id.ranking_doctors_btn);
+        rankingSectorsBtn = view.findViewById(R.id.ranking_sectors_btn);
+        rankingHospitalsBtn = view.findViewById(R.id.ranking_hospitals_btn);
 
+        rankingRepsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initRankingRepAdapter();
+            }
+        });
+
+        rankingDoctorsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initRankingDoctorsAdapter();
+            }
+        });
+
+        rankingSectorsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initRankingSectorsAdapter();
+            }
+        });
+
+        rankingHospitalsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initRankingHospitalsAdapter();
+            }
+        });
         productChart = view.findViewById(R.id.productChart);
         dosesChart = view.findViewById(R.id.dosesChart);
         targetChart = view.findViewById(R.id.targetChart);
@@ -169,7 +211,7 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-
+//        initRankingRecyclerView();
         getCountries();
 
     }
@@ -222,6 +264,7 @@ public class DashboardFragment extends Fragment {
 
     public void setRankingData(JSONObject rankingObj) {
         try {
+
             JSONArray repsList = rankingObj.getJSONArray("rep");
             JSONArray sectorsList = rankingObj.getJSONArray("sector");
             JSONArray hospitalsList = rankingObj.getJSONArray("hospitals");
@@ -233,35 +276,44 @@ public class DashboardFragment extends Fragment {
                 final String name = currentObject.getString("name");
                 final int patientsNo = currentObject.getInt("p_count");
 
-                ranking_rep_list.add(new Ranking_dashboard_item(id,name,patientsNo));
+                ranking_rep_list.add(new Ranking_dashboard_item(id, name, patientsNo));
             }
 
             for (int i = 0; i < sectorsList.length(); i++) {
-                JSONObject currentObject = repsList.getJSONObject(i);
+                JSONObject currentObject = sectorsList.getJSONObject(i);
                 final int id = currentObject.getInt("id");
                 final String name = currentObject.getString("name");
                 final int patientsNo = currentObject.getInt("p_count");
 
-                ranking_sector_list.add(new Ranking_dashboard_item(id,name,patientsNo));
+                ranking_sector_list.add(new Ranking_dashboard_item(id, name, patientsNo));
             }
 
             for (int i = 0; i < hospitalsList.length(); i++) {
-                JSONObject currentObject = repsList.getJSONObject(i);
+                JSONObject currentObject = hospitalsList.getJSONObject(i);
                 final int id = currentObject.getInt("id");
                 final String name = currentObject.getString("name");
                 final int patientsNo = currentObject.getInt("p_count");
 
-                ranking_hospital_list.add(new Ranking_dashboard_item(id,name,patientsNo));
+                ranking_hospital_list.add(new Ranking_dashboard_item(id, name, patientsNo));
             }
 
             for (int i = 0; i < doctorsList.length(); i++) {
-                JSONObject currentObject = repsList.getJSONObject(i);
+                JSONObject currentObject = doctorsList.getJSONObject(i);
                 final int id = currentObject.getInt("id");
                 final String name = currentObject.getString("name");
                 final int patientsNo = currentObject.getInt("p_count");
 
-                ranking_doctor_list.add(new Ranking_dashboard_item(id,name,patientsNo));
+                ranking_doctor_list.add(new Ranking_dashboard_item(id, name, patientsNo));
             }
+
+//            Log.e("Hospital", ranking_hospital_list.get(0).getName());
+//            Log.e("Rep", ranking_rep_list.get(0).getName());
+//            Log.e("doctor", ranking_doctor_list.get(0).getName());
+//            Log.e("sector", ranking_sector_list.get(0).getName());
+
+            initRankingRecyclerView();
+//            ranking_list = ranking_rep_list;
+//            ranking_adapter.notifyDataSetChanged();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -361,13 +413,16 @@ public class DashboardFragment extends Fragment {
 
         try {
 
-            final double actualTarget = currentObject.getDouble("actual_target");
-            final double totalTarget = currentObject.getDouble("total_target");
+            final int actualTarget = currentObject.getInt("actual_target");
+            final int totalTarget = currentObject.getInt("total_target");
+            final int notAchievedTarget = totalTarget-actualTarget;
             targetChartConfig.addData(new SimplePieInfo(actualTarget, ContextCompat.getColor(getActivity(), brandsChartColors[0]), "Actual Target : " + df2.format(actualTarget)));
-            targetChartConfig.addData(new SimplePieInfo(totalTarget, ContextCompat.getColor(getActivity(), brandsChartColors[1]), "Total Target : " + df2.format(totalTarget)));
+            targetChartConfig.addData(new SimplePieInfo(notAchievedTarget, ContextCompat.getColor(getActivity(), brandsChartColors[1]), "  " + df2.format(notAchievedTarget)));
 
             targetChart.applyConfig(targetChartConfig);
             targetChart.start();
+
+            targetTotal.setText(String.valueOf(totalTarget));
 
 
         } catch (Exception e) {
@@ -516,6 +571,78 @@ public class DashboardFragment extends Fragment {
     public void initCountriesSpinner() {
         CountriesSpinnerAdapter countriesSpinnerAdapter = new CountriesSpinnerAdapter(getActivity(), countries_list);
         countriesSpinner.setAdapter(countriesSpinnerAdapter);
+
+    }
+
+
+    private void initRankingRecyclerView() {
+        rankingRecycler = getView().findViewById(R.id.ranking_dashboard_recycler);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        rankingRecycler.setLayoutManager(layoutManager);
+        initRankingRepAdapter();
+
+    }
+
+    private void initRankingRepAdapter() {
+        ranking_adapter = new Ranking_dashboard_adapter(getActivity(), ranking_rep_list);
+        rankingRecycler.setAdapter(ranking_adapter);
+        setRankingButtons(0);
+    }
+
+    private void initRankingDoctorsAdapter() {
+        ranking_adapter = new Ranking_dashboard_adapter(getActivity(), ranking_doctor_list);
+        rankingRecycler.setAdapter(ranking_adapter);
+        setRankingButtons(1);
+    }
+
+    private void initRankingSectorsAdapter() {
+        ranking_adapter = new Ranking_dashboard_adapter(getActivity(), ranking_sector_list);
+        rankingRecycler.setAdapter(ranking_adapter);
+        setRankingButtons(2);
+    }
+
+    private void initRankingHospitalsAdapter() {
+        ranking_adapter = new Ranking_dashboard_adapter(getActivity(), ranking_hospital_list);
+        rankingRecycler.setAdapter(ranking_adapter);
+        setRankingButtons(3);
+    }
+
+    private void setRankingButtons(int buttonClicked) {
+
+        rankingRepsBtn.setTextColor(ContextCompat.getColor(getActivity(),R.color.gray));
+        rankingRepsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.more_light_gray));
+
+        rankingDoctorsBtn.setTextColor(ContextCompat.getColor(getActivity(),R.color.gray));
+        rankingDoctorsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.more_light_gray));
+
+        rankingSectorsBtn.setTextColor(ContextCompat.getColor(getActivity(),R.color.gray));
+        rankingSectorsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.more_light_gray));
+
+        rankingHospitalsBtn.setTextColor(ContextCompat.getColor(getActivity(),R.color.gray));
+        rankingHospitalsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.more_light_gray));
+
+        switch (buttonClicked) {
+            case 0:
+                rankingRepsBtn.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+                rankingRepsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.colorAccent));
+                return;
+            case 1:
+                rankingDoctorsBtn.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+                rankingDoctorsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.colorAccent));
+                return;
+            case 2:
+                rankingSectorsBtn.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+                rankingSectorsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.colorAccent));
+                return;
+            case 3:
+                rankingHospitalsBtn.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+                rankingHospitalsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.colorAccent));
+                return;
+        }
+
+        TextView rankingRepsBtn, rankingDoctorsBtn, rankingSectorsBtn, rankingHospitalsBtn;
+
 
     }
 }

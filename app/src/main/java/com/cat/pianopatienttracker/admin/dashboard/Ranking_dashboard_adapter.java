@@ -46,7 +46,7 @@ public class Ranking_dashboard_adapter extends RecyclerView.Adapter<Ranking_dash
 
         holder.name.setText(items.get(position).getName());
         holder.patientsNo.setText("("+items.get(position).getPatientsNo()+")");
-        holder.name.setText(String.valueOf(position+1));
+        holder.rank.setText(String.valueOf(position+1));
 
     }
 
