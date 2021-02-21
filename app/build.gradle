@@ -96,7 +96,7 @@ dependencies {
 
     //chart
     implementation 'com.github.razerdp:AnimatedPieView:1.2.6'
-
+    implementation 'org.apmem.tools:layouts:1.10@aar'
 
 
     //Azure SSO

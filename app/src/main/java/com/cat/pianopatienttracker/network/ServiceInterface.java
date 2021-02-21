@@ -19,13 +19,15 @@ import retrofit2.http.Query;
 
 public interface ServiceInterface {
 
-    @Headers({"Accept:application/json", "Content-Type:application/x-www-form-urlencoded;"})
     @GET("admin/get-brands")
     Call<ResponseBody> getBrands(@Header("Authorization") String auth);
 
 
     @GET("admin/get-countries")
     Call<ResponseBody> getCountries(@Header("Authorization") String auth);
+
+    @GET("dashboard")
+    Call<ResponseBody> getDashboard(@Header("Authorization") String auth ,@Query("country_id") int countryId,@Query("brand_id") int brandId);
 
 
 //    @POST("auth/login")
