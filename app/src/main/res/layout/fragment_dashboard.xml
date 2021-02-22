@@ -384,7 +384,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            app:cardCornerRadius="5dp">
+                            app:cardCornerRadius="5dp"
+                            app:cardElevation="0dp">
 
                             <TextView
                                 android:id="@+id/ranking_reps_btn"
@@ -405,7 +406,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:orientation="vertical"
-                            app:cardCornerRadius="5dp">
+                            app:cardCornerRadius="5dp"
+                            app:cardElevation="0dp">
 
                             <TextView
                                 android:id="@+id/ranking_doctors_btn"
@@ -426,7 +428,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:orientation="vertical"
-                            app:cardCornerRadius="5dp">
+                            app:cardCornerRadius="5dp"
+                            app:cardElevation="0dp">
 
                             <TextView
                                 android:id="@+id/ranking_sectors_btn"
@@ -447,7 +450,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:orientation="vertical"
-                            app:cardCornerRadius="5dp">
+                            app:cardCornerRadius="5dp"
+                            app:cardElevation="0dp">
 
                             <TextView
                                 android:id="@+id/ranking_hospitals_btn"

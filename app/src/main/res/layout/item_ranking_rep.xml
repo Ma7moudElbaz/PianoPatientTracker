@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:contentDescription="@string/img_description"
-            android:src="@drawable/doctor_card_bg" />
+            android:src="@drawable/doctor_card_bg"/>
 
 
         <LinearLayout
@@ -27,10 +27,13 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp">
 
 
             <TextView
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ahmed Ali"
@@ -44,12 +47,12 @@
 
 
                 <TextView
+                    android:id="@+id/patientsNo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
                     android:layout_marginTop="10dp"
                     android:drawablePadding="5dp"
-                    android:text="MOH"
+                    android:text="324"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:drawableLeftCompat="@drawable/ic_plus"
@@ -62,10 +65,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginEnd="20dp"
                     android:text="1"
                     android:textColor="@color/light_blue"
-                    android:textSize="30sp" />
+                    android:textSize="24sp" />
 
             </RelativeLayout>
 

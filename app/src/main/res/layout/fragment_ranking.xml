@@ -31,17 +31,17 @@
             android:weightSum="3">
 
             <TextView
-                android:id="@+id/ranking_hospitals"
+                android:id="@+id/ranking_hospitals_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/hospitals"
-                android:textColor="@color/light_blue"
+                android:textColor="@color/light_gray"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/ranking_reps"
+                android:id="@+id/ranking_reps_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -51,7 +51,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/ranking_sectors"
+                android:id="@+id/ranking_sectors_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -70,6 +70,7 @@
 
 
         <TextView
+            android:id="@+id/filter_period"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -85,6 +86,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ranking_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
