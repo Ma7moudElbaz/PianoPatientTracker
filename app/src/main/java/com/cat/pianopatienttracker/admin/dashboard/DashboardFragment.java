@@ -10,7 +10,6 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +19,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adroitandroid.chipcloud.ChipCloud;
+import com.adroitandroid.chipcloud.ChipListener;
 import com.cat.pianopatienttracker.LoginActivity;
 import com.cat.pianopatienttracker.admin.CountriesSpinnerAdapter;
 import com.cat.pianopatienttracker.admin.BrandsSpinnerAdapter;
@@ -50,13 +51,9 @@ public class DashboardFragment extends Fragment {
 
     private ProgressDialog dialog;
     String accessToken;
-    int selectedTagPosition = 0;
 
     ArrayList<Brand_item> brands_list = new ArrayList<>();
     ArrayList<Country_item> countries_list = new ArrayList<>();
-
-    ArrayList<String> brandsTagList = new ArrayList<>();
-    ArrayList<String> targetTagList = new ArrayList<>();
 
     int[] brandsChartColors = new int[]{R.color.colorAccent, R.color.dark_gray};
     int[] dosesChartColors = new int[]{R.color.colorAccent, R.color.dark_gray, R.color.red, R.color.light_blue};
@@ -70,7 +67,6 @@ public class DashboardFragment extends Fragment {
     AnimatedPieViewConfig productChartConfig, dosesChartConfig, targetChartConfig;
 
 
-    ArrayList<Ranking_dashboard_item> ranking_list = new ArrayList<>();
     ArrayList<Ranking_dashboard_item> ranking_rep_list = new ArrayList<>();
     ArrayList<Ranking_dashboard_item> ranking_sector_list = new ArrayList<>();
     ArrayList<Ranking_dashboard_item> ranking_hospital_list = new ArrayList<>();
@@ -90,12 +86,14 @@ public class DashboardFragment extends Fragment {
     }
 
     Spinner countriesSpinner, brandsSpinner;
-    TagContainerLayout brandsTagView, targetTagView;
+    ChipCloud brandsTagChip, targetTagChip;
     AnimatedPieView productChart, dosesChart, targetChart;
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
 
         dialog = new ProgressDialog(getActivity());
@@ -143,75 +141,36 @@ public class DashboardFragment extends Fragment {
 
         countriesSpinner = view.findViewById(R.id.countriesSpinner);
         brandsSpinner = view.findViewById(R.id.brandsSpinner);
-        brandsTagView = view.findViewById(R.id.brandTagView);
-        targetTagView = view.findViewById(R.id.targetTagView);
-        brandsTagView.setTheme(ColorFactory.NONE);
+
+        brandsTagChip = view.findViewById(R.id.brandTagChip);
+        targetTagChip = view.findViewById(R.id.targetTagChip);
 
 
-        targetTagView.setOnTagClickListener(new TagView.OnTagClickListener() {
+        brandsTagChip.setChipListener(new ChipListener() {
             @Override
-            public void onTagClick(int position, String text) {
-                setTargetChart(targetChartItemArr.get(position));
+            public void chipSelected(int index) {
+                setBrandChart(brandChartItemArr.get(index));
             }
 
             @Override
-            public void onTagLongClick(int position, String text) {
-
-            }
-
-            @Override
-            public void onSelectedTagDrag(int position, String text) {
-
-            }
-
-            @Override
-            public void onTagCrossClick(int position) {
+            public void chipDeselected(int index) {
 
             }
         });
 
-        brandsTagView.setOnTagClickListener(new TagView.OnTagClickListener() {
+        targetTagChip.setChipListener(new ChipListener() {
             @Override
-            public void onTagClick(int position, String text) {
-                Log.d("TAG", brandChartItemArr.get(position).toString());
-
-                setBrandChart(brandChartItemArr.get(position));
-
-
-            }
-
-            void setSelectedTag(int position) {
-
-                if (selectedTagPosition == position) {
-                    return;
-                } else {
-                    brandsTagView.getTagView(position).setTagBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorAccent));
-                    brandsTagView.getTagView(position).setTagTextColor(ContextCompat.getColor(getActivity(), R.color.white));
-
-                    brandsTagView.getTagView(selectedTagPosition).setTagBackgroundColor(ContextCompat.getColor(getActivity(), R.color.more_light_gray));
-                    brandsTagView.getTagView(selectedTagPosition).setTagTextColor(ContextCompat.getColor(getActivity(), R.color.gray));
-                }
-                selectedTagPosition = position;
-
+            public void chipSelected(int index) {
+                setTargetChart(targetChartItemArr.get(index));
             }
 
             @Override
-            public void onTagLongClick(int position, String text) {
-
-            }
-
-            @Override
-            public void onSelectedTagDrag(int position, String text) {
-
-            }
-
-            @Override
-            public void onTagCrossClick(int position) {
+            public void chipDeselected(int index) {
 
             }
         });
 
-//        initRankingRecyclerView();
+
         getCountries();
 
     }
@@ -324,11 +283,10 @@ public class DashboardFragment extends Fragment {
             for (int i = 0; i < list.length(); i++) {
                 JSONObject currentObject = list.getJSONObject(i);
                 final String title = currentObject.getString("name");
-                brandsTagList.add(title);
+                brandsTagChip.addChip(title);
                 brandChartItemArr.add(currentObject.getJSONArray("child"));
-
             }
-            brandsTagView.setTags(brandsTagList);
+            brandsTagChip.setSelectedChip(0);
             setBrandChart(brandChartItemArr.get(0));
         } catch (Exception e) {
             e.printStackTrace();
@@ -379,12 +337,12 @@ public class DashboardFragment extends Fragment {
             for (int i = 0; i < list.length(); i++) {
                 JSONObject currentObject = list.getJSONObject(i);
                 final String title = currentObject.getString("year");
-                targetTagList.add(title);
 
+                targetTagChip.addChip(title);
                 targetChartItemArr.add(currentObject);
 
             }
-            targetTagView.setTags(targetTagList);
+            targetTagChip.setSelectedChip(0);
             setTargetChart(targetChartItemArr.get(0));
         } catch (Exception e) {
             e.printStackTrace();
@@ -577,8 +535,8 @@ public class DashboardFragment extends Fragment {
 
     private void initRankingRecyclerView() {
         rankingRecycler = getView().findViewById(R.id.ranking_dashboard_recycler);
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+//        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rankingRecycler.setLayoutManager(layoutManager);
         initRankingRepAdapter();
 
