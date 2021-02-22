@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.adroitandroid.chipcloud.ChipCloud;
 import com.adroitandroid.chipcloud.ChipListener;
 import com.cat.pianopatienttracker.LoginActivity;
+import com.cat.pianopatienttracker.admin.Admin_home;
 import com.cat.pianopatienttracker.admin.CountriesSpinnerAdapter;
 import com.cat.pianopatienttracker.admin.BrandsSpinnerAdapter;
 import com.cat.pianopatienttracker.R;
@@ -47,6 +48,14 @@ import retrofit2.Response;
 
 
 public class DashboardFragment extends Fragment {
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_dashboard, container, false);
+    }
 
 
     private ProgressDialog dialog;
@@ -78,29 +87,27 @@ public class DashboardFragment extends Fragment {
     TextView rankingRepsBtn, rankingDoctorsBtn, rankingSectorsBtn, rankingHospitalsBtn;
     TextView targetTotal;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dashboard, container, false);
-    }
 
     Spinner countriesSpinner, brandsSpinner;
     ChipCloud brandsTagChip, targetTagChip;
     AnimatedPieView productChart, dosesChart, targetChart;
+
+    Admin_home activity;
 
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        activity = (Admin_home) getActivity();
 
+
+        accessToken = "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZXYucHRyYWNrZXIub3JnXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjEzOTkzMDY1LCJleHAiOjE2MTQ0MjUwNjUsIm5iZiI6MTYxMzk5MzA2NSwianRpIjoiQXZHdHhuQzhDYlVPSnYwVyIsInN1YiI6NiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.u8piW4bYBzC2TKLbnakCnvBiHGDH3cOPCOPc17ZO8-I";
 
         dialog = new ProgressDialog(getActivity());
         dialog.setMessage("Loading....");
         dialog.setCancelable(false);
 
-        accessToken = "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZXYucHRyYWNrZXIub3JnXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjEzNTYwNzMyLCJleHAiOjE2MTM5OTI3MzIsIm5iZiI6MTYxMzU2MDczMiwianRpIjoiQnRBQWswa0lJelZzYnRIUCIsInN1YiI6NiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.hxt-l-9E-raEsqWIJSno5ERjI1ozRJ5wtjeVzDJ-a0Q";
 
         targetTotal = view.findViewById(R.id.target_total_tv);
         rankingRepsBtn = view.findViewById(R.id.ranking_reps_btn);
@@ -180,6 +187,9 @@ public class DashboardFragment extends Fragment {
 
         int selectedCountryId = countries_list.get(countriesSpinner.getSelectedItemPosition()).getId();
         int selectedBrandId = brands_list.get(brandsSpinner.getSelectedItemPosition()).getId();
+
+        activity.setSelectedCountryId(selectedCountryId);
+        activity.setSelectedBrandId(selectedBrandId);
 
         Webservice.getInstance().getApi().getDashboard(accessToken, selectedCountryId, selectedBrandId).enqueue(new Callback<ResponseBody>() {
             @Override
@@ -373,7 +383,7 @@ public class DashboardFragment extends Fragment {
 
             final int actualTarget = currentObject.getInt("actual_target");
             final int totalTarget = currentObject.getInt("total_target");
-            final int notAchievedTarget = totalTarget-actualTarget;
+            final int notAchievedTarget = totalTarget - actualTarget;
             targetChartConfig.addData(new SimplePieInfo(actualTarget, ContextCompat.getColor(getActivity(), brandsChartColors[0]), "Actual Target : " + df2.format(actualTarget)));
             targetChartConfig.addData(new SimplePieInfo(notAchievedTarget, ContextCompat.getColor(getActivity(), brandsChartColors[1]), "  " + df2.format(notAchievedTarget)));
 
@@ -568,39 +578,36 @@ public class DashboardFragment extends Fragment {
 
     private void setRankingButtons(int buttonClicked) {
 
-        rankingRepsBtn.setTextColor(ContextCompat.getColor(getActivity(),R.color.gray));
-        rankingRepsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.more_light_gray));
+        rankingRepsBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.gray));
+        rankingRepsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.more_light_gray));
 
-        rankingDoctorsBtn.setTextColor(ContextCompat.getColor(getActivity(),R.color.gray));
-        rankingDoctorsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.more_light_gray));
+        rankingDoctorsBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.gray));
+        rankingDoctorsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.more_light_gray));
 
-        rankingSectorsBtn.setTextColor(ContextCompat.getColor(getActivity(),R.color.gray));
-        rankingSectorsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.more_light_gray));
+        rankingSectorsBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.gray));
+        rankingSectorsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.more_light_gray));
 
-        rankingHospitalsBtn.setTextColor(ContextCompat.getColor(getActivity(),R.color.gray));
-        rankingHospitalsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.more_light_gray));
+        rankingHospitalsBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.gray));
+        rankingHospitalsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.more_light_gray));
 
         switch (buttonClicked) {
             case 0:
-                rankingRepsBtn.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
-                rankingRepsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.colorAccent));
+                rankingRepsBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+                rankingRepsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorAccent));
                 return;
             case 1:
-                rankingDoctorsBtn.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
-                rankingDoctorsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.colorAccent));
+                rankingDoctorsBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+                rankingDoctorsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorAccent));
                 return;
             case 2:
-                rankingSectorsBtn.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
-                rankingSectorsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.colorAccent));
+                rankingSectorsBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+                rankingSectorsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorAccent));
                 return;
             case 3:
-                rankingHospitalsBtn.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
-                rankingHospitalsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.colorAccent));
+                rankingHospitalsBtn.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+                rankingHospitalsBtn.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorAccent));
                 return;
         }
-
-        TextView rankingRepsBtn, rankingDoctorsBtn, rankingSectorsBtn, rankingHospitalsBtn;
-
 
     }
 }

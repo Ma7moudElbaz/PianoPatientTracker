@@ -25,6 +25,24 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
         fragmentTransaction.commit();
     }
 
+    private int selectedCountryId = 0;
+    private int selectedBrandId = 0;
+
+    public int getSelectedCountryId() {
+        return selectedCountryId;
+    }
+
+    public void setSelectedCountryId(int selectedCountryId) {
+        this.selectedCountryId = selectedCountryId;
+    }
+
+    public int getSelectedBrandId() {
+        return selectedBrandId;
+    }
+
+    public void setSelectedBrandId(int selectedBrandId) {
+        this.selectedBrandId = selectedBrandId;
+    }
 
     BottomNavigationView bottomNavigationView;
 
@@ -48,13 +66,13 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
 
         if (id == R.id.navigation_dashboard) {
             setContentFragment(new DashboardFragment());
-        }else if (id == R.id.navigation_rank) {
+        } else if (id == R.id.navigation_rank) {
             setContentFragment(new RankingFragment());
-        }else if (id == R.id.navigation_sector) {
+        } else if (id == R.id.navigation_sector) {
             setContentFragment(new SectorsFragment());
-        }else if (id == R.id.navigation_target) {
+        } else if (id == R.id.navigation_target) {
             setContentFragment(new TargetFragment());
-        }else if (id == R.id.navigation_users) {
+        } else if (id == R.id.navigation_users) {
             setContentFragment(new UsersFragment());
         }
 

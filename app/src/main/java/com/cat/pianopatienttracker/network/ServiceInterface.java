@@ -30,6 +30,10 @@ public interface ServiceInterface {
     Call<ResponseBody> getDashboard(@Header("Authorization") String auth ,@Query("country_id") int countryId,@Query("brand_id") int brandId);
 
 
+    @GET("ranking-slice")
+    Call<ResponseBody> getRanking(@Header("Authorization") String auth ,@Query("country_id") int countryId,@Query("brand_id") int brandId,@Query("type") String type);
+
+
 //    @POST("auth/login")
 //    @FormUrlEncoded
 //    Call<ResponseBody> login(@FieldMap Map<String, String> map);

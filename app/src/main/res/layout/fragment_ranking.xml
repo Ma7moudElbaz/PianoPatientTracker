@@ -31,6 +31,7 @@
             android:weightSum="3">
 
             <TextView
+                android:id="@+id/ranking_hospitals"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -40,6 +41,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/ranking_reps"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -49,6 +51,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/ranking_sectors"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
