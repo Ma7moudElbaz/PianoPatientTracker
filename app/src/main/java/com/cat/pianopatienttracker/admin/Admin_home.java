@@ -8,9 +8,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.cat.pianopatienttracker.admin.dashboard.DashboardFragment;
+import com.cat.pianopatienttracker.admin.dashboard.brand.DashboardFragment;
 import com.cat.pianopatienttracker.admin.ranking.RankingFragment;
-import com.cat.pianopatienttracker.admin.sectors.SectorsFragment;
 import com.cat.pianopatienttracker.admin.target.TargetFragment;
 import com.cat.pianopatienttracker.admin.users.UsersFragment;
 import com.cat.pianopatienttracker.R;
@@ -27,7 +26,8 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
 
     private int selectedCountryId = 0;
     private int selectedBrandId = 0;
-    private String accessToken = "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZXYucHRyYWNrZXIub3JnXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjEzOTkzMDY1LCJleHAiOjE2MTQ0MjUwNjUsIm5iZiI6MTYxMzk5MzA2NSwianRpIjoiQXZHdHhuQzhDYlVPSnYwVyIsInN1YiI6NiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.u8piW4bYBzC2TKLbnakCnvBiHGDH3cOPCOPc17ZO8-I";
+//    private String accessToken = "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZXYucHRyYWNrZXIub3JnXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjEzOTkzMDY1LCJleHAiOjE2MTQ0MjUwNjUsIm5iZiI6MTYxMzk5MzA2NSwianRpIjoiQXZHdHhuQzhDYlVPSnYwVyIsInN1YiI6NiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.u8piW4bYBzC2TKLbnakCnvBiHGDH3cOPCOPc17ZO8-I";
+    private String accessToken = "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZXYucHRyYWNrZXIub3JnXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE0MDc2NTM0LCJleHAiOjE2MTQ1MDg1MzQsIm5iZiI6MTYxNDA3NjUzNCwianRpIjoibHVwcXNmcXBMTnluUEExZSIsInN1YiI6NywicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.s_km3VMyEixccz6LbQ2BAOcrVWqtSGP6Wx-2BoH7ffc";
 
     public String getAccessToken() {
         return accessToken;
