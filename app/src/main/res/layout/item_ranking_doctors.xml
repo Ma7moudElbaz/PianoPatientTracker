@@ -11,33 +11,30 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="5dp"
-        >
+        android:background="@color/white">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:adjustViewBounds="true"
             android:contentDescription="@string/img_description"
-            android:src="@drawable/hospital_card_bg" />
+            android:src="@drawable/rep_card_bg" />
 
 
         <LinearLayout
             android:id="@+id/parent_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:padding="10dp">
 
 
             <TextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Al Salam International Hospital"
+                android:text="Dr Mohamed Ali"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -49,38 +46,60 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
                     android:layout_marginEnd="10dp"
-                    android:layout_toStartOf="@+id/rank"
-                    android:orientation="vertical">
-
+                    android:layout_toStartOf="@+id/rank">
 
                     <TextView
-                        android:id="@+id/speciality"
-                        android:layout_width="match_parent"
+                        android:id="@+id/hospital"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
                         android:layout_marginTop="10dp"
                         android:drawablePadding="5dp"
-                        android:text="MOH"
+                        android:text="Al Salam International Hospital"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        app:drawableLeftCompat="@drawable/ic_heart"
+                        app:drawableLeftCompat="@drawable/ic_home"
                         app:drawableTint="@color/colorAccent" />
 
 
-                    <TextView
-                        android:id="@+id/address"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="10dp"
-                        android:drawablePadding="5dp"
-                        android:text="Riyadah"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        app:drawableLeftCompat="@drawable/ic_location"
-                        app:drawableTint="@color/colorAccent" />
+                        android:layout_marginEnd="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
 
+
+                        <TextView
+                            android:id="@+id/address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:drawablePadding="5dp"
+                            android:text="Riyadh"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:drawableLeftCompat="@drawable/ic_location"
+                            app:drawableTint="@color/colorAccent" />
+
+
+                        <TextView
+                            android:id="@+id/patientsNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:drawablePadding="5dp"
+                            android:text="55"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:drawableLeftCompat="@drawable/ic_plus"
+                            app:drawableTint="@color/colorAccent" />
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -90,13 +109,12 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginEnd="10dp"
                     android:text="1"
                     android:textColor="@color/light_blue"
                     android:textSize="24sp" />
-
-
             </RelativeLayout>
+
 
         </LinearLayout>
 

@@ -21,8 +21,7 @@
             android:layout_centerInParent="true"
             android:adjustViewBounds="true"
             android:contentDescription="@string/img_description"
-            android:padding="15dp"
-            android:src="@drawable/logo_novartis" />
+            android:src="@drawable/logo_horizontal" />
 
         <View
             android:layout_width="match_parent"

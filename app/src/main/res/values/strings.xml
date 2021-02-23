@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PianoPatientTracker</string>
+    <string name="app_name">Piano Tracker</string>
     <string name="img_description">image</string>
     <string name="login">Login</string>
     <string name="user_name">User Name</string>
@@ -23,4 +23,34 @@
     <string name="profile">Profile</string>
     <string name="home">Home</string>
     <string name="search">Search</string>
+    <string name="progress">Progress</string>
+    <string name="country_and_product">Country and Product</string>
+    <string name="country">Country</string>
+    <string name="product">Product</string>
+    <string name="done">Done</string>
+
+
+    <string-array name="months">
+       <item>January</item>
+       <item>February</item>
+       <item>March</item>
+       <item>April</item>
+       <item>May</item>
+       <item>June</item>
+       <item>July</item>
+       <item>August</item>
+       <item>September</item>
+       <item>October</item>
+       <item>November</item>
+       <item>December</item>
+    </string-array>
+
+
+    <string-array name="years">
+       <item>2019</item>
+       <item>2020</item>
+       <item>2021</item>
+       <item>2022</item>
+       <item>2023</item>
+    </string-array>
 </resources>

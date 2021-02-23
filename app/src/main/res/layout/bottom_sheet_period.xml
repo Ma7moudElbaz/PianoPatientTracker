@@ -19,9 +19,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="25dp"
         android:orientation="horizontal"
         android:weightSum="3">
 
@@ -30,20 +30,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="5dp"
             app:cardElevation="0dp">
 
             <TextView
-                android:id="@+id/ranking_hospitals_btn"
+                android:id="@+id/yearly_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/more_light_gray"
+                android:background="@color/light_blue"
                 android:gravity="center"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 android:text="Yearly"
-                android:textColor="@color/gray"
-                android:textSize="18sp" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
 
@@ -53,10 +53,11 @@
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:orientation="vertical"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="5dp"
             app:cardElevation="0dp">
 
             <TextView
+                android:id="@+id/ytl_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/more_light_gray"
@@ -65,7 +66,7 @@
                 android:paddingBottom="8dp"
                 android:text="YTL"
                 android:textColor="@color/gray"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
 
@@ -75,10 +76,11 @@
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:orientation="vertical"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="5dp"
             app:cardElevation="0dp">
 
             <TextView
+                android:id="@+id/monthly_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/more_light_gray"
@@ -87,7 +89,7 @@
                 android:paddingBottom="8dp"
                 android:text="Monthly"
                 android:textColor="@color/gray"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
         </androidx.cardview.widget.CardView>
 
@@ -95,12 +97,26 @@
 
 
     <Spinner
-        android:id="@+id/brandsSpinner"
+        android:id="@+id/months_spinner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:dropDownWidth="match_parent"
-        android:spinnerMode="dropdown" />
+        android:spinnerMode="dropdown"
+        android:entries="@array/months"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:visibility="gone"/>
+    <Spinner
+        android:id="@+id/years_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:dropDownWidth="match_parent"
+        android:spinnerMode="dropdown"
+        android:entries="@array/years"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -111,6 +127,7 @@
         app:cardElevation="0dp">
 
         <TextView
+            android:id="@+id/submit_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/light_blue"

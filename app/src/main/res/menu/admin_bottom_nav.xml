@@ -15,15 +15,11 @@
     <item
         android:id="@+id/navigation_target"
         android:icon="@drawable/ic_target"
-        android:title="@string/target" />
+        android:title="@string/progress" />
 
     <item
         android:id="@+id/navigation_users"
         android:icon="@drawable/ic_users"
         android:title="@string/users" />
 
-    <item
-        android:id="@+id/navigation_sector"
-        android:icon="@drawable/ic_sector"
-        android:title="@string/sector" />
 </menu>

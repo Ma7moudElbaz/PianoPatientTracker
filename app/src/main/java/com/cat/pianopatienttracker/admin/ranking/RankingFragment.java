@@ -57,7 +57,10 @@ public class RankingFragment extends Fragment {
     ArrayList<Ranking_sectors_item> ranking_sectors_list = new ArrayList<>();
     Ranking_sectors_adapter ranking_sectors_adapter;
 
-    TextView ranking_hospitals_btn,ranking_reps_btn,ranking_sectors_btn;
+    ArrayList<Ranking_doctors_item> ranking_doctors_list = new ArrayList<>();
+    Ranking_doctors_adapter ranking_doctors_adapter;
+
+    TextView ranking_hospitals_btn,ranking_reps_btn,ranking_sectors_btn,ranking_doctors_btn;
     TextView filter_period;
 
     Admin_home activity;
@@ -77,6 +80,7 @@ public class RankingFragment extends Fragment {
         ranking_hospitals_btn =  view.findViewById(R.id.ranking_hospitals_btn);
         ranking_reps_btn =  view.findViewById(R.id.ranking_reps_btn);
         ranking_sectors_btn =  view.findViewById(R.id.ranking_sectors_btn);
+        ranking_doctors_btn =  view.findViewById(R.id.ranking_doctors_btn);
 
         ranking_hospitals_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +103,13 @@ public class RankingFragment extends Fragment {
             }
         });
 
+        ranking_doctors_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getRanking("doctors");
+            }
+        });
+
 
 
 
@@ -117,7 +128,7 @@ public class RankingFragment extends Fragment {
 
         //hospitals,reps,sectors,doctors
         initRankingRecyclerView();
-        getRanking("hospitals");
+        getRanking("reps");
     }
 
 
@@ -140,6 +151,8 @@ public class RankingFragment extends Fragment {
                             setRankingRepsList(rankingArr);
                         }else if (type.equals("sectors")){
                             setRankingSectorsList(rankingArr);;
+                        }else if (type.equals("doctors")){
+                            setRankingDoctorsList(rankingArr);;
                         }
 
                     } catch (Exception e) {
@@ -174,7 +187,12 @@ public class RankingFragment extends Fragment {
                 final JSONObject sector = currentObject.getJSONObject("sector");
                 String sectorString = sector.getString("name");
 
-                ranking_hospitals_list.add(new Ranking_hospitals_item(id, name, sectorString, address));
+
+                final int doctorsNo = 55;
+//                final int doctorsNo = currentObject.getInt("d_count");
+                final int patientsNo = currentObject.getInt("p_count");
+
+                ranking_hospitals_list.add(new Ranking_hospitals_item(id, name, sectorString, address,doctorsNo,patientsNo));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -208,6 +226,7 @@ public class RankingFragment extends Fragment {
                 JSONObject currentObject = list.getJSONObject(i);
                 final int id = currentObject.getInt("id");
                 final String name = currentObject.getString("name");
+                final int patientsNo = currentObject.getInt("p_count");
 
 //                final int doctorsNo = currentObject.getInt("d_count");
 //                final int hospitalsNo = currentObject.getInt("h_count");
@@ -215,7 +234,7 @@ public class RankingFragment extends Fragment {
                 final int doctorsNo = 332;
                 final int hospitalsNo = 20;
 
-                ranking_sectors_list.add(new Ranking_sectors_item(id, name,doctorsNo,hospitalsNo ));
+                ranking_sectors_list.add(new Ranking_sectors_item(id, name,doctorsNo,hospitalsNo,patientsNo));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -223,12 +242,35 @@ public class RankingFragment extends Fragment {
         initRankingSectorsAdapter();
     }
 
+
+    public void setRankingDoctorsList(JSONArray list) {
+        ranking_doctors_list.clear();
+        try {
+
+
+
+            for (int i = 0; i < list.length(); i++) {
+                JSONObject currentObject = list.getJSONObject(i);
+                final int id = currentObject.getInt("id");
+                final String name = currentObject.getString("name");
+//                final String hospital = currentObject.getString("hospital");
+                final String hospital = "hospital";
+                final String address = currentObject.getString("address");
+                final int patientsNo = currentObject.getInt("p_count");
+
+                ranking_doctors_list.add(new Ranking_doctors_item(id, name,hospital,address,patientsNo));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        initRankingDoctorsAdapter();
+    }
+
     private void initRankingRecyclerView() {
         rankingRecycler = getView().findViewById(R.id.ranking_recycler);
 //        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rankingRecycler.setLayoutManager(layoutManager);
-        initRankingHospitalsAdapter();
 
     }
 
@@ -236,6 +278,7 @@ public class RankingFragment extends Fragment {
         ranking_hospitals_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_blue));
         ranking_reps_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
         ranking_sectors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
+        ranking_doctors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
 
         ranking_hospitals_adapter = new Ranking_hospitals_adapter(getActivity(), ranking_hospitals_list);
         rankingRecycler.setAdapter(ranking_hospitals_adapter);
@@ -245,6 +288,7 @@ public class RankingFragment extends Fragment {
         ranking_hospitals_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
         ranking_reps_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_blue));
         ranking_sectors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
+        ranking_doctors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
 
         ranking_reps_adapter = new Ranking_reps_adapter(getActivity(), ranking_reps_list);
         rankingRecycler.setAdapter(ranking_reps_adapter);
@@ -254,9 +298,20 @@ public class RankingFragment extends Fragment {
         ranking_hospitals_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
         ranking_reps_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
         ranking_sectors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_blue));
+        ranking_doctors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
 
         ranking_sectors_adapter= new Ranking_sectors_adapter(getActivity(), ranking_sectors_list);
         rankingRecycler.setAdapter(ranking_sectors_adapter);
+    }
+
+    private void initRankingDoctorsAdapter() {
+        ranking_hospitals_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
+        ranking_reps_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
+        ranking_sectors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
+        ranking_doctors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_blue));
+
+        ranking_doctors_adapter= new Ranking_doctors_adapter(getActivity(), ranking_doctors_list);
+        rankingRecycler.setAdapter(ranking_doctors_adapter);
     }
 
 

@@ -15,14 +15,14 @@ import com.cat.pianopatienttracker.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ranking_sectors_adapter extends RecyclerView.Adapter<Ranking_sectors_adapter.ViewHolder> {
+public class Ranking_doctors_adapter extends RecyclerView.Adapter<Ranking_doctors_adapter.ViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
 
-    private List<Ranking_sectors_item> items;
+    private List<Ranking_doctors_item> items;
 
     private Context mContext;
 
-    public Ranking_sectors_adapter(Context context, ArrayList<Ranking_sectors_item> items) {
+    public Ranking_doctors_adapter(Context context, ArrayList<Ranking_doctors_item> items) {
 
         this.mContext = context;
         this.items = items;
@@ -30,21 +30,21 @@ public class Ranking_sectors_adapter extends RecyclerView.Adapter<Ranking_sector
 
     @NonNull
     @Override
-    public Ranking_sectors_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_ranking_hc_sectors, parent, false);
-        Ranking_sectors_adapter.ViewHolder holder = new Ranking_sectors_adapter.ViewHolder(view);
+    public Ranking_doctors_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_ranking_doctors, parent, false);
+        Ranking_doctors_adapter.ViewHolder holder = new Ranking_doctors_adapter.ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Ranking_sectors_adapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull Ranking_doctors_adapter.ViewHolder holder, final int position) {
         //to log which item is failed
         Log.d(TAG, "onBindViewHolder: called.");
 
         holder.name.setText(items.get(position).getName());
-        holder.doctorsNo.setText(String.valueOf(items.get(position).getDoctorsNo()));
-        holder.hospitalsNo.setText(String.valueOf(items.get(position).getHospitalsNo()));
-        holder.patientsNo.setText(String.valueOf(items.get(position).getPatientNo()));
+        holder.hospital.setText(items.get(position).getHospital());
+        holder.patientsNo.setText(String.valueOf(items.get(position).getPatientsNo()));
+        holder.address.setText(items.get(position).getAddress());
         holder.rank.setText(String.valueOf(position + 1));
 
     }
@@ -57,14 +57,14 @@ public class Ranking_sectors_adapter extends RecyclerView.Adapter<Ranking_sector
     public class ViewHolder extends RecyclerView.ViewHolder {
 
 
-        TextView name, doctorsNo,hospitalsNo, rank,patientsNo;
+        TextView name, hospital,patientsNo,address, rank;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
-            doctorsNo = itemView.findViewById(R.id.doctorsNo);
-            hospitalsNo = itemView.findViewById(R.id.hospitalsNo);
+            hospital = itemView.findViewById(R.id.hospital);
             patientsNo = itemView.findViewById(R.id.patientsNo);
+            address = itemView.findViewById(R.id.address);
             rank = itemView.findViewById(R.id.rank);
         }
     }

@@ -1,16 +1,15 @@
 package com.cat.pianopatienttracker.admin.ranking;
 
-public class Ranking_hospitals_item {
+public class Ranking_doctors_item {
     int id;
-    String name, sector,address;
-    int doctorsNo,patientsNo;
+    String name, hospital, address;
+    int patientsNo;
 
-    public Ranking_hospitals_item(int id, String name, String sector, String address, int doctorsNo, int patientsNo) {
+    public Ranking_doctors_item(int id, String name, String hospital, String address, int patientsNo) {
         this.id = id;
         this.name = name;
-        this.sector = sector;
+        this.hospital = hospital;
         this.address = address;
-        this.doctorsNo = doctorsNo;
         this.patientsNo = patientsNo;
     }
 
@@ -30,12 +29,12 @@ public class Ranking_hospitals_item {
         this.name = name;
     }
 
-    public String getSector() {
-        return sector;
+    public String getHospital() {
+        return hospital;
     }
 
-    public void setSector(String sector) {
-        this.sector = sector;
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
     }
 
     public String getAddress() {
@@ -44,14 +43,6 @@ public class Ranking_hospitals_item {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public int getDoctorsNo() {
-        return doctorsNo;
-    }
-
-    public void setDoctorsNo(int doctorsNo) {
-        this.doctorsNo = doctorsNo;
     }
 
     public int getPatientsNo() {

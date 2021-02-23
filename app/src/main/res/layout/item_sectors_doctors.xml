@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:contentDescription="@string/img_description"
-            android:src="@drawable/doctor_card_bg" />
+            android:src="@drawable/rep_card_bg" />
 
 
         <LinearLayout

@@ -46,21 +46,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:layout_toStartOf="@+id/rank"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="3">
+
+
+                    <TextView
+                        android:id="@+id/hospitalsNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawablePadding="5dp"
+                        android:text="144"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:drawableLeftCompat="@drawable/ic_home"
+                        app:drawableTint="@color/colorAccent" />
 
 
                     <TextView
                         android:id="@+id/doctorsNo"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
                         android:drawablePadding="5dp"
-                        android:text="144"
+                        android:text="646"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         app:drawableLeftCompat="@drawable/ic_doctor"
@@ -68,15 +84,15 @@
 
 
                     <TextView
-                        android:id="@+id/hospitalsNo"
-                        android:layout_width="match_parent"
+                        android:id="@+id/patientsNo"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
                         android:drawablePadding="5dp"
                         android:text="646"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        app:drawableLeftCompat="@drawable/ic_home"
+                        app:drawableLeftCompat="@drawable/ic_plus"
                         app:drawableTint="@color/colorAccent" />
 
 
@@ -88,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginEnd="10dp"
                     android:text="1"
                     android:textColor="@color/light_blue"
                     android:textSize="24sp" />

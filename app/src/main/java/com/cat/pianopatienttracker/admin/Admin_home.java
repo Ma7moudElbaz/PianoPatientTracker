@@ -85,8 +85,6 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
             setContentFragment(new DashboardFragment());
         } else if (id == R.id.navigation_rank) {
             setContentFragment(new RankingFragment());
-        } else if (id == R.id.navigation_sector) {
-            setContentFragment(new SectorsFragment());
         } else if (id == R.id.navigation_target) {
             setContentFragment(new TargetFragment());
         } else if (id == R.id.navigation_users) {
