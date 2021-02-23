@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="Jakavi"
         android:textColor="@color/light_blue"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/target"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
                 <TextView
                     android:id="@+id/targetPercent"
@@ -51,7 +51,7 @@
                     android:layout_toStartOf="@id/targetNo"
                     android:text="65%"
                     android:textColor="@color/colorAccent"
-                    android:textSize="14sp" />
+                    android:textSize="11sp" />
 
                 <TextView
                     android:id="@+id/targetNo"
@@ -61,7 +61,7 @@
                     android:layout_marginStart="5dp"
                     android:text="10 of 15"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
             </RelativeLayout>
 
@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:text="MarketShare"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
                 <TextView
                     android:id="@+id/marketPercent"
@@ -107,7 +107,7 @@
                     android:layout_toStartOf="@id/marketNo"
                     android:text="65%"
                     android:textColor="@color/colorAccent"
-                    android:textSize="14sp" />
+                    android:textSize="11sp" />
 
                 <TextView
                     android:id="@+id/marketNo"
@@ -117,7 +117,7 @@
                     android:layout_marginStart="5dp"
                     android:text="10 of 15"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="11sp" />
 
 
             </RelativeLayout>

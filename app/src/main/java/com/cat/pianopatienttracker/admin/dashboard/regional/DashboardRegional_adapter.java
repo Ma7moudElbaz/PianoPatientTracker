@@ -34,7 +34,7 @@ public class DashboardRegional_adapter extends RecyclerView.Adapter<DashboardReg
     @NonNull
     @Override
     public DashboardRegional_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product_target, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_dashboard_regional, parent, false);
         DashboardRegional_adapter.ViewHolder holder = new DashboardRegional_adapter.ViewHolder(view);
         return holder;
     }

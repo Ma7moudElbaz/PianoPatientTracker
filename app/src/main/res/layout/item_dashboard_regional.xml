@@ -28,7 +28,7 @@
             android:textColor="@color/light_blue"
             android:gravity="center"
             android:textStyle="bold"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/brand_target_recycler"

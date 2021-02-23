@@ -5,12 +5,22 @@ import com.cat.pianopatienttracker.admin.ranking.Ranking_sectors_item;
 import java.util.ArrayList;
 
 public class DashboardRegional_item {
+    int id;
     String name;
     ArrayList<ProductTarget_item> productTarget_items;
 
-    public DashboardRegional_item(String name, ArrayList<ProductTarget_item> productTarget_items) {
+    public DashboardRegional_item(int id, String name, ArrayList<ProductTarget_item> productTarget_items) {
+        this.id = id;
         this.name = name;
         this.productTarget_items = productTarget_items;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

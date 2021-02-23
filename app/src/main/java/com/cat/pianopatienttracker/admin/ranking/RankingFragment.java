@@ -186,10 +186,7 @@ public class RankingFragment extends Fragment {
                 final String address = currentObject.getString("address");
                 final JSONObject sector = currentObject.getJSONObject("sector");
                 String sectorString = sector.getString("name");
-
-
-                final int doctorsNo = 55;
-//                final int doctorsNo = currentObject.getInt("d_count");
+                final int doctorsNo = currentObject.getInt("doctors_count");
                 final int patientsNo = currentObject.getInt("p_count");
 
                 ranking_hospitals_list.add(new Ranking_hospitals_item(id, name, sectorString, address,doctorsNo,patientsNo));
@@ -228,11 +225,9 @@ public class RankingFragment extends Fragment {
                 final String name = currentObject.getString("name");
                 final int patientsNo = currentObject.getInt("p_count");
 
-//                final int doctorsNo = currentObject.getInt("d_count");
-//                final int hospitalsNo = currentObject.getInt("h_count");
+                final int doctorsNo = currentObject.getInt("doctor_count");
+                final int hospitalsNo = currentObject.getInt("hospitals_count");
 
-                final int doctorsNo = 332;
-                final int hospitalsNo = 20;
 
                 ranking_sectors_list.add(new Ranking_sectors_item(id, name,doctorsNo,hospitalsNo,patientsNo));
             }
@@ -253,10 +248,18 @@ public class RankingFragment extends Fragment {
                 JSONObject currentObject = list.getJSONObject(i);
                 final int id = currentObject.getInt("id");
                 final String name = currentObject.getString("name");
-//                final String hospital = currentObject.getString("hospital");
-                final String hospital = "hospital";
                 final String address = currentObject.getString("address");
                 final int patientsNo = currentObject.getInt("p_count");
+
+                final JSONArray hospitalsArr = currentObject.getJSONArray("hospitals");
+                String hospital = "";
+                for (int j = 0; j<hospitalsArr.length();j++){
+                    JSONObject currentHospitalObject = hospitalsArr.getJSONObject(j);
+                    hospital +=currentHospitalObject.getString("name");
+                    if (j != (hospitalsArr.length()-1)){
+                        hospital +=", ";
+                    }
+                }
 
                 ranking_doctors_list.add(new Ranking_doctors_item(id, name,hospital,address,patientsNo));
             }

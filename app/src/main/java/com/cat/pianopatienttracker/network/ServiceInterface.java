@@ -19,6 +19,11 @@ import retrofit2.http.Query;
 
 public interface ServiceInterface {
 
+
+    @GET("auth/metest")
+    Call<ResponseBody> getMyProfile(@Header("Authorization") String auth);
+
+
     @GET("admin/get-brands")
     Call<ResponseBody> getBrands(@Header("Authorization") String auth);
 
