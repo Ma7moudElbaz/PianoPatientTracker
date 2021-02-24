@@ -67,7 +67,7 @@ public class RankingFragment extends Fragment {
 
     public void showPeriodBottomSheet(View view) {
         BottomSheet_period_fragment periodBottomSheet =
-                BottomSheet_period_fragment.newInstance();
+                new BottomSheet_period_fragment();
         periodBottomSheet.show(getChildFragmentManager(),"period");
     }
 

@@ -2,31 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
     android:orientation="horizontal">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/img_description"
-        android:padding="5dp"
-        android:src="@drawable/flag_sa"
-        android:visibility="gone"/>
-
     <TextView
         android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/dropdownListPreferredItemHeight"
         android:text="KSA"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:padding="5dp"/>
+        style="?attr/spinnerDropDownItemStyle"
+        android:singleLine="true"
+        android:ellipsize="marquee"/>
 
 
 </LinearLayout>

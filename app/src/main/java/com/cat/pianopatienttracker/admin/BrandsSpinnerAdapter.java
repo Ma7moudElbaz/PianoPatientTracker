@@ -42,7 +42,6 @@ public class BrandsSpinnerAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflater.inflate(R.layout.item_product_spinner, null);
-        ImageView image =  view.findViewById(R.id.imageView);
         TextView name = view.findViewById(R.id.textView);
 
         name.setText(items.get(i).getName());

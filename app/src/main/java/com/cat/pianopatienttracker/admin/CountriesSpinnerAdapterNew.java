@@ -9,23 +9,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cat.pianopatienttracker.R;
+import com.cat.pianopatienttracker.admin.dashboard.brand.Country_item;
 
-public class FlagSpinnerAdapter extends BaseAdapter {
+import java.util.ArrayList;
+
+public class CountriesSpinnerAdapterNew extends BaseAdapter {
     Context context;
-    int flags[];
-    String[] countryNames;
-    LayoutInflater inflter;
+    ArrayList<Country_Brand_item> items;
+    LayoutInflater inflater;
 
-    public FlagSpinnerAdapter(Context applicationContext, int[] flags, String[] countryNames) {
+    public CountriesSpinnerAdapterNew(Context applicationContext, ArrayList<Country_Brand_item> items) {
         this.context = applicationContext;
-        this.flags = flags;
-        this.countryNames = countryNames;
-        inflter = (LayoutInflater.from(applicationContext));
+        this.items = items;
+        inflater = (LayoutInflater.from(applicationContext));
     }
 
     @Override
     public int getCount() {
-        return flags.length;
+        return items.size();
     }
 
     @Override
@@ -40,11 +41,11 @@ public class FlagSpinnerAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflter.inflate(R.layout.item_country_spinner, null);
-        ImageView icon = (ImageView) view.findViewById(R.id.imageView);
-        TextView names = (TextView) view.findViewById(R.id.textView);
-        icon.setImageResource(flags[i]);
-        names.setText(countryNames[i]);
+        view = inflater.inflate(R.layout.item_country_spinner, null);
+        TextView name = view.findViewById(R.id.textView);
+
+        name.setText(items.get(i).getName());
+//        icon.setImageResource(items[i].getName);
         return view;
     }
 }

@@ -11,9 +11,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,10 +24,10 @@ import com.adroitandroid.chipcloud.ChipCloud;
 import com.adroitandroid.chipcloud.ChipListener;
 import com.cat.pianopatienttracker.LoginActivity;
 import com.cat.pianopatienttracker.admin.Admin_home;
-import com.cat.pianopatienttracker.admin.CountriesSpinnerAdapter;
-import com.cat.pianopatienttracker.admin.BrandsSpinnerAdapter;
+import com.cat.pianopatienttracker.admin.BottomSheet_country_brand_fragment;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.network.Webservice;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.razerdp.widget.animatedpieview.AnimatedPieView;
 import com.razerdp.widget.animatedpieview.AnimatedPieViewConfig;
 import com.razerdp.widget.animatedpieview.data.SimplePieInfo;
@@ -43,7 +45,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment implements BottomSheet_country_brand_fragment.ItemClickListener {
 
 
     @Override
@@ -53,12 +55,17 @@ public class DashboardFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_dashboard, container, false);
     }
 
+    public void showCountriesBrandsBottomSheet() {
+        BottomSheet_country_brand_fragment countriesBrandsBottomSheet =
+                new BottomSheet_country_brand_fragment(activity.getCountriesBrands_list(),activity.getSelectedCountryIndex(),activity.getSelectedBrandIndex());
+        countriesBrandsBottomSheet.setTargetFragment(this, 300);
+        countriesBrandsBottomSheet.show(getFragmentManager(), "country_brand");
+    }
+
 
     private ProgressDialog dialog;
     String accessToken;
 
-    ArrayList<Brand_item> brands_list = new ArrayList<>();
-    ArrayList<Country_item> countries_list = new ArrayList<>();
 
     int[] brandsChartColors = new int[]{R.color.colorAccent, R.color.dark_gray};
     int[] dosesChartColors = new int[]{R.color.colorAccent, R.color.dark_gray, R.color.red, R.color.light_blue};
@@ -82,9 +89,9 @@ public class DashboardFragment extends Fragment {
 
     TextView rankingRepsBtn, rankingDoctorsBtn, rankingSectorsBtn, rankingHospitalsBtn;
     TextView targetTotal;
+    ImageView selectCountryBrand;
 
 
-    Spinner countriesSpinner, brandsSpinner;
     ChipCloud brandsTagChip, targetTagChip;
     AnimatedPieView productChart, dosesChart, targetChart;
 
@@ -110,6 +117,14 @@ public class DashboardFragment extends Fragment {
         rankingDoctorsBtn = view.findViewById(R.id.ranking_doctors_btn);
         rankingSectorsBtn = view.findViewById(R.id.ranking_sectors_btn);
         rankingHospitalsBtn = view.findViewById(R.id.ranking_hospitals_btn);
+        selectCountryBrand = view.findViewById(R.id.selectCountry);
+        selectCountryBrand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCountriesBrandsBottomSheet();
+
+            }
+        });
 
         rankingRepsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,8 +157,6 @@ public class DashboardFragment extends Fragment {
         dosesChart = view.findViewById(R.id.dosesChart);
         targetChart = view.findViewById(R.id.targetChart);
 
-        countriesSpinner = view.findViewById(R.id.countriesSpinner);
-        brandsSpinner = view.findViewById(R.id.brandsSpinner);
 
         brandsTagChip = view.findViewById(R.id.brandTagChip);
         targetTagChip = view.findViewById(R.id.targetTagChip);
@@ -174,15 +187,15 @@ public class DashboardFragment extends Fragment {
         });
 
 
-        getCountries();
+//        getCountries();
 
     }
 
     public void getDashboard() {
 //        dialog.show();
 
-        int selectedCountryId = countries_list.get(countriesSpinner.getSelectedItemPosition()).getId();
-        int selectedBrandId = brands_list.get(brandsSpinner.getSelectedItemPosition()).getId();
+        int selectedCountryId = activity.getSelectedCountryId();
+        int selectedBrandId = activity.getSelectedBrandId();
 
         activity.setSelectedCountryId(selectedCountryId);
         activity.setSelectedBrandId(selectedBrandId);
@@ -430,113 +443,113 @@ public class DashboardFragment extends Fragment {
         }
     }
 
-    public void getBrands() {
+//    public void getBrands() {
+////        dialog.show();
+//
+//        Webservice.getInstance().getApi().getBrands(accessToken).enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                if (response.code() == 200) {
+//                    JSONObject responseObject = null;
+//                    try {
+//                        responseObject = new JSONObject(response.body().string());
+//                        JSONArray brandsArr = responseObject.getJSONArray("data");
+//                        setBrands(brandsArr);
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                } else if (response.code() == 401) {
+//                    Intent i = new Intent(getActivity(), LoginActivity.class);
+//                    startActivity(i);
+//                    getActivity().finish();
+//                }
+////                dialog.dismiss();
+//                getDashboard();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                Toast.makeText(getActivity(), "Network error", Toast.LENGTH_SHORT).show();
+//                dialog.dismiss();
+//            }
+//        });
+//
+//    }
+//
+//    public void setBrands(JSONArray list) {
+//        try {
+//            for (int i = 0; i < list.length(); i++) {
+//                JSONObject currentObject = list.getJSONObject(i);
+//                final int id = currentObject.getInt("id");
+//                final String title = currentObject.getString("name");
+//                final String imageUrl = currentObject.getString("image");
+//                brands_list.add(new Brand_item(id, title, imageUrl));
+//
+//            }
+//            initBrandsSpinner();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
+//
+//    public void initBrandsSpinner() {
+//        BrandsSpinnerAdapter brandsSpinnerAdapter = new BrandsSpinnerAdapter(getActivity(), brands_list);
+//        brandsSpinner.setAdapter(brandsSpinnerAdapter);
+//
+//    }
+//
+//    public void getCountries() {
 //        dialog.show();
-
-        Webservice.getInstance().getApi().getBrands(accessToken).enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.code() == 200) {
-                    JSONObject responseObject = null;
-                    try {
-                        responseObject = new JSONObject(response.body().string());
-                        JSONArray brandsArr = responseObject.getJSONArray("data");
-                        setBrands(brandsArr);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else if (response.code() == 401) {
-                    Intent i = new Intent(getActivity(), LoginActivity.class);
-                    startActivity(i);
-                    getActivity().finish();
-                }
+//
+//        Webservice.getInstance().getApi().getCountries(accessToken).enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                if (response.code() == 200) {
+//                    JSONObject responseObject = null;
+//                    try {
+//                        responseObject = new JSONObject(response.body().string());
+//                        JSONObject responseObjectdata = responseObject.getJSONObject("data");
+//                        JSONArray countriesArr = responseObjectdata.getJSONArray("data");
+//                        setCountries(countriesArr);
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                } else {
+//
+//                }
+////                dialog.dismiss();
+//                getBrands();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                Toast.makeText(getActivity(), "Network error", Toast.LENGTH_SHORT).show();
 //                dialog.dismiss();
-                getDashboard();
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getActivity(), "Network error", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            }
-        });
-
-    }
-
-    public void setBrands(JSONArray list) {
-        try {
-            for (int i = 0; i < list.length(); i++) {
-                JSONObject currentObject = list.getJSONObject(i);
-                final int id = currentObject.getInt("id");
-                final String title = currentObject.getString("name");
-                final String imageUrl = currentObject.getString("image");
-                brands_list.add(new Brand_item(id, title, imageUrl));
-
-            }
-            initBrandsSpinner();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void initBrandsSpinner() {
-        BrandsSpinnerAdapter brandsSpinnerAdapter = new BrandsSpinnerAdapter(getActivity(), brands_list);
-        brandsSpinner.setAdapter(brandsSpinnerAdapter);
-
-    }
-
-    public void getCountries() {
-        dialog.show();
-
-        Webservice.getInstance().getApi().getCountries(accessToken).enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.code() == 200) {
-                    JSONObject responseObject = null;
-                    try {
-                        responseObject = new JSONObject(response.body().string());
-                        JSONObject responseObjectdata = responseObject.getJSONObject("data");
-                        JSONArray countriesArr = responseObjectdata.getJSONArray("data");
-                        setCountries(countriesArr);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else {
-
-                }
-//                dialog.dismiss();
-                getBrands();
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getActivity(), "Network error", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            }
-        });
-
-    }
-
-    public void setCountries(JSONArray list) {
-        try {
-            for (int i = 0; i < list.length(); i++) {
-                JSONObject currentObject = list.getJSONObject(i);
-                final int id = currentObject.getInt("id");
-                final String title = currentObject.getString("name");
-                countries_list.add(new Country_item(id, title));
-            }
-            initCountriesSpinner();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void initCountriesSpinner() {
-        CountriesSpinnerAdapter countriesSpinnerAdapter = new CountriesSpinnerAdapter(getActivity(), countries_list);
-        countriesSpinner.setAdapter(countriesSpinnerAdapter);
-
-    }
+//            }
+//        });
+//
+//    }
+//
+//    public void setCountries(JSONArray list) {
+//        try {
+//            for (int i = 0; i < list.length(); i++) {
+//                JSONObject currentObject = list.getJSONObject(i);
+//                final int id = currentObject.getInt("id");
+//                final String title = currentObject.getString("name");
+//                countries_list.add(new Country_item(id, title));
+//            }
+//            initCountriesSpinner();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void initCountriesSpinner() {
+//        CountriesSpinnerAdapter countriesSpinnerAdapter = new CountriesSpinnerAdapter(getActivity(), countries_list);
+//        countriesSpinner.setAdapter(countriesSpinnerAdapter);
+//
+//    }
 
 
     private void initRankingRecyclerView() {
@@ -606,4 +619,12 @@ public class DashboardFragment extends Fragment {
         }
 
     }
+
+    @Override
+    public void onItemClick(int selectedCountryIndex, int selectedBrandIndex) {
+        activity.setSelectedCountryIndex(selectedCountryIndex);
+        activity.setSelectedBrandIndex(selectedBrandIndex);
+
+    }
+
 }
