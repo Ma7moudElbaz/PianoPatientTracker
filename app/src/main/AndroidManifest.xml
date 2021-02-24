@@ -35,7 +35,7 @@
             android:name=".rep.Rep_home"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".admin.Admin_home"
+            android:name=".regional_product.Admin_home"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

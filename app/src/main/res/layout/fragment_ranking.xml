@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/login_bg"
     android:orientation="vertical"
-    tools:context=".admin.ranking.RankingFragment">
+    tools:context=".regional_product.ranking.RankingFragment">
 
 
     <LinearLayout

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/login_bg"
     android:orientation="vertical"
-    tools:context=".admin.dashboard.regional.DashboardRegionalFragment">
+    tools:context=".regional_product.dashboard.regional.DashboardRegionalFragment">
 
     <RelativeLayout
         android:id="@+id/topPanel"
@@ -39,6 +39,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
-        tools:listitem="@layout/item_ranking_hc_sectors" />
+        tools:listitem="@layout/item_product_target" />
 
 </LinearLayout>
