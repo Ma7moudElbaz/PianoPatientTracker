@@ -90,7 +90,7 @@ public class BottomSheet_period_fragment extends BottomSheetDialogFragment {
 
     private void monthlyBtnClicked() {
         setButtonSelected(2);
-        yearsSpinner.setVisibility(View.GONE);
+        yearsSpinner.setVisibility(View.VISIBLE);
         monthsSpinner.setVisibility(View.VISIBLE);
 
     }
