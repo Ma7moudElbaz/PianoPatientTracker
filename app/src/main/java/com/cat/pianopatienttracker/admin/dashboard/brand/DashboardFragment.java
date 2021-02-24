@@ -98,6 +98,7 @@ public class DashboardFragment extends Fragment implements BottomSheet_country_b
     Admin_home activity;
 
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -110,6 +111,9 @@ public class DashboardFragment extends Fragment implements BottomSheet_country_b
         dialog = new ProgressDialog(getActivity());
         dialog.setMessage("Loading....");
         dialog.setCancelable(false);
+
+
+
 
 
         targetTotal = view.findViewById(R.id.target_total_tv);
@@ -186,13 +190,10 @@ public class DashboardFragment extends Fragment implements BottomSheet_country_b
             }
         });
 
-
-//        getCountries();
-
     }
 
     public void getDashboard() {
-//        dialog.show();
+        dialog.show();
 
         int selectedCountryId = activity.getSelectedCountryId();
         int selectedBrandId = activity.getSelectedBrandId();
@@ -443,115 +444,6 @@ public class DashboardFragment extends Fragment implements BottomSheet_country_b
         }
     }
 
-//    public void getBrands() {
-////        dialog.show();
-//
-//        Webservice.getInstance().getApi().getBrands(accessToken).enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                if (response.code() == 200) {
-//                    JSONObject responseObject = null;
-//                    try {
-//                        responseObject = new JSONObject(response.body().string());
-//                        JSONArray brandsArr = responseObject.getJSONArray("data");
-//                        setBrands(brandsArr);
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                } else if (response.code() == 401) {
-//                    Intent i = new Intent(getActivity(), LoginActivity.class);
-//                    startActivity(i);
-//                    getActivity().finish();
-//                }
-////                dialog.dismiss();
-//                getDashboard();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                Toast.makeText(getActivity(), "Network error", Toast.LENGTH_SHORT).show();
-//                dialog.dismiss();
-//            }
-//        });
-//
-//    }
-//
-//    public void setBrands(JSONArray list) {
-//        try {
-//            for (int i = 0; i < list.length(); i++) {
-//                JSONObject currentObject = list.getJSONObject(i);
-//                final int id = currentObject.getInt("id");
-//                final String title = currentObject.getString("name");
-//                final String imageUrl = currentObject.getString("image");
-//                brands_list.add(new Brand_item(id, title, imageUrl));
-//
-//            }
-//            initBrandsSpinner();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-//
-//    public void initBrandsSpinner() {
-//        BrandsSpinnerAdapter brandsSpinnerAdapter = new BrandsSpinnerAdapter(getActivity(), brands_list);
-//        brandsSpinner.setAdapter(brandsSpinnerAdapter);
-//
-//    }
-//
-//    public void getCountries() {
-//        dialog.show();
-//
-//        Webservice.getInstance().getApi().getCountries(accessToken).enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                if (response.code() == 200) {
-//                    JSONObject responseObject = null;
-//                    try {
-//                        responseObject = new JSONObject(response.body().string());
-//                        JSONObject responseObjectdata = responseObject.getJSONObject("data");
-//                        JSONArray countriesArr = responseObjectdata.getJSONArray("data");
-//                        setCountries(countriesArr);
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                } else {
-//
-//                }
-////                dialog.dismiss();
-//                getBrands();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                Toast.makeText(getActivity(), "Network error", Toast.LENGTH_SHORT).show();
-//                dialog.dismiss();
-//            }
-//        });
-//
-//    }
-//
-//    public void setCountries(JSONArray list) {
-//        try {
-//            for (int i = 0; i < list.length(); i++) {
-//                JSONObject currentObject = list.getJSONObject(i);
-//                final int id = currentObject.getInt("id");
-//                final String title = currentObject.getString("name");
-//                countries_list.add(new Country_item(id, title));
-//            }
-//            initCountriesSpinner();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public void initCountriesSpinner() {
-//        CountriesSpinnerAdapter countriesSpinnerAdapter = new CountriesSpinnerAdapter(getActivity(), countries_list);
-//        countriesSpinner.setAdapter(countriesSpinnerAdapter);
-//
-//    }
-
-
     private void initRankingRecyclerView() {
         rankingRecycler = getView().findViewById(R.id.ranking_dashboard_recycler);
 //        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
@@ -624,6 +516,8 @@ public class DashboardFragment extends Fragment implements BottomSheet_country_b
     public void onItemClick(int selectedCountryIndex, int selectedBrandIndex) {
         activity.setSelectedCountryIndex(selectedCountryIndex);
         activity.setSelectedBrandIndex(selectedBrandIndex);
+
+        getDashboard();
 
     }
 

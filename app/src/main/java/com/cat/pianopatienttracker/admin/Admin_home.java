@@ -9,19 +9,14 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.cat.pianopatienttracker.LoginActivity;
 import com.cat.pianopatienttracker.admin.dashboard.brand.Brand_item;
 import com.cat.pianopatienttracker.admin.dashboard.brand.DashboardFragment;
 import com.cat.pianopatienttracker.admin.dashboard.regional.DashboardRegionalFragment;
-import com.cat.pianopatienttracker.admin.dashboard.regional.DashboardRegional_item;
-import com.cat.pianopatienttracker.admin.dashboard.regional.ProductTarget_item;
-import com.cat.pianopatienttracker.admin.ranking.BottomSheet_period_fragment;
 import com.cat.pianopatienttracker.admin.ranking.RankingFragment;
-import com.cat.pianopatienttracker.admin.target.TargetFragment;
+import com.cat.pianopatienttracker.admin.progress.ProgressFragment;
 import com.cat.pianopatienttracker.admin.users.UsersFragment;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.network.Webservice;
@@ -47,12 +42,11 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
     }
 
 
-
     private int selectedCountryId = 0;
     private int selectedBrandId = 0;
 
-    int selectedCountryIndex=0;
-    int selectedBrandIndex=0;
+    int selectedCountryIndex = 0;
+    int selectedBrandIndex = 0;
 
     public int getSelectedCountryIndex() {
         return selectedCountryIndex;
@@ -60,10 +54,6 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
 
     public void setSelectedCountryIndex(int selectedCountryIndex) {
         this.selectedCountryIndex = selectedCountryIndex;
-
-//                int selectedBrandIndex = countriesBrands_list.get(country_spinner.getSelectedItemPosition()).getBrand_list()
-//                        .get(brand_spinner.getSelectedItemPosition()).getId();
-
         setSelectedCountryId(countriesBrands_list.get(selectedCountryIndex).getId());
     }
 
@@ -77,10 +67,13 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
     }
 
     //admin
+//    private String role = "admin";
 //    private String accessToken = "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZXYucHRyYWNrZXIub3JnXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjEzOTkzMDY1LCJleHAiOjE2MTQ0MjUwNjUsIm5iZiI6MTYxMzk5MzA2NSwianRpIjoiQXZHdHhuQzhDYlVPSnYwVyIsInN1YiI6NiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.u8piW4bYBzC2TKLbnakCnvBiHGDH3cOPCOPc17ZO8-I";
     //regional
+//    private String role = "regional";
 //    private String accessToken = "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZXYucHRyYWNrZXIub3JnXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE0MDc2NTM0LCJleHAiOjE2MTQ1MDg1MzQsIm5iZiI6MTYxNDA3NjUzNCwianRpIjoibHVwcXNmcXBMTnluUEExZSIsInN1YiI6NywicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.s_km3VMyEixccz6LbQ2BAOcrVWqtSGP6Wx-2BoH7ffc";
     //manager
+    private String role = "manager";
     private String accessToken = "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZXYucHRyYWNrZXIub3JnXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE0MDk2OTg2LCJleHAiOjE2MTQ1Mjg5ODYsIm5iZiI6MTYxNDA5Njk4NiwianRpIjoiUTVxbTdiRmthb0ZtNHgwdyIsInN1YiI6MywicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.sLRE_VnEMe1uv77kbF0wYch0ocGOjOAcpoCg3XfNmYk";
 
     public String getAccessToken() {
@@ -125,10 +118,6 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
         return countriesBrands_list;
     }
 
-    public void setCountriesBrands_list(ArrayList<Country_Brand_item> countriesBrands_list) {
-        this.countriesBrands_list = countriesBrands_list;
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,7 +131,7 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
 
         getMyData();
 
-        setContentFragment(new DashboardFragment());
+//        setContentFragment(new DashboardFragment());
 //        setContentFragment(new DashboardRegionalFragment());
         bottomNavigationView = findViewById(R.id.btm_nav);
 
@@ -158,12 +147,17 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
         int id = menuItem.getItemId();
 
         if (id == R.id.navigation_dashboard) {
-            setContentFragment(new DashboardFragment());
-//            setContentFragment(new DashboardRegionalFragment());
+            if (role.equals("manager")) {
+                setContentFragment(new DashboardFragment());
+            } else if (role.equals("regional")) {
+                setContentFragment(new DashboardRegionalFragment());
+            } else if (role.equals("admin")) {
+                setContentFragment(new DashboardFragment());
+            }
         } else if (id == R.id.navigation_rank) {
             setContentFragment(new RankingFragment());
         } else if (id == R.id.navigation_target) {
-            setContentFragment(new TargetFragment());
+            setContentFragment(new ProgressFragment());
         } else if (id == R.id.navigation_users) {
             setContentFragment(new UsersFragment());
         }
@@ -223,7 +217,14 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
         }
         setSelectedCountryId(countriesBrands_list.get(0).getId());
         setSelectedBrandId(countriesBrands_list.get(0).getBrand_list().get(0).getId());
-//        initDashboardRegionalRecyclerView();
+
+        if (role.equals("manager")) {
+            setContentFragment(new DashboardFragment());
+        } else if (role.equals("regional")) {
+            setContentFragment(new DashboardRegionalFragment());
+        } else if (role.equals("admin")) {
+            setContentFragment(new DashboardFragment());
+        }
     }
 
     ArrayList<Brand_item> setBrandsList(JSONArray list) {
@@ -238,7 +239,7 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
                 final String name = brands.getString("name");
                 final String imageUrl = brands.getString("image");
 
-                brands_list.add(new Brand_item(id, name,imageUrl));
+                brands_list.add(new Brand_item(id, name, imageUrl));
             }
         } catch (Exception e) {
             e.printStackTrace();

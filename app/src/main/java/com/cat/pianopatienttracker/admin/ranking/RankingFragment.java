@@ -14,12 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cat.pianopatienttracker.LoginActivity;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.admin.Admin_home;
+import com.cat.pianopatienttracker.admin.BottomSheet_country_brand_fragment;
 import com.cat.pianopatienttracker.network.Webservice;
 
 import org.json.JSONArray;
@@ -33,13 +35,20 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class RankingFragment extends Fragment {
+public class RankingFragment extends Fragment implements BottomSheet_country_brand_fragment.ItemClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_ranking, container, false);
+    }
+
+    public void showCountriesBrandsBottomSheet() {
+        BottomSheet_country_brand_fragment countriesBrandsBottomSheet =
+                new BottomSheet_country_brand_fragment(activity.getCountriesBrands_list(),activity.getSelectedCountryIndex(),activity.getSelectedBrandIndex());
+        countriesBrandsBottomSheet.setTargetFragment(this, 300);
+        countriesBrandsBottomSheet.show(getFragmentManager(), "country_brand");
     }
 
 
@@ -71,11 +80,23 @@ public class RankingFragment extends Fragment {
         periodBottomSheet.show(getChildFragmentManager(),"period");
     }
 
+
+    ImageView selectCountryBrand;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         activity = (Admin_home) getActivity();
+
+
+        selectCountryBrand = view.findViewById(R.id.selectCountry);
+        selectCountryBrand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCountriesBrandsBottomSheet();
+            }
+        });
 
         ranking_hospitals_btn =  view.findViewById(R.id.ranking_hospitals_btn);
         ranking_reps_btn =  view.findViewById(R.id.ranking_reps_btn);
@@ -318,4 +339,11 @@ public class RankingFragment extends Fragment {
     }
 
 
+    @Override
+    public void onItemClick(int selectedCountryIndex, int selectedBrandIndex) {
+        activity.setSelectedCountryIndex(selectedCountryIndex);
+        activity.setSelectedBrandIndex(selectedBrandIndex);
+
+        getRanking("reps");
+    }
 }

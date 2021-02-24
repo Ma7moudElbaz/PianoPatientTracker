@@ -17,9 +17,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class BottomSheet_period_fragment extends BottomSheetDialogFragment {
 
-//    public static BottomSheet_period_fragment newInstance() {
-//        return new BottomSheet_period_fragment();
-//    }
 
     @Nullable
     @Override

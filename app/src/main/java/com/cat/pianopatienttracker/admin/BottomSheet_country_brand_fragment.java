@@ -2,6 +2,7 @@ package com.cat.pianopatienttracker.admin;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ import java.util.ArrayList;
 
 public class BottomSheet_country_brand_fragment extends BottomSheetDialogFragment {
 
+    boolean cIsInit = true;
+    boolean bIsInit = true;
     ArrayList<Country_Brand_item> countriesBrands_list;
     int selectedCountryIndex;
     int selectedBrandIndex;
@@ -33,7 +36,7 @@ public class BottomSheet_country_brand_fragment extends BottomSheetDialogFragmen
 //    }
 
     public BottomSheet_country_brand_fragment(
-            ArrayList<Country_Brand_item> countriesBrands_list,int selectedCountryIndex,int selectedBrandIndex) {
+            ArrayList<Country_Brand_item> countriesBrands_list, int selectedCountryIndex, int selectedBrandIndex) {
         this.countriesBrands_list = countriesBrands_list;
         this.selectedCountryIndex = selectedCountryIndex;
         this.selectedBrandIndex = selectedBrandIndex;
@@ -63,17 +66,15 @@ public class BottomSheet_country_brand_fragment extends BottomSheetDialogFragmen
 //                int selectedCountryIndex = countriesBrands_list.get(country_spinner.getSelectedItemPosition()).getId();
 //                int selectedBrandIndex = countriesBrands_list.get(country_spinner.getSelectedItemPosition()).getBrand_list()
 //                        .get(brand_spinner.getSelectedItemPosition()).getId();
-                int selectedCountryIndex =country_spinner.getSelectedItemPosition();
+                int selectedCountryIndex = country_spinner.getSelectedItemPosition();
                 int selectedBrandIndex = brand_spinner.getSelectedItemPosition();
                 sendBackResult(selectedCountryIndex, selectedBrandIndex);
 //                mListener.onItemClick(selectedCountryId, selectedBrandId);
-
-                dismiss();
             }
         });
 
+
         initCountriesSpinner();
-        initBrandsSpinner(0);
 
         country_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -112,14 +113,22 @@ public class BottomSheet_country_brand_fragment extends BottomSheetDialogFragmen
     public void initCountriesSpinner() {
         CountriesSpinnerAdapterNew countriesSpinnerAdapterNew = new CountriesSpinnerAdapterNew(getActivity(), countriesBrands_list);
         country_spinner.setAdapter(countriesSpinnerAdapterNew);
-        country_spinner.setSelection(selectedCountryIndex);
+        if (cIsInit) {
+            country_spinner.setSelection(selectedCountryIndex);
+            cIsInit = false;
+        }
 
     }
 
-    public void initBrandsSpinner(int countrySelectedPosition) {
-        BrandsSpinnerAdapter brandsSpinnerAdapter = new BrandsSpinnerAdapter(getActivity(), countriesBrands_list.get(countrySelectedPosition).getBrand_list());
+    public void initBrandsSpinner(int position) {
+
+        BrandsSpinnerAdapter brandsSpinnerAdapter = new BrandsSpinnerAdapter(getActivity(), countriesBrands_list.get(position).getBrand_list());
         brand_spinner.setAdapter(brandsSpinnerAdapter);
-        brand_spinner.setSelection(selectedBrandIndex);
+        if (bIsInit) {
+            brand_spinner.setSelection(selectedBrandIndex);
+            bIsInit = false;
+        }
+
     }
 
 
@@ -127,7 +136,7 @@ public class BottomSheet_country_brand_fragment extends BottomSheetDialogFragmen
         void onItemClick(int selectedCountryIndex, int selectedBrandIndex);
     }
 
-    public void sendBackResult(int selectedCountryIndex,int selectedBrandIndex) {
+    public void sendBackResult(int selectedCountryIndex, int selectedBrandIndex) {
         // Notice the use of `getTargetFragment` which will be set when the dialog is displayed
         ItemClickListener listener = (ItemClickListener) getTargetFragment();
         listener.onItemClick(selectedCountryIndex, selectedBrandIndex);

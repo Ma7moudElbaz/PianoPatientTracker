@@ -1,4 +1,4 @@
-package com.cat.pianopatienttracker.admin.target;
+package com.cat.pianopatienttracker.admin.progress;
 
 import android.os.Bundle;
 
@@ -12,13 +12,13 @@ import android.view.ViewGroup;
 
 import com.cat.pianopatienttracker.R;
 
-public class TargetFragment extends Fragment {
+public class ProgressFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_target, container, false);
+        return inflater.inflate(R.layout.fragment_progress, container, false);
     }
 
     @Override
