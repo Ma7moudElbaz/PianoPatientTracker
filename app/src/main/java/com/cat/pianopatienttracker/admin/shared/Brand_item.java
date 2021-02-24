@@ -1,4 +1,4 @@
-package com.cat.pianopatienttracker.admin.dashboard.brand;
+package com.cat.pianopatienttracker.admin.shared;
 
 public class Brand_item {
    private int id;

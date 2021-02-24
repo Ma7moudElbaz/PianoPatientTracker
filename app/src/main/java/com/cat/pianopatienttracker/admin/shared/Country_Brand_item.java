@@ -1,7 +1,4 @@
-package com.cat.pianopatienttracker.admin;
-
-import com.cat.pianopatienttracker.admin.dashboard.brand.Brand_item;
-import com.cat.pianopatienttracker.admin.dashboard.brand.Ranking_dashboard_item;
+package com.cat.pianopatienttracker.admin.shared;
 
 import java.util.ArrayList;
 

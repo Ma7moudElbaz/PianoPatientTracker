@@ -12,12 +12,13 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.cat.pianopatienttracker.LoginActivity;
-import com.cat.pianopatienttracker.admin.dashboard.brand.Brand_item;
 import com.cat.pianopatienttracker.admin.dashboard.brand.DashboardFragment;
 import com.cat.pianopatienttracker.admin.dashboard.regional.DashboardRegionalFragment;
 import com.cat.pianopatienttracker.admin.ranking.RankingFragment;
 import com.cat.pianopatienttracker.admin.progress.ProgressFragment;
-import com.cat.pianopatienttracker.admin.users.UsersFragment;
+import com.cat.pianopatienttracker.admin.shared.Brand_item;
+import com.cat.pianopatienttracker.admin.shared.Country_Brand_item;
+import com.cat.pianopatienttracker.admin.users.ProfileFragment;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.network.Webservice;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -159,7 +160,7 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
         } else if (id == R.id.navigation_target) {
             setContentFragment(new ProgressFragment());
         } else if (id == R.id.navigation_users) {
-            setContentFragment(new UsersFragment());
+            setContentFragment(new ProfileFragment());
         }
 
         return true;

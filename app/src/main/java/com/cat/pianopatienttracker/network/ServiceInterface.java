@@ -39,6 +39,10 @@ public interface ServiceInterface {
     Call<ResponseBody> getRanking(@Header("Authorization") String auth ,@Query("country_id") int countryId,@Query("brand_id") int brandId,@Query("type") String type);
 
 
+    @GET("get-progress")
+    Call<ResponseBody> getRProgress(@Header("Authorization") String auth ,@Query("country_id") int countryId,@Query("brand_id") int brandId);
+
+
 //    @POST("auth/login")
 //    @FormUrlEncoded
 //    Call<ResponseBody> login(@FieldMap Map<String, String> map);

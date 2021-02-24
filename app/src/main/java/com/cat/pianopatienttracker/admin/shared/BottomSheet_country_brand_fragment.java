@@ -1,8 +1,7 @@
-package com.cat.pianopatienttracker.admin;
+package com.cat.pianopatienttracker.admin.shared;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 
 import com.cat.pianopatienttracker.R;
-import com.cat.pianopatienttracker.admin.dashboard.brand.DashboardFragment;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.ArrayList;
@@ -111,8 +107,8 @@ public class BottomSheet_country_brand_fragment extends BottomSheetDialogFragmen
 
 
     public void initCountriesSpinner() {
-        CountriesSpinnerAdapterNew countriesSpinnerAdapterNew = new CountriesSpinnerAdapterNew(getActivity(), countriesBrands_list);
-        country_spinner.setAdapter(countriesSpinnerAdapterNew);
+        CountriesSpinnerAdapter countriesSpinnerAdapter = new CountriesSpinnerAdapter(getActivity(), countriesBrands_list);
+        country_spinner.setAdapter(countriesSpinnerAdapter);
         if (cIsInit) {
             country_spinner.setSelection(selectedCountryIndex);
             cIsInit = false;

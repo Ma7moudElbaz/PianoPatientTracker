@@ -18,12 +18,7 @@ import android.widget.Toast;
 import com.cat.pianopatienttracker.LoginActivity;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.admin.Admin_home;
-import com.cat.pianopatienttracker.admin.dashboard.brand.Brand_item;
-import com.cat.pianopatienttracker.admin.dashboard.brand.Ranking_dashboard_adapter;
-import com.cat.pianopatienttracker.admin.ranking.Ranking_hospitals_adapter;
-import com.cat.pianopatienttracker.admin.ranking.Ranking_hospitals_item;
 import com.cat.pianopatienttracker.network.Webservice;
-import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
