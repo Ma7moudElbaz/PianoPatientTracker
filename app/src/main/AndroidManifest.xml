@@ -14,49 +14,48 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
-        tools:replace="android:supportsRtl"
-        android:theme="@style/AppTheme">
-
-        <!--Intent filter to capture System Browser or Authenticator calling back to our app after sign-in-->
-        <activity
-            android:name="com.microsoft.identity.client.BrowserTabActivity">
+        android:theme="@style/AppTheme"
+        tools:replace="android:supportsRtl">
+        <activity android:name=".regional_product.progress.progress_flm.ProgressFlmActivity"></activity>
+        <!-- Intent filter to capture System Browser or Authenticator calling back to our app after sign-in -->
+        <activity android:name="com.microsoft.identity.client.BrowserTabActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="msauth"
+
+                <data
                     android:host="com.cat.pianopatienttracker"
-                    android:path="/TOwtRm0r7BbDYXyFuoVUh3YXCbc=" />
+                    android:path="/TOwtRm0r7BbDYXyFuoVUh3YXCbc="
+                    android:scheme="msauth" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".rep.Rep_home"
             android:screenOrientation="portrait" />
         <activity
             android:name=".regional_product.Admin_home"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="LoginActivity"
+            android:name=".LoginActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait">
 
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
     </application>
 

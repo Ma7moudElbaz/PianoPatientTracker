@@ -98,7 +98,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toStartOf="@id/targetNo"
-                        android:text="65%"
+                        android:text="0%"
                         android:textColor="@color/colorAccent"
                         android:textSize="11sp" />
 
@@ -108,7 +108,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="5dp"
-                        android:text="10 of 15"
+                        android:text="0"
                         android:textColor="@color/black"
                         android:textSize="11sp" />
 
@@ -122,7 +122,7 @@
                     android:layout_height="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="2.3"
-                    android:progress="66"
+                    android:progress="1"
                     android:progressBackgroundTint="@color/light_gray" />
 
 
@@ -154,7 +154,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toStartOf="@id/marketNo"
-                        android:text="65%"
+                        android:text="0%"
                         android:textColor="@color/colorAccent"
                         android:textSize="11sp" />
 
@@ -164,7 +164,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="5dp"
-                        android:text="10 of 15"
+                        android:text="0"
                         android:textColor="@color/black"
                         android:textSize="11sp" />
 
@@ -179,7 +179,7 @@
                     android:layout_height="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="2.3"
-                    android:progress="66"
+                    android:progress="1"
                     android:progressBackgroundTint="@color/light_gray"
                     android:progressTint="@color/light_blue" />
 
@@ -192,6 +192,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"

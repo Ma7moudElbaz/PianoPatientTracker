@@ -32,15 +32,18 @@ public interface ServiceInterface {
     Call<ResponseBody> getCountries(@Header("Authorization") String auth);
 
     @GET("dashboard")
-    Call<ResponseBody> getDashboard(@Header("Authorization") String auth ,@Query("country_id") int countryId,@Query("brand_id") int brandId);
+    Call<ResponseBody> getDashboard(@Header("Authorization") String auth, @Query("country_id") int countryId, @Query("brand_id") int brandId);
 
 
     @GET("ranking-slice")
-    Call<ResponseBody> getRanking(@Header("Authorization") String auth ,@Query("country_id") int countryId,@Query("brand_id") int brandId,@Query("type") String type);
+    Call<ResponseBody> getRanking(@Header("Authorization") String auth, @Query("country_id") int countryId, @Query("brand_id") int brandId, @Query("type") String type);
 
 
     @GET("get-progress")
-    Call<ResponseBody> getRProgress(@Header("Authorization") String auth ,@Query("country_id") int countryId,@Query("brand_id") int brandId);
+    Call<ResponseBody> getProgress(@Header("Authorization") String auth, @Query("country_id") int countryId, @Query("brand_id") int brandId);
+
+    @GET("get-progress")
+    Call<ResponseBody> getProgressFlm(@Header("Authorization") String auth, @Query("country_id") int countryId, @Query("brand_id") int brandId, @Query("flm_id") int flmId);
 
 
 //    @POST("auth/login")
@@ -80,10 +83,6 @@ public interface ServiceInterface {
 //    @POST("mobile-tournament-registration")
 //    @FormUrlEncoded
 //    Call<ResponseBody> registerTeamPlayers(@FieldMap Map<String, Object> map);
-
-
-
-
 
 
 }

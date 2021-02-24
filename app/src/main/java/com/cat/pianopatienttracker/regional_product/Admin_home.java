@@ -18,7 +18,7 @@ import com.cat.pianopatienttracker.regional_product.ranking.RankingFragment;
 import com.cat.pianopatienttracker.regional_product.progress.ProgressFragment;
 import com.cat.pianopatienttracker.regional_product.shared.Brand_item;
 import com.cat.pianopatienttracker.regional_product.shared.Country_Brand_item;
-import com.cat.pianopatienttracker.regional_product.users.ProfileFragment;
+import com.cat.pianopatienttracker.regional_product.profile.ProfileFragment;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.network.Webservice;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

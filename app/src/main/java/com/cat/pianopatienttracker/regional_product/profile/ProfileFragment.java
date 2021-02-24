@@ -1,4 +1,4 @@
-package com.cat.pianopatienttracker.regional_product.users;
+package com.cat.pianopatienttracker.regional_product.profile;
 
 import android.os.Bundle;
 

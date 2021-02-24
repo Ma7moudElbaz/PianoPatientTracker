@@ -1,19 +1,14 @@
-package com.cat.pianopatienttracker.regional_product.progress;
+package com.cat.pianopatienttracker.regional_product.progress.progress_flm;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.ContentLoadingProgressBar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.widget.ContentLoadingProgressBar;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,11 +17,8 @@ import com.cat.pianopatienttracker.LoginActivity;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.network.Webservice;
 import com.cat.pianopatienttracker.regional_product.Admin_home;
-import com.cat.pianopatienttracker.regional_product.dashboard.regional.DashboardRegional_adapter;
-import com.cat.pianopatienttracker.regional_product.dashboard.regional.ProductTarget_item;
-import com.cat.pianopatienttracker.regional_product.ranking.Ranking_hospitals_adapter;
-import com.cat.pianopatienttracker.regional_product.ranking.Ranking_hospitals_item;
-import com.cat.pianopatienttracker.regional_product.shared.BottomSheet_country_brand_fragment;
+import com.cat.pianopatienttracker.regional_product.progress.Progress_adapter;
+import com.cat.pianopatienttracker.regional_product.progress.Progress_item;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,59 +31,54 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProgressFragment extends Fragment implements BottomSheet_country_brand_fragment.ItemClickListener {
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_progress, container, false);
-    }
-
-    public void showCountriesBrandsBottomSheet() {
-        BottomSheet_country_brand_fragment countriesBrandsBottomSheet =
-                new BottomSheet_country_brand_fragment(activity.getCountriesBrands_list(), activity.getSelectedCountryIndex(), activity.getSelectedBrandIndex());
-        countriesBrandsBottomSheet.setTargetFragment(this, 300);
-        countriesBrandsBottomSheet.show(getFragmentManager(), "country_brand");
-    }
+public class ProgressFlmActivity extends AppCompatActivity {
 
     private ProgressDialog dialog;
     String accessToken;
 
-    ArrayList<Progress_item> progress_list = new ArrayList<>();
-    Progress_adapter progress_adapter;
+    ArrayList<ProgressFlm_item> progress_list = new ArrayList<>();
+    ProgressFlm_adapter progress_adapter;
 
     RecyclerView progressRecycler;
 
-    Admin_home activity;
-    ImageView selectCountryBrand;
+    Admin_home activity = new Admin_home();
+    ImageView back;
 
-    TextView targetNo, targetPercent, marketNo, marketPercent;
+    TextView targetNo, targetPercent, marketNo, marketPercent,name;
     ContentLoadingProgressBar targetProgress, marketProgress;
 
+    int countryId,brandId,flmId;
+    String flmName;
+
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        activity = (Admin_home) getActivity();
-
-        targetNo = view.findViewById(R.id.targetNo);
-        targetPercent = view.findViewById(R.id.targetPercent);
-        marketNo = view.findViewById(R.id.marketNo);
-        marketPercent = view.findViewById(R.id.marketPercent);
-        targetProgress = view.findViewById(R.id.targetProgress);
-        marketProgress = view.findViewById(R.id.marketProgress);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_progress_flm);
 
 
-        selectCountryBrand = view.findViewById(R.id.selectCountry);
-        selectCountryBrand.setOnClickListener(new View.OnClickListener() {
+        name = findViewById(R.id.name);
+        targetNo = findViewById(R.id.targetNo);
+        targetPercent = findViewById(R.id.targetPercent);
+        marketNo = findViewById(R.id.marketNo);
+        marketPercent = findViewById(R.id.marketPercent);
+        targetProgress = findViewById(R.id.targetProgress);
+        marketProgress = findViewById(R.id.marketProgress);
+
+
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCountriesBrandsBottomSheet();
+                onBackPressed();
             }
         });
 
+        countryId = getIntent().getIntExtra("countryId",0);
+        brandId = getIntent().getIntExtra("brandId",0);
+        flmId = getIntent().getIntExtra("flmId",0);
+        flmName = getIntent().getStringExtra("flmName");
         accessToken = activity.getAccessToken();
-        dialog = new ProgressDialog(getActivity());
+        dialog = new ProgressDialog(ProgressFlmActivity.this);
         dialog.setMessage("Loading....");
         dialog.setCancelable(false);
 
@@ -101,7 +88,7 @@ public class ProgressFragment extends Fragment implements BottomSheet_country_br
     public void getProgress() {
         dialog.show();
 
-        Webservice.getInstance().getApi().getProgress(accessToken, activity.getSelectedCountryId(), activity.getSelectedBrandId()).enqueue(new Callback<ResponseBody>() {
+        Webservice.getInstance().getApi().getProgressFlm(accessToken, countryId, brandId,flmId).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
@@ -121,9 +108,9 @@ public class ProgressFragment extends Fragment implements BottomSheet_country_br
                         e.printStackTrace();
                     }
                 } else if (response.code() == 401) {
-                    Intent i = new Intent(getActivity(), LoginActivity.class);
+                    Intent i = new Intent(ProgressFlmActivity.this, LoginActivity.class);
                     startActivity(i);
-                    getActivity().finish();
+                    finish();
                 }
                 dialog.dismiss();
 
@@ -131,7 +118,7 @@ public class ProgressFragment extends Fragment implements BottomSheet_country_br
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getActivity(), "Network error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProgressFlmActivity.this, "Network error", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });
@@ -150,6 +137,8 @@ public class ProgressFragment extends Fragment implements BottomSheet_country_br
             marketNo.setText(marketNoTxt);
             marketPercent.setText(marketPercentTxt);
             marketProgress.setProgress((int) totalData.getDouble("market_share"));
+
+            name.setText(flmName);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -164,7 +153,6 @@ public class ProgressFragment extends Fragment implements BottomSheet_country_br
                 final int userId = currentObject.getInt("user_id");
                 final String name = currentObject.getString("name");
                 final String address = currentObject.getString("area_name");
-                final int repsNo = currentObject.getInt("child_count");
                 final int actualTarget = currentObject.getInt("actual_target");
                 final int totalTarget = currentObject.getInt("total_target");
                 final double targetPercent = currentObject.getDouble("target_percent");
@@ -173,7 +161,7 @@ public class ProgressFragment extends Fragment implements BottomSheet_country_br
                 final double marketPercent = currentObject.getDouble("market_share");
 
 
-                progress_list.add(new Progress_item(userId, name, address, repsNo, actualTarget, totalTarget, targetPercent, actualMarket, totalMarket, marketPercent));
+                progress_list.add(new ProgressFlm_item(userId, name, address, actualTarget, totalTarget, targetPercent, actualMarket, totalMarket, marketPercent));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -182,21 +170,13 @@ public class ProgressFragment extends Fragment implements BottomSheet_country_br
     }
 
     private void initProgressRecyclerView() {
-        progressRecycler = getView().findViewById(R.id.recycler);
+        progressRecycler = findViewById(R.id.recycler);
 //        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(ProgressFlmActivity.this, LinearLayoutManager.VERTICAL, false);
         progressRecycler.setLayoutManager(layoutManager);
 
-        progress_adapter = new Progress_adapter(getActivity(), progress_list,activity.getSelectedCountryId(),activity.getSelectedBrandId());
+        progress_adapter = new ProgressFlm_adapter(ProgressFlmActivity.this, progress_list);
         progressRecycler.setAdapter(progress_adapter);
 
-    }
-
-    @Override
-    public void onItemClick(int selectedCountryIndex, int selectedBrandIndex) {
-        activity.setSelectedCountryIndex(selectedCountryIndex);
-        activity.setSelectedBrandIndex(selectedBrandIndex);
-
-        getProgress();
     }
 }

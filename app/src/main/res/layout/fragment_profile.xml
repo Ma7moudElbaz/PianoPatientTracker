@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/login_bg"
     android:orientation="vertical"
-    tools:context=".regional_product.users.ProfileFragment">
+    tools:context=".regional_product.profile.ProfileFragment">
 
     <LinearLayout
         android:id="@+id/topPanel"
