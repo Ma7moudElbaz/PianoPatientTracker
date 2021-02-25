@@ -2,15 +2,16 @@ package com.cat.pianopatienttracker.regional_product.shared;
 
 import java.util.ArrayList;
 
-public class Country_Brand_item {
+public class Region_item {
+
     private int id;
     private String name;
-    private ArrayList<Brand_item> brand_list = new ArrayList<>();
+    private ArrayList<City_item> city_list = new ArrayList<>();
 
-    public Country_Brand_item(int id, String name, ArrayList<Brand_item> brand_list) {
+    public Region_item(int id, String name, ArrayList<City_item> city_list) {
         this.id = id;
         this.name = name;
-        this.brand_list = brand_list;
+        this.city_list = city_list;
     }
 
     public int getId() {
@@ -29,11 +30,11 @@ public class Country_Brand_item {
         this.name = name;
     }
 
-    public ArrayList<Brand_item> getBrand_list() {
-        return brand_list;
+    public ArrayList<City_item> getCity_list() {
+        return city_list;
     }
 
-    public void setBrand_list(ArrayList<Brand_item> brand_list) {
-        this.brand_list = brand_list;
+    public void setCity_list(ArrayList<City_item> city_list) {
+        this.city_list = city_list;
     }
 }

@@ -54,7 +54,7 @@ public class DashboardFragment extends Fragment implements BottomSheet_country_b
 
     public void showCountriesBrandsBottomSheet() {
         BottomSheet_country_brand_fragment countriesBrandsBottomSheet =
-                new BottomSheet_country_brand_fragment(activity.getCountriesBrands_list(),activity.getSelectedCountryIndex(),activity.getSelectedBrandIndex());
+                new BottomSheet_country_brand_fragment(activity.getCountries_list(),activity.getSelectedCountryIndex(),activity.getSelectedBrandIndex());
         countriesBrandsBottomSheet.setTargetFragment(this, 300);
         countriesBrandsBottomSheet.show(getFragmentManager(), "country_brand");
     }
@@ -510,7 +510,7 @@ public class DashboardFragment extends Fragment implements BottomSheet_country_b
     }
 
     @Override
-    public void onItemClick(int selectedCountryIndex, int selectedBrandIndex) {
+    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex) {
         activity.setSelectedCountryIndex(selectedCountryIndex);
         activity.setSelectedBrandIndex(selectedBrandIndex);
 

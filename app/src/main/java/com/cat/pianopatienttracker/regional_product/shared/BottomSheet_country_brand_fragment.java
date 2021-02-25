@@ -21,7 +21,7 @@ public class BottomSheet_country_brand_fragment extends BottomSheetDialogFragmen
 
     boolean cIsInit = true;
     boolean bIsInit = true;
-    ArrayList<Country_Brand_item> countriesBrands_list;
+    ArrayList<Country_item> countriesBrands_list;
     int selectedCountryIndex;
     int selectedBrandIndex;
 
@@ -32,7 +32,7 @@ public class BottomSheet_country_brand_fragment extends BottomSheetDialogFragmen
 //    }
 
     public BottomSheet_country_brand_fragment(
-            ArrayList<Country_Brand_item> countriesBrands_list, int selectedCountryIndex, int selectedBrandIndex) {
+            ArrayList<Country_item> countriesBrands_list, int selectedCountryIndex, int selectedBrandIndex) {
         this.countriesBrands_list = countriesBrands_list;
         this.selectedCountryIndex = selectedCountryIndex;
         this.selectedBrandIndex = selectedBrandIndex;
@@ -129,13 +129,13 @@ public class BottomSheet_country_brand_fragment extends BottomSheetDialogFragmen
 
 
     public interface ItemClickListener {
-        void onItemClick(int selectedCountryIndex, int selectedBrandIndex);
+        void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex);
     }
 
     public void sendBackResult(int selectedCountryIndex, int selectedBrandIndex) {
         // Notice the use of `getTargetFragment` which will be set when the dialog is displayed
         ItemClickListener listener = (ItemClickListener) getTargetFragment();
-        listener.onItemClick(selectedCountryIndex, selectedBrandIndex);
+        listener.countryBrandOnItemClick(selectedCountryIndex, selectedBrandIndex);
         dismiss();
     }
 }

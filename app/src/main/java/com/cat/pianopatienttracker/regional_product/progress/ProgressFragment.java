@@ -22,10 +22,6 @@ import com.cat.pianopatienttracker.LoginActivity;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.network.Webservice;
 import com.cat.pianopatienttracker.regional_product.Admin_home;
-import com.cat.pianopatienttracker.regional_product.dashboard.regional.DashboardRegional_adapter;
-import com.cat.pianopatienttracker.regional_product.dashboard.regional.ProductTarget_item;
-import com.cat.pianopatienttracker.regional_product.ranking.Ranking_hospitals_adapter;
-import com.cat.pianopatienttracker.regional_product.ranking.Ranking_hospitals_item;
 import com.cat.pianopatienttracker.regional_product.shared.BottomSheet_country_brand_fragment;
 
 import org.json.JSONArray;
@@ -50,7 +46,7 @@ public class ProgressFragment extends Fragment implements BottomSheet_country_br
 
     public void showCountriesBrandsBottomSheet() {
         BottomSheet_country_brand_fragment countriesBrandsBottomSheet =
-                new BottomSheet_country_brand_fragment(activity.getCountriesBrands_list(), activity.getSelectedCountryIndex(), activity.getSelectedBrandIndex());
+                new BottomSheet_country_brand_fragment(activity.getCountries_list(), activity.getSelectedCountryIndex(), activity.getSelectedBrandIndex());
         countriesBrandsBottomSheet.setTargetFragment(this, 300);
         countriesBrandsBottomSheet.show(getFragmentManager(), "country_brand");
     }
@@ -193,7 +189,7 @@ public class ProgressFragment extends Fragment implements BottomSheet_country_br
     }
 
     @Override
-    public void onItemClick(int selectedCountryIndex, int selectedBrandIndex) {
+    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex) {
         activity.setSelectedCountryIndex(selectedCountryIndex);
         activity.setSelectedBrandIndex(selectedBrandIndex);
 

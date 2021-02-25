@@ -16,6 +16,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface ServiceInterface {
 
@@ -31,12 +32,19 @@ public interface ServiceInterface {
     @GET("admin/get-countries")
     Call<ResponseBody> getCountries(@Header("Authorization") String auth);
 
+
+    @GET("get-health-sectors")
+    Call<ResponseBody> getSectors(@Header("Authorization") String auth);
+
     @GET("dashboard")
     Call<ResponseBody> getDashboard(@Header("Authorization") String auth, @Query("country_id") int countryId, @Query("brand_id") int brandId);
 
 
     @GET("ranking-slice")
     Call<ResponseBody> getRanking(@Header("Authorization") String auth, @Query("country_id") int countryId, @Query("brand_id") int brandId, @Query("type") String type);
+
+    @GET("ranking-slice")
+    Call<ResponseBody> getRankingFiltered(@Header("Authorization") String auth, @Query("country_id") int countryId, @Query("brand_id") int brandId, @Query("type") String type,@QueryMap Map<String, String> filters);
 
 
     @GET("get-progress")

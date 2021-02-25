@@ -13,10 +13,10 @@ import java.util.ArrayList;
 
 public class CountriesSpinnerAdapter extends BaseAdapter {
     Context context;
-    ArrayList<Country_Brand_item> items;
+    ArrayList<Country_item> items;
     LayoutInflater inflater;
 
-    public CountriesSpinnerAdapter(Context applicationContext, ArrayList<Country_Brand_item> items) {
+    public CountriesSpinnerAdapter(Context applicationContext, ArrayList<Country_item> items) {
         this.context = applicationContext;
         this.items = items;
         inflater = (LayoutInflater.from(applicationContext));

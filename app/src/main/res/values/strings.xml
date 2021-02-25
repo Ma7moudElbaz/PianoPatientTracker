@@ -28,6 +28,8 @@
     <string name="country">Country</string>
     <string name="product">Product</string>
     <string name="done">Done</string>
+    <string name="reps_filter">Reps Filter</string>
+    <string name="hospitals_filter">Hospitals Filter</string>
 
 
     <string-array name="months">

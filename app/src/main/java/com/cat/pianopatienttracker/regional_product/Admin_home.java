@@ -17,10 +17,13 @@ import com.cat.pianopatienttracker.regional_product.dashboard.regional.Dashboard
 import com.cat.pianopatienttracker.regional_product.ranking.RankingFragment;
 import com.cat.pianopatienttracker.regional_product.progress.ProgressFragment;
 import com.cat.pianopatienttracker.regional_product.shared.Brand_item;
-import com.cat.pianopatienttracker.regional_product.shared.Country_Brand_item;
+import com.cat.pianopatienttracker.regional_product.shared.City_item;
+import com.cat.pianopatienttracker.regional_product.shared.Country_item;
 import com.cat.pianopatienttracker.regional_product.profile.ProfileFragment;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.network.Webservice;
+import com.cat.pianopatienttracker.regional_product.shared.Region_item;
+import com.cat.pianopatienttracker.regional_product.shared.Sector_item;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
@@ -55,7 +58,7 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
 
     public void setSelectedCountryIndex(int selectedCountryIndex) {
         this.selectedCountryIndex = selectedCountryIndex;
-        setSelectedCountryId(countriesBrands_list.get(selectedCountryIndex).getId());
+        setSelectedCountryId(countries_list.get(selectedCountryIndex).getId());
     }
 
     public int getSelectedBrandIndex() {
@@ -64,7 +67,7 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
 
     public void setSelectedBrandIndex(int selectedBrandIndex) {
         this.selectedBrandIndex = selectedBrandIndex;
-        setSelectedBrandId(countriesBrands_list.get(getSelectedCountryIndex()).getBrand_list().get(selectedBrandIndex).getId());
+        setSelectedBrandId(countries_list.get(getSelectedCountryIndex()).getBrand_list().get(selectedBrandIndex).getId());
     }
 
     //admin
@@ -85,13 +88,6 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
         this.accessToken = accessToken;
     }
 
-    public BottomNavigationView getBottomNavigationView() {
-        return bottomNavigationView;
-    }
-
-    public void setBottomNavigationView(BottomNavigationView bottomNavigationView) {
-        this.bottomNavigationView = bottomNavigationView;
-    }
 
     public int getSelectedCountryId() {
         return selectedCountryId;
@@ -113,12 +109,16 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
 
     private ProgressDialog dialog;
 
-    ArrayList<Country_Brand_item> countriesBrands_list = new ArrayList<>();
+    ArrayList<Country_item> countries_list = new ArrayList<>();
+    ArrayList<Sector_item> sectors_list = new ArrayList<>();
 
-    public ArrayList<Country_Brand_item> getCountriesBrands_list() {
-        return countriesBrands_list;
+    public ArrayList<Country_item> getCountries_list() {
+        return countries_list;
     }
 
+    public ArrayList<Sector_item> getSectors_list() {
+        return sectors_list;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +131,7 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
 
 
         getMyData();
+        getSectorsData();
 
 //        setContentFragment(new DashboardFragment());
 //        setContentFragment(new DashboardRegionalFragment());
@@ -167,6 +168,55 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
     }
 
 
+    public void getSectorsData() {
+        Webservice.getInstance().getApi().getSectors(accessToken).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if (response.code() == 200) {
+                    JSONObject responseObject = null;
+                    try {
+                        responseObject = new JSONObject(response.body().string());
+                        JSONObject dataObj = responseObject.getJSONObject("data");
+                        JSONArray dataArr = dataObj.getJSONArray("data");
+                        setSectorsList(dataArr);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else if (response.code() == 401) {
+                    Intent i = new Intent(getBaseContext(), LoginActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getBaseContext(), "Network error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    void setSectorsList(JSONArray list) {
+
+        try {
+
+            for (int i = 0; i < list.length(); i++) {
+                JSONObject currentObject = list.getJSONObject(i);
+                final int id = currentObject.getInt("id");
+                final String name = currentObject.getString("name");
+
+                sectors_list.add(new Sector_item(id, name));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
     public void getMyData() {
         dialog.show();
         Webservice.getInstance().getApi().getMyProfile(accessToken).enqueue(new Callback<ResponseBody>() {
@@ -178,7 +228,7 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
                     try {
                         responseObject = new JSONObject(response.body().string());
                         JSONArray dataArr = responseObject.getJSONArray("data");
-                        setCountriesBrandsList(dataArr);
+                        setCountriesList(dataArr);
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -199,7 +249,7 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
         });
     }
 
-    public void setCountriesBrandsList(JSONArray list) {
+    public void setCountriesList(JSONArray list) {
         try {
 
             for (int i = 0; i < list.length(); i++) {
@@ -207,17 +257,20 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
                 final int id = currentObject.getInt("id");
                 final String name = currentObject.getString("name");
                 final JSONArray productsData = currentObject.getJSONArray("products");
+                final JSONArray regionsData = currentObject.getJSONArray("regions");
 
                 ArrayList<Brand_item> brands_list = new ArrayList<>();
+                ArrayList<Region_item> regions_list = new ArrayList<>();
                 brands_list = setBrandsList(productsData);
+                regions_list = setRegionsList(regionsData);
 
-                countriesBrands_list.add(new Country_Brand_item(id, name, brands_list));
+                countries_list.add(new Country_item(id, name, brands_list,regions_list));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        setSelectedCountryId(countriesBrands_list.get(0).getId());
-        setSelectedBrandId(countriesBrands_list.get(0).getBrand_list().get(0).getId());
+        setSelectedCountryId(countries_list.get(0).getId());
+        setSelectedBrandId(countries_list.get(0).getBrand_list().get(0).getId());
 
         if (role.equals("manager")) {
             setContentFragment(new DashboardFragment());
@@ -246,5 +299,44 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
             e.printStackTrace();
         }
         return brands_list;
+    }
+
+    ArrayList<Region_item> setRegionsList(JSONArray list) {
+
+        ArrayList<Region_item> regions_list = new ArrayList<>();
+        try {
+
+            for (int i = 0; i < list.length(); i++) {
+                JSONObject currentObject = list.getJSONObject(i);
+                final int id = currentObject.getInt("id");
+                final String name = currentObject.getString("name");
+                final JSONArray citiesData = currentObject.getJSONArray("cities");
+                ArrayList<City_item> cities_list = new ArrayList<>();
+                cities_list = setCitiesList(citiesData);
+
+                regions_list.add(new Region_item(id, name, cities_list));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return regions_list;
+    }
+
+    ArrayList<City_item> setCitiesList(JSONArray list) {
+
+        ArrayList<City_item> cities_list = new ArrayList<>();
+        try {
+
+            for (int i = 0; i < list.length(); i++) {
+                JSONObject currentObject = list.getJSONObject(i);
+                final int id = currentObject.getInt("id");
+                final String name = currentObject.getString("name");
+
+                cities_list.add(new City_item(id, name));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cities_list;
     }
 }

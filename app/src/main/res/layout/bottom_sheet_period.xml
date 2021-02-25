@@ -64,7 +64,7 @@
                 android:gravity="center"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:text="YTL"
+                android:text="YTD"
                 android:textColor="@color/gray"
                 android:textSize="16sp" />
 

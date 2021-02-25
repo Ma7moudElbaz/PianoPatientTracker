@@ -23,11 +23,14 @@ import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.regional_product.Admin_home;
 import com.cat.pianopatienttracker.regional_product.shared.BottomSheet_country_brand_fragment;
 import com.cat.pianopatienttracker.network.Webservice;
+import com.cat.pianopatienttracker.regional_product.shared.BottomSheet_period_fragment;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -35,7 +38,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class RankingFragment extends Fragment implements BottomSheet_country_brand_fragment.ItemClickListener {
+public class RankingFragment extends Fragment implements BottomSheet_country_brand_fragment.ItemClickListener, BottomSheet_period_fragment.ItemClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,9 +49,16 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
 
     public void showCountriesBrandsBottomSheet() {
         BottomSheet_country_brand_fragment countriesBrandsBottomSheet =
-                new BottomSheet_country_brand_fragment(activity.getCountriesBrands_list(),activity.getSelectedCountryIndex(),activity.getSelectedBrandIndex());
+                new BottomSheet_country_brand_fragment(activity.getCountries_list(), activity.getSelectedCountryIndex(), activity.getSelectedBrandIndex());
         countriesBrandsBottomSheet.setTargetFragment(this, 300);
         countriesBrandsBottomSheet.show(getFragmentManager(), "country_brand");
+    }
+
+    public void showPeriodBottomSheet(View view) {
+        BottomSheet_period_fragment periodBottomSheet =
+                new BottomSheet_period_fragment();
+        periodBottomSheet.setTargetFragment(this, 300);
+        periodBottomSheet.show(getFragmentManager(), "period");
     }
 
 
@@ -69,16 +79,11 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
     ArrayList<Ranking_doctors_item> ranking_doctors_list = new ArrayList<>();
     Ranking_doctors_adapter ranking_doctors_adapter;
 
-    TextView ranking_hospitals_btn,ranking_reps_btn,ranking_sectors_btn,ranking_doctors_btn;
+    TextView ranking_hospitals_btn, ranking_reps_btn, ranking_sectors_btn, ranking_doctors_btn;
     TextView filter_period;
+    String selectedTab = "reps";
 
     Admin_home activity;
-
-    public void showPeriodBottomSheet(View view) {
-        BottomSheet_period_fragment periodBottomSheet =
-                new BottomSheet_period_fragment();
-        periodBottomSheet.show(getChildFragmentManager(),"period");
-    }
 
 
     ImageView selectCountryBrand;
@@ -98,10 +103,10 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
             }
         });
 
-        ranking_hospitals_btn =  view.findViewById(R.id.ranking_hospitals_btn);
-        ranking_reps_btn =  view.findViewById(R.id.ranking_reps_btn);
-        ranking_sectors_btn =  view.findViewById(R.id.ranking_sectors_btn);
-        ranking_doctors_btn =  view.findViewById(R.id.ranking_doctors_btn);
+        ranking_hospitals_btn = view.findViewById(R.id.ranking_hospitals_btn);
+        ranking_reps_btn = view.findViewById(R.id.ranking_reps_btn);
+        ranking_sectors_btn = view.findViewById(R.id.ranking_sectors_btn);
+        ranking_doctors_btn = view.findViewById(R.id.ranking_doctors_btn);
 
         ranking_hospitals_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,9 +137,7 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
         });
 
 
-
-
-        filter_period =  view.findViewById(R.id.filter_period);
+        filter_period = view.findViewById(R.id.filter_period);
         filter_period.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,7 +152,7 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
 
         //hospitals,reps,sectors,doctors
         initRankingRecyclerView();
-        getRanking("reps");
+        getRanking(selectedTab);
     }
 
 
@@ -168,12 +171,14 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
 
                         if (type.equals("hospitals")) {
                             setRankingHospitalsList(rankingArr);
-                        }else if (type.equals("reps")){
+                        } else if (type.equals("reps")) {
                             setRankingRepsList(rankingArr);
-                        }else if (type.equals("sectors")){
-                            setRankingSectorsList(rankingArr);;
-                        }else if (type.equals("doctors")){
-                            setRankingDoctorsList(rankingArr);;
+                        } else if (type.equals("sectors")) {
+                            setRankingSectorsList(rankingArr);
+                            ;
+                        } else if (type.equals("doctors")) {
+                            setRankingDoctorsList(rankingArr);
+                            ;
                         }
 
                     } catch (Exception e) {
@@ -196,6 +201,53 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
         });
     }
 
+
+    public void getRankingFiltered(String type, Map<String, String> filter) {
+        dialog.show();
+
+        Webservice.getInstance().getApi().getRankingFiltered(accessToken, activity.getSelectedCountryId(), activity.getSelectedBrandId(), type, filter).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if (response.code() == 200) {
+                    JSONObject responseObject = null;
+                    try {
+                        responseObject = new JSONObject(response.body().string());
+                        JSONArray rankingArr = responseObject.getJSONArray("data");
+
+                        if (type.equals("hospitals")) {
+                            setRankingHospitalsList(rankingArr);
+                        } else if (type.equals("reps")) {
+                            setRankingRepsList(rankingArr);
+                        } else if (type.equals("sectors")) {
+                            setRankingSectorsList(rankingArr);
+                            ;
+                        } else if (type.equals("doctors")) {
+                            setRankingDoctorsList(rankingArr);
+                            ;
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else if (response.code() == 401) {
+                    Intent i = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(i);
+                    getActivity().finish();
+                }
+                dialog.dismiss();
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Network error", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+    }
+
+
     public void setRankingHospitalsList(JSONArray list) {
         ranking_hospitals_list.clear();
         try {
@@ -210,7 +262,7 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
                 final int doctorsNo = currentObject.getInt("doctors_count");
                 final int patientsNo = currentObject.getInt("p_count");
 
-                ranking_hospitals_list.add(new Ranking_hospitals_item(id, name, sectorString, address,doctorsNo,patientsNo));
+                ranking_hospitals_list.add(new Ranking_hospitals_item(id, name, sectorString, address, doctorsNo, patientsNo));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -228,7 +280,7 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
                 final String name = currentObject.getString("name");
                 final int patientsNo = currentObject.getInt("p_count");
 
-                ranking_reps_list.add(new Ranking_reps_item(id, name,patientsNo ));
+                ranking_reps_list.add(new Ranking_reps_item(id, name, patientsNo));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -250,7 +302,7 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
                 final int hospitalsNo = currentObject.getInt("hospitals_count");
 
 
-                ranking_sectors_list.add(new Ranking_sectors_item(id, name,doctorsNo,hospitalsNo,patientsNo));
+                ranking_sectors_list.add(new Ranking_sectors_item(id, name, doctorsNo, hospitalsNo, patientsNo));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -264,7 +316,6 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
         try {
 
 
-
             for (int i = 0; i < list.length(); i++) {
                 JSONObject currentObject = list.getJSONObject(i);
                 final int id = currentObject.getInt("id");
@@ -274,15 +325,15 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
 
                 final JSONArray hospitalsArr = currentObject.getJSONArray("hospitals");
                 String hospital = "";
-                for (int j = 0; j<hospitalsArr.length();j++){
+                for (int j = 0; j < hospitalsArr.length(); j++) {
                     JSONObject currentHospitalObject = hospitalsArr.getJSONObject(j);
-                    hospital +=currentHospitalObject.getString("name");
-                    if (j != (hospitalsArr.length()-1)){
-                        hospital +=", ";
+                    hospital += currentHospitalObject.getString("name");
+                    if (j != (hospitalsArr.length() - 1)) {
+                        hospital += ", ";
                     }
                 }
 
-                ranking_doctors_list.add(new Ranking_doctors_item(id, name,hospital,address,patientsNo));
+                ranking_doctors_list.add(new Ranking_doctors_item(id, name, hospital, address, patientsNo));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -304,6 +355,8 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
         ranking_sectors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
         ranking_doctors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
 
+        selectedTab = "hospitals";
+
         ranking_hospitals_adapter = new Ranking_hospitals_adapter(getActivity(), ranking_hospitals_list);
         rankingRecycler.setAdapter(ranking_hospitals_adapter);
     }
@@ -313,6 +366,8 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
         ranking_reps_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_blue));
         ranking_sectors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
         ranking_doctors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
+
+        selectedTab = "reps";
 
         ranking_reps_adapter = new Ranking_reps_adapter(getActivity(), ranking_reps_list);
         rankingRecycler.setAdapter(ranking_reps_adapter);
@@ -324,7 +379,9 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
         ranking_sectors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_blue));
         ranking_doctors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
 
-        ranking_sectors_adapter= new Ranking_sectors_adapter(getActivity(), ranking_sectors_list);
+        selectedTab = "sectors";
+
+        ranking_sectors_adapter = new Ranking_sectors_adapter(getActivity(), ranking_sectors_list);
         rankingRecycler.setAdapter(ranking_sectors_adapter);
     }
 
@@ -334,16 +391,35 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
         ranking_sectors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
         ranking_doctors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_blue));
 
-        ranking_doctors_adapter= new Ranking_doctors_adapter(getActivity(), ranking_doctors_list);
+        selectedTab = "doctors";
+
+        ranking_doctors_adapter = new Ranking_doctors_adapter(getActivity(), ranking_doctors_list);
         rankingRecycler.setAdapter(ranking_doctors_adapter);
     }
 
 
     @Override
-    public void onItemClick(int selectedCountryIndex, int selectedBrandIndex) {
+    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex) {
         activity.setSelectedCountryIndex(selectedCountryIndex);
         activity.setSelectedBrandIndex(selectedBrandIndex);
 
-        getRanking("reps");
+        getRanking(selectedTab);
+    }
+
+
+    @Override
+    public void periodOnItemClick(int filterType, int year, int month) {
+        Map<String, String> filterMap = new HashMap<>();
+        if (filterType == 0) {
+            filterMap.put("year", String.valueOf(year));
+            getRankingFiltered(selectedTab, filterMap);
+        } else if (filterType == 1) {
+            getRanking(selectedTab);
+        } else if (filterType == 2) {
+
+            filterMap.put("year", String.valueOf(year));
+            filterMap.put("month", String.valueOf(month));
+            getRankingFiltered(selectedTab, filterMap);
+        }
     }
 }
