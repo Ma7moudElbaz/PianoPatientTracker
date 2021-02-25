@@ -15,9 +15,9 @@ import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.network.Webservice;
-import com.cat.pianopatienttracker.regional_product.Admin_home;
+import com.cat.pianopatienttracker.admin_manager_regional.Admin_home;
+import com.cat.pianopatienttracker.rep.Rep_home;
 import com.microsoft.identity.client.AuthenticationCallback;
 import com.microsoft.identity.client.IAccount;
 import com.microsoft.identity.client.IAuthenticationResult;
@@ -240,6 +240,15 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (role.equals("manager")||role.equals("regional")){
                                 Intent i = new Intent(getBaseContext(), Admin_home.class);
+                                i.putExtra("accessToken",accessToken);
+                                i.putExtra("role",role);
+                                i.putExtra("roleName",roleName);
+                                i.putExtra("userName",userName);
+                                startActivity(i);
+                                finish();
+                            }
+                            if (role.equals("rep")){
+                                Intent i = new Intent(getBaseContext(), Rep_home.class);
                                 i.putExtra("accessToken",accessToken);
                                 i.putExtra("role",role);
                                 i.putExtra("roleName",roleName);

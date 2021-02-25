@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
         <activity
-            android:name=".regional_product.progress.progress_flm.ProgressFlmActivity"
+            android:name=".admin_manager_regional.progress.progress_flm.ProgressFlmActivity"
             android:screenOrientation="portrait" />
         <!-- Intent filter to capture System Browser or Authenticator calling back to our app after sign-in -->
         <activity android:name="com.microsoft.identity.client.BrowserTabActivity">
@@ -37,7 +37,7 @@
             android:name=".rep.Rep_home"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".regional_product.Admin_home"
+            android:name=".admin_manager_regional.Admin_home"
             android:screenOrientation="portrait"/>
 
         <activity

@@ -11,12 +11,6 @@
         android:icon="@drawable/ic_rank"
         android:title="@string/ranking" />
 
-
-    <item
-        android:id="@+id/navigation_doctors"
-        android:icon="@drawable/ic_doctor"
-        android:title="@string/doctors" />
-
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_users"

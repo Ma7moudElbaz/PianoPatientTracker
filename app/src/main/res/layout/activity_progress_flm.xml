@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/login_bg"
     android:orientation="vertical"
-    tools:context=".regional_product.progress.progress_flm.ProgressFlmActivity">
+    tools:context=".admin_manager_regional.progress.progress_flm.ProgressFlmActivity">
 
     <LinearLayout
         android:id="@+id/topPanel"
