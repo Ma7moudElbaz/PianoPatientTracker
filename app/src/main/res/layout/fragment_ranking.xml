@@ -106,19 +106,65 @@
             android:layout_marginTop="10dp"
             android:background="@color/light_gray" />
 
-
-        <TextView
-            android:id="@+id/filter_period"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:drawablePadding="5dp"
-            android:padding="15dp"
-            android:text="@string/period"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:drawableLeftCompat="@drawable/ic_period"
-            app:drawableTint="@color/black" />
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/filter_period"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:padding="15dp"
+                    android:text="@string/period"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:drawableLeftCompat="@drawable/ic_period"
+                    app:drawableTint="@color/black" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/light_gray"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/filters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:padding="15dp"
+                    android:text="@string/filters"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:drawableLeftCompat="@drawable/ic_filter"
+                    app:drawableTint="@color/black" />
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+
+
 
 
     </LinearLayout>

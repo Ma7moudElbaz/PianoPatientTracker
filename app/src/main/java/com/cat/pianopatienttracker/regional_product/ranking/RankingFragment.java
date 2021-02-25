@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,10 @@ import android.widget.Toast;
 import com.cat.pianopatienttracker.LoginActivity;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.regional_product.Admin_home;
-import com.cat.pianopatienttracker.regional_product.shared.BottomSheet_country_brand_fragment;
+import com.cat.pianopatienttracker.regional_product.bottom_sheet.BottomSheet_country_brand_fragment;
 import com.cat.pianopatienttracker.network.Webservice;
-import com.cat.pianopatienttracker.regional_product.shared.BottomSheet_period_fragment;
+import com.cat.pianopatienttracker.regional_product.bottom_sheet.BottomSheet_filter_rep_fragment;
+import com.cat.pianopatienttracker.regional_product.bottom_sheet.BottomSheet_period_fragment;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,7 +40,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class RankingFragment extends Fragment implements BottomSheet_country_brand_fragment.ItemClickListener, BottomSheet_period_fragment.ItemClickListener {
+public class RankingFragment extends Fragment implements BottomSheet_country_brand_fragment.ItemClickListener
+        , BottomSheet_period_fragment.ItemClickListener, BottomSheet_filter_rep_fragment.ItemClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,17 +51,24 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
     }
 
     public void showCountriesBrandsBottomSheet() {
-        BottomSheet_country_brand_fragment countriesBrandsBottomSheet =
+        BottomSheet_country_brand_fragment bottomSheet =
                 new BottomSheet_country_brand_fragment(activity.getCountries_list(), activity.getSelectedCountryIndex(), activity.getSelectedBrandIndex());
-        countriesBrandsBottomSheet.setTargetFragment(this, 300);
-        countriesBrandsBottomSheet.show(getFragmentManager(), "country_brand");
+        bottomSheet.setTargetFragment(this, 300);
+        bottomSheet.show(getFragmentManager(), "country_brand");
+    }
+
+    public void showRepsFilterBottomSheet() {
+        BottomSheet_filter_rep_fragment bottomSheet =
+                new BottomSheet_filter_rep_fragment(activity.getCountries_list(), activity.getSelectedCountryIndex());
+        bottomSheet.setTargetFragment(this, 300);
+        bottomSheet.show(getFragmentManager(), "country_brand");
     }
 
     public void showPeriodBottomSheet(View view) {
-        BottomSheet_period_fragment periodBottomSheet =
+        BottomSheet_period_fragment bottomSheet =
                 new BottomSheet_period_fragment();
-        periodBottomSheet.setTargetFragment(this, 300);
-        periodBottomSheet.show(getFragmentManager(), "period");
+        bottomSheet.setTargetFragment(this, 300);
+        bottomSheet.show(getFragmentManager(), "period");
     }
 
 
@@ -80,7 +90,7 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
     Ranking_doctors_adapter ranking_doctors_adapter;
 
     TextView ranking_hospitals_btn, ranking_reps_btn, ranking_sectors_btn, ranking_doctors_btn;
-    TextView filter_period;
+    TextView filter_period, filters;
     String selectedTab = "reps";
 
     Admin_home activity;
@@ -137,6 +147,13 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
         });
 
 
+        filters = view.findViewById(R.id.filters);
+        filters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showRepsFilterBottomSheet();
+            }
+        });
         filter_period = view.findViewById(R.id.filter_period);
         filter_period.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -421,5 +438,10 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
             filterMap.put("month", String.valueOf(month));
             getRankingFiltered(selectedTab, filterMap);
         }
+    }
+
+    @Override
+    public void repFilterOnItemClick(Map<String, String> filterMap) {
+        getRankingFiltered(selectedTab,filterMap);
     }
 }

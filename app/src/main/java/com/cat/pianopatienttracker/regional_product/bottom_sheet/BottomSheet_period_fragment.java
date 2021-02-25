@@ -1,4 +1,4 @@
-package com.cat.pianopatienttracker.regional_product.shared;
+package com.cat.pianopatienttracker.regional_product.bottom_sheet;
 
 import android.content.Context;
 import android.os.Bundle;

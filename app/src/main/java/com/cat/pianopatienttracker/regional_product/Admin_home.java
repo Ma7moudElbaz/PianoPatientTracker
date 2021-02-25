@@ -303,7 +303,11 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
 
     ArrayList<Region_item> setRegionsList(JSONArray list) {
 
+        ArrayList<City_item> cities_firstItemList = new ArrayList<>();
+        cities_firstItemList.add(new City_item(0,"no regions selected"));
+
         ArrayList<Region_item> regions_list = new ArrayList<>();
+        regions_list.add(new Region_item(0, "Select Region", cities_firstItemList));
         try {
 
             for (int i = 0; i < list.length(); i++) {
@@ -325,6 +329,7 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
     ArrayList<City_item> setCitiesList(JSONArray list) {
 
         ArrayList<City_item> cities_list = new ArrayList<>();
+        cities_list.add(new City_item(0,"Select City"));
         try {
 
             for (int i = 0; i < list.length(); i++) {

@@ -11,12 +11,12 @@ import com.cat.pianopatienttracker.R;
 
 import java.util.ArrayList;
 
-public class CountriesSpinnerAdapter extends BaseAdapter {
+public class CitiesSpinnerAdapter extends BaseAdapter {
     Context context;
-    ArrayList<Country_item> items;
+    ArrayList<City_item> items;
     LayoutInflater inflater;
 
-    public CountriesSpinnerAdapter(Context applicationContext, ArrayList<Country_item> items) {
+    public CitiesSpinnerAdapter(Context applicationContext, ArrayList<City_item> items) {
         this.context = applicationContext;
         this.items = items;
         inflater = (LayoutInflater.from(applicationContext));

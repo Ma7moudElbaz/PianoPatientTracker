@@ -1,4 +1,4 @@
-package com.cat.pianopatienttracker.regional_product.shared;
+package com.cat.pianopatienttracker.regional_product.bottom_sheet;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.cat.pianopatienttracker.R;
+import com.cat.pianopatienttracker.regional_product.shared.BrandsSpinnerAdapter;
+import com.cat.pianopatienttracker.regional_product.shared.CountriesSpinnerAdapter;
+import com.cat.pianopatienttracker.regional_product.shared.Country_item;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.ArrayList;
