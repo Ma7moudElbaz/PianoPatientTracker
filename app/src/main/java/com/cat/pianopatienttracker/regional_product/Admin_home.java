@@ -200,14 +200,13 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
 
 
     void setSectorsList(JSONArray list) {
-
+        sectors_list.add(new Sector_item(0, "Select Sector"));
         try {
 
             for (int i = 0; i < list.length(); i++) {
                 JSONObject currentObject = list.getJSONObject(i);
                 final int id = currentObject.getInt("id");
                 final String name = currentObject.getString("name");
-
                 sectors_list.add(new Sector_item(id, name));
             }
         } catch (Exception e) {
@@ -264,7 +263,7 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
                 brands_list = setBrandsList(productsData);
                 regions_list = setRegionsList(regionsData);
 
-                countries_list.add(new Country_item(id, name, brands_list,regions_list));
+                countries_list.add(new Country_item(id, name, brands_list, regions_list));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -304,7 +303,7 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
     ArrayList<Region_item> setRegionsList(JSONArray list) {
 
         ArrayList<City_item> cities_firstItemList = new ArrayList<>();
-        cities_firstItemList.add(new City_item(0,"no regions selected"));
+        cities_firstItemList.add(new City_item(0, "no regions selected"));
 
         ArrayList<Region_item> regions_list = new ArrayList<>();
         regions_list.add(new Region_item(0, "Select Region", cities_firstItemList));
@@ -329,7 +328,7 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
     ArrayList<City_item> setCitiesList(JSONArray list) {
 
         ArrayList<City_item> cities_list = new ArrayList<>();
-        cities_list.add(new City_item(0,"Select City"));
+        cities_list.add(new City_item(0, "Select City"));
         try {
 
             for (int i = 0; i < list.length(); i++) {
