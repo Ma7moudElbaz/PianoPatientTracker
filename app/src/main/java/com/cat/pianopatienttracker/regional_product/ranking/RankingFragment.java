@@ -394,6 +394,7 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
         ranking_sectors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
         ranking_doctors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
 
+        filters.setVisibility(View.VISIBLE);
         selectedTab = "hospitals";
 
         ranking_hospitals_adapter = new Ranking_hospitals_adapter(getActivity(), ranking_hospitals_list);
@@ -406,6 +407,7 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
         ranking_sectors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
         ranking_doctors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
 
+        filters.setVisibility(View.VISIBLE);
         selectedTab = "reps";
 
         ranking_reps_adapter = new Ranking_reps_adapter(getActivity(), ranking_reps_list);
@@ -418,6 +420,7 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
         ranking_sectors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_blue));
         ranking_doctors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
 
+        filters.setVisibility(View.GONE);
         selectedTab = "sectors";
 
         ranking_sectors_adapter = new Ranking_sectors_adapter(getActivity(), ranking_sectors_list);
@@ -430,6 +433,7 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
         ranking_sectors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_gray));
         ranking_doctors_btn.setTextColor(ContextCompat.getColor(getActivity(), R.color.light_blue));
 
+        filters.setVisibility(View.VISIBLE);
         selectedTab = "doctors";
 
         ranking_doctors_adapter = new Ranking_doctors_adapter(getActivity(), ranking_doctors_list);
@@ -455,7 +459,6 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
         } else if (filterType == 1) {
             getRanking(selectedTab);
         } else if (filterType == 2) {
-
             filterMap.put("year", String.valueOf(year));
             filterMap.put("month", String.valueOf(month));
             getRankingFiltered(selectedTab, filterMap);
