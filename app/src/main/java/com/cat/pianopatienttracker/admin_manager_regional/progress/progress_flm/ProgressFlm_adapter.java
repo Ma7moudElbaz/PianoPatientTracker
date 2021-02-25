@@ -32,7 +32,7 @@ public class ProgressFlm_adapter extends RecyclerView.Adapter<ProgressFlm_adapte
     @NonNull
     @Override
     public ProgressFlm_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_progress, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_progress_flm, parent, false);
         ProgressFlm_adapter.ViewHolder holder = new ProgressFlm_adapter.ViewHolder(view);
         return holder;
     }

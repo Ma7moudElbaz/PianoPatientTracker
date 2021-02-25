@@ -183,7 +183,7 @@ public class ProgressFragment extends Fragment implements BottomSheet_country_br
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         progressRecycler.setLayoutManager(layoutManager);
 
-        progress_adapter = new Progress_adapter(getActivity(), progress_list,activity.getSelectedCountryId(),activity.getSelectedBrandId());
+        progress_adapter = new Progress_adapter(getActivity(), progress_list,activity.getSelectedCountryId(),activity.getSelectedBrandId(),accessToken);
         progressRecycler.setAdapter(progress_adapter);
 
     }

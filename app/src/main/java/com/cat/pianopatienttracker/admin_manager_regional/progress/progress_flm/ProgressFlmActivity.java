@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -75,7 +76,7 @@ public class ProgressFlmActivity extends AppCompatActivity {
         brandId = getIntent().getIntExtra("brandId",0);
         flmId = getIntent().getIntExtra("flmId",0);
         flmName = getIntent().getStringExtra("flmName");
-        accessToken = activity.getAccessToken();
+        accessToken = getIntent().getStringExtra("accessToken");
         dialog = new ProgressDialog(ProgressFlmActivity.this);
         dialog.setMessage("Loading....");
         dialog.setCancelable(false);

@@ -26,13 +26,15 @@ public class Progress_adapter extends RecyclerView.Adapter<Progress_adapter.View
 
     private Context mContext;
     private int countryId,brandId;
+    String accessToken;
 
-    public Progress_adapter(Context context, ArrayList<Progress_item> items,int countryId,int brandId) {
+    public Progress_adapter(Context context, ArrayList<Progress_item> items,int countryId,int brandId,String accessToken) {
 
         this.mContext = context;
         this.items = items;
         this.countryId = countryId;
         this.brandId = brandId;
+        this.accessToken = accessToken;
     }
 
     @NonNull
@@ -67,6 +69,7 @@ public class Progress_adapter extends RecyclerView.Adapter<Progress_adapter.View
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(mContext, ProgressFlmActivity.class);
+                i.putExtra("accessToken",accessToken);
                 i.putExtra("flmId",items.get(position).getId());
                 i.putExtra("countryId",countryId);
                 i.putExtra("brandId",brandId);
