@@ -54,7 +54,7 @@ public class DashboardFragment extends Fragment implements BottomSheet_country_b
 
     public void showCountriesBrandsBottomSheet() {
         BottomSheet_country_brand_fragment countriesBrandsBottomSheet =
-                new BottomSheet_country_brand_fragment(activity.getCountries_list(),activity.getSelectedCountryIndex(),activity.getSelectedBrandIndex());
+                new BottomSheet_country_brand_fragment(activity.getCountries_list(), activity.getSelectedCountryIndex(), activity.getSelectedBrandIndex());
         countriesBrandsBottomSheet.setTargetFragment(this, 300);
         countriesBrandsBottomSheet.show(getFragmentManager(), "country_brand");
     }
@@ -85,7 +85,7 @@ public class DashboardFragment extends Fragment implements BottomSheet_country_b
     Ranking_dashboard_adapter ranking_adapter;
 
     TextView rankingRepsBtn, rankingDoctorsBtn, rankingSectorsBtn, rankingHospitalsBtn;
-    TextView targetTotal;
+    TextView productTotal, dosesTotal, targetTotal;
     ImageView selectCountryBrand;
 
 
@@ -93,7 +93,6 @@ public class DashboardFragment extends Fragment implements BottomSheet_country_b
     AnimatedPieView productChart, dosesChart, targetChart;
 
     Admin_home activity;
-
 
 
     @Override
@@ -110,9 +109,8 @@ public class DashboardFragment extends Fragment implements BottomSheet_country_b
         dialog.setCancelable(false);
 
 
-
-
-
+        productTotal = view.findViewById(R.id.products_total_tv);
+        dosesTotal = view.findViewById(R.id.doses_total_tv);
         targetTotal = view.findViewById(R.id.target_total_tv);
         rankingRepsBtn = view.findViewById(R.id.ranking_reps_btn);
         rankingDoctorsBtn = view.findViewById(R.id.ranking_doctors_btn);
@@ -329,6 +327,7 @@ public class DashboardFragment extends Fragment implements BottomSheet_country_b
                 .pieRadius(200)
                 .legendsWith((ViewGroup) getView().findViewById(R.id.brands_legends));
 
+        double total = 0;
 
         try {
             for (int i = 0; i < list.length(); i++) {
@@ -336,10 +335,12 @@ public class DashboardFragment extends Fragment implements BottomSheet_country_b
 
                 final String name = currentObject.getString("name");
                 final double value = currentObject.getInt("total");
+                total += value;
                 productChartConfig.addData(new SimplePieInfo(value, ContextCompat.getColor(getActivity(), brandsChartColors[i]), name + " : " + df2.format(value)));
 
             }
 
+            productTotal.setText(String.valueOf(total));
             productChart.applyConfig(productChartConfig);
             productChart.start();
 
@@ -420,7 +421,7 @@ public class DashboardFragment extends Fragment implements BottomSheet_country_b
                 .autoSize(true)
                 .pieRadius(200)
                 .legendsWith((ViewGroup) getView().findViewById(R.id.doses_legends));
-        ;
+        double total = 0;
 
         try {
             for (int i = 0; i < list.length(); i++) {
@@ -428,10 +429,11 @@ public class DashboardFragment extends Fragment implements BottomSheet_country_b
 
                 final String name = currentObject.getString("name");
                 final double value = currentObject.getInt("total");
+                total += value;
                 dosesChartConfig.addData(new SimplePieInfo(value, ContextCompat.getColor(getActivity(), dosesChartColors[i]), name + " : " + df2.format(value)));
 
             }
-
+            dosesTotal.setText(String.valueOf(total));
             dosesChart.applyConfig(dosesChartConfig);
             dosesChart.start();
 
