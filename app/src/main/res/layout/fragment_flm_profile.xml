@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".flm.profile.FlmProfileFragment">
+
+    <LinearLayout
+        android:id="@+id/topPanel"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/blue_bg"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Ahmed Said"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/role"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Brand Manager"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/products"
+                android:textColor="@color/dark_gray"
+                android:textSize="16sp" />
+
+            <com.adroitandroid.chipcloud.ChipCloud xmlns:chipcloud="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/productsChipTag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                chipcloud:deselectedColor="@color/light_blue_bg"
+                chipcloud:deselectedFontColor="@color/light_blue"
+                chipcloud:gravity="left"
+                chipcloud:minHorizontalSpacing="10dp"
+                chipcloud:selectMode="none"
+                chipcloud:textSize="18sp"
+                chipcloud:verticalSpacing="10dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/cities"
+                android:textColor="@color/dark_gray"
+                android:textSize="16sp" />
+
+            <com.adroitandroid.chipcloud.ChipCloud xmlns:chipcloud="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/citiesChipTag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                chipcloud:deselectedColor="@color/light_blue_bg"
+                chipcloud:deselectedFontColor="@color/light_blue"
+                chipcloud:gravity="left"
+                chipcloud:minHorizontalSpacing="10dp"
+                chipcloud:selectMode="none"
+                chipcloud:textSize="18sp"
+                chipcloud:verticalSpacing="10dp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

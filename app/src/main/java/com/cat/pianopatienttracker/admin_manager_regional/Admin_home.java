@@ -166,9 +166,9 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
             }
         } else if (id == R.id.navigation_rank) {
             setContentFragment(new RankingFragment());
-        } else if (id == R.id.navigation_target) {
+        } else if (id == R.id.navigation_progress) {
             setContentFragment(new ProgressFragment());
-        } else if (id == R.id.navigation_users) {
+        } else if (id == R.id.navigation_profile) {
             setContentFragment(new ProfileFragment());
         }
 

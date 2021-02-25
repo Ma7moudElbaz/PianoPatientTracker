@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.cat.pianopatienttracker.flm.Flm_home;
 import com.cat.pianopatienttracker.network.Webservice;
 import com.cat.pianopatienttracker.admin_manager_regional.Admin_home;
 import com.cat.pianopatienttracker.rep.Rep_home;
@@ -211,7 +212,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
     public void login() {
         Map<String, String> map = new HashMap<>();
         final String emailtxt = email.getText().toString();
@@ -229,30 +229,37 @@ public class LoginActivity extends AppCompatActivity {
                     try {
                         if (response.code() == 200) {
                             JSONObject res = new JSONObject(response.body().string());
-                            String accessToken = "Bearer "+res.getString("access_token");
+                            String accessToken = "Bearer " + res.getString("access_token");
 
                             JSONObject userData = res.getJSONObject("data").getJSONObject("original").getJSONObject("data");
                             String userName = userData.getString("name");
-                            JSONArray roleArr =userData.getJSONArray("role");
+                            JSONArray roleArr = userData.getJSONArray("role");
                             String role = roleArr.getJSONObject(0).getString("name");
                             String roleName = roleArr.getJSONObject(0).getString("display_name");
 
 
-                            if (role.equals("manager")||role.equals("regional")){
+                            if (role.equals("manager") || role.equals("regional")) {
                                 Intent i = new Intent(getBaseContext(), Admin_home.class);
-                                i.putExtra("accessToken",accessToken);
-                                i.putExtra("role",role);
-                                i.putExtra("roleName",roleName);
-                                i.putExtra("userName",userName);
+                                i.putExtra("accessToken", accessToken);
+                                i.putExtra("role", role);
+                                i.putExtra("roleName", roleName);
+                                i.putExtra("userName", userName);
                                 startActivity(i);
                                 finish();
-                            }
-                            if (role.equals("rep")){
+                            } else if (role.equals("rep")) {
                                 Intent i = new Intent(getBaseContext(), Rep_home.class);
-                                i.putExtra("accessToken",accessToken);
-                                i.putExtra("role",role);
-                                i.putExtra("roleName",roleName);
-                                i.putExtra("userName",userName);
+                                i.putExtra("accessToken", accessToken);
+                                i.putExtra("role", role);
+                                i.putExtra("roleName", roleName);
+                                i.putExtra("userName", userName);
+                                startActivity(i);
+                                finish();
+                            }else if (role.equals("flm")) {
+                                Intent i = new Intent(getBaseContext(), Flm_home.class);
+                                i.putExtra("accessToken", accessToken);
+                                i.putExtra("role", role);
+                                i.putExtra("roleName", roleName);
+                                i.putExtra("userName", userName);
                                 startActivity(i);
                                 finish();
                             }

@@ -1,4 +1,4 @@
-package com.cat.pianopatienttracker.rep.profile;
+package com.cat.pianopatienttracker.flm.profile;
 
 import android.os.Bundle;
 
@@ -12,13 +12,13 @@ import android.view.ViewGroup;
 
 import com.cat.pianopatienttracker.R;
 
-public class RepProfileFragment extends Fragment {
+public class FlmProfileFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rep_profile, container, false);
+        return inflater.inflate(R.layout.fragment_flm_profile, container, false);
     }
 
     @Override
