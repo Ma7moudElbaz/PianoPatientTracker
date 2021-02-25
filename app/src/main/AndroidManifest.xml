@@ -16,7 +16,9 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-        <activity android:name=".regional_product.progress.progress_flm.ProgressFlmActivity"></activity>
+        <activity
+            android:name=".regional_product.progress.progress_flm.ProgressFlmActivity"
+            android:screenOrientation="portrait" />
         <!-- Intent filter to capture System Browser or Authenticator calling back to our app after sign-in -->
         <activity android:name="com.microsoft.identity.client.BrowserTabActivity">
             <intent-filter>
@@ -36,13 +38,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".regional_product.Admin_home"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:screenOrientation="portrait"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait" />
@@ -50,12 +47,12 @@
             android:name=".SplashActivity"
             android:screenOrientation="portrait">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
 
 
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
     </application>
 

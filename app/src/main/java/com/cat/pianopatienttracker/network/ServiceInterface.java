@@ -53,11 +53,10 @@ public interface ServiceInterface {
     @GET("get-progress")
     Call<ResponseBody> getProgressFlm(@Header("Authorization") String auth, @Query("country_id") int countryId, @Query("brand_id") int brandId, @Query("flm_id") int flmId);
 
+    @POST("auth/login")
+    @FormUrlEncoded
+    Call<ResponseBody> login(@FieldMap Map<String, String> map);
 
-//    @POST("auth/login")
-//    @FormUrlEncoded
-//    Call<ResponseBody> login(@FieldMap Map<String, String> map);
-//
 //    @Headers({"Accept:application/json", "Content-Type:application/x-www-form-urlencoded;"})
 //    @POST("auth/register")
 //    @FormUrlEncoded

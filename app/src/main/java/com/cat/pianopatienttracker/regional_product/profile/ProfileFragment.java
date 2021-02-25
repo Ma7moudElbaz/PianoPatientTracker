@@ -1,36 +1,25 @@
 package com.cat.pianopatienttracker.regional_product.profile;
 
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.adroitandroid.chipcloud.ChipCloud;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.regional_product.Admin_home;
-import com.cat.pianopatienttracker.regional_product.dashboard.brand.Ranking_dashboard_item;
 import com.cat.pianopatienttracker.regional_product.shared.Brand_item;
 import com.cat.pianopatienttracker.regional_product.shared.City_item;
 import com.cat.pianopatienttracker.regional_product.shared.Country_item;
 import com.cat.pianopatienttracker.regional_product.shared.Region_item;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class ProfileFragment extends Fragment {
     @Override
@@ -58,8 +47,8 @@ public class ProfileFragment extends Fragment {
     }
 
     void setData() {
-        name.setText(activity.getName());
-        role.setText(activity.getRole());
+        name.setText(activity.getUserName());
+        role.setText(activity.getRoleName());
         setProductCitiesData();
     }
 

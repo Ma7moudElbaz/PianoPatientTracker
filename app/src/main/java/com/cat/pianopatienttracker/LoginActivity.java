@@ -4,15 +4,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.cat.pianopatienttracker.R;
+import com.cat.pianopatienttracker.network.Webservice;
+import com.cat.pianopatienttracker.regional_product.Admin_home;
 import com.microsoft.identity.client.AuthenticationCallback;
 import com.microsoft.identity.client.IAccount;
 import com.microsoft.identity.client.IAuthenticationResult;
@@ -23,7 +28,17 @@ import com.microsoft.identity.client.exception.MsalClientException;
 import com.microsoft.identity.client.exception.MsalException;
 import com.microsoft.identity.client.exception.MsalServiceException;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -33,12 +48,22 @@ public class LoginActivity extends AppCompatActivity {
 
     Button loginBtn;
 
+
+    EditText email, password;
+    private ProgressDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Loading....");
+        dialog.setCancelable(false);
+
         loginBtn = findViewById(R.id.login_btn);
+        email = findViewById(R.id.login_email);
+        password = findViewById(R.id.login_password);
 
         // Creates a PublicClientApplication object with res/raw/auth_config_single_account.json
         PublicClientApplication.createSingleAccountPublicClientApplication(LoginActivity.this,
@@ -63,11 +88,11 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mSingleAccountApp == null) {
-                    return;
-                }
-
-                mSingleAccountApp.signIn(LoginActivity.this, null, new String[]{"user.read"}, getAuthInteractiveCallback());
+                login();
+//                if (mSingleAccountApp == null) {
+//                    return;
+//                }
+//                mSingleAccountApp.signIn(LoginActivity.this, null, new String[]{"user.read"}, getAuthInteractiveCallback());
             }
         });
     }
@@ -183,5 +208,63 @@ public class LoginActivity extends AppCompatActivity {
      */
     private void displayGraphResult(@NonNull final JSONObject graphResponse) {
         Log.d("Graph Result", graphResponse.toString());
+    }
+
+
+
+    public void login() {
+        Map<String, String> map = new HashMap<>();
+        final String emailtxt = email.getText().toString();
+        final String passwordtxt = password.getText().toString();
+
+        if (emailtxt.length() == 0 || passwordtxt.length() == 0) {
+            Toast.makeText(getBaseContext(), "Please Fill all fields", Toast.LENGTH_SHORT).show();
+        } else {
+            map.put("email", emailtxt);
+            map.put("password", passwordtxt);
+            dialog.show();
+            Webservice.getInstance().getApi().login(map).enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
+                    try {
+                        if (response.code() == 200) {
+                            JSONObject res = new JSONObject(response.body().string());
+                            String accessToken = "Bearer "+res.getString("access_token");
+
+                            JSONObject userData = res.getJSONObject("data").getJSONObject("original").getJSONObject("data");
+                            String userName = userData.getString("name");
+                            JSONArray roleArr =userData.getJSONArray("role");
+                            String role = roleArr.getJSONObject(0).getString("name");
+                            String roleName = roleArr.getJSONObject(0).getString("display_name");
+
+
+                            if (role.equals("manager")||role.equals("regional")){
+                                Intent i = new Intent(getBaseContext(), Admin_home.class);
+                                i.putExtra("accessToken",accessToken);
+                                i.putExtra("role",role);
+                                i.putExtra("roleName",roleName);
+                                i.putExtra("userName",userName);
+                                startActivity(i);
+                                finish();
+                            }
+
+
+                        } else {
+                            Toast.makeText(LoginActivity.this, response.errorBody().string(), Toast.LENGTH_LONG).show();
+                        }
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    dialog.dismiss();
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Toast.makeText(getBaseContext(), "Network Error", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            });
+        }
     }
 }

@@ -42,13 +42,14 @@ import retrofit2.Response;
 
 public class Admin_home extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    public void updateStatusBarColor(String color){// Color must be in hexadecimal fromat
+    public void updateStatusBarColor(String color) {// Color must be in hexadecimal fromat
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.parseColor(color));
         }
     }
+
     public void setContentFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.contentLayout, fragment);
@@ -80,24 +81,14 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
         setSelectedBrandId(countries_list.get(getSelectedCountryIndex()).getBrand_list().get(selectedBrandIndex).getId());
     }
 
-    //admin
-//    private String role = "admin";
-//    private String accessToken = "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZXYucHRyYWNrZXIub3JnXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjEzOTkzMDY1LCJleHAiOjE2MTQ0MjUwNjUsIm5iZiI6MTYxMzk5MzA2NSwianRpIjoiQXZHdHhuQzhDYlVPSnYwVyIsInN1YiI6NiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.u8piW4bYBzC2TKLbnakCnvBiHGDH3cOPCOPc17ZO8-I";
-    //regional
-//    private String role = "regional";
-//    private String accessToken = "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZXYucHRyYWNrZXIub3JnXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE0MTg2NzA5LCJleHAiOjE2MTQ2MTg3MDksIm5iZiI6MTYxNDE4NjcwOSwianRpIjoiOEJpMHR5RTkxQUdQdDB3NCIsInN1YiI6OSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.390hS1zxXHOkUfTfRT-6VJb2CWQCw2TjP-A4hDX1TkU";
-    //manager
+    private String accessToken, userName, role, roleName;
 
-    private String name = "Name Name";
-    private String role = "manager";
-    private String accessToken = "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZXYucHRyYWNrZXIub3JnXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE0MDk2OTg2LCJleHAiOjE2MTQ1Mjg5ODYsIm5iZiI6MTYxNDA5Njk4NiwianRpIjoiUTVxbTdiRmthb0ZtNHgwdyIsInN1YiI6MywicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.sLRE_VnEMe1uv77kbF0wYch0ocGOjOAcpoCg3XfNmYk";
-
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public String getRole() {
-        return role;
+    public String getRoleName() {
+        return roleName;
     }
 
     public String getAccessToken() {
@@ -145,6 +136,11 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
 
+        accessToken = getIntent().getStringExtra("accessToken");
+        userName = getIntent().getStringExtra("userName");
+        role = getIntent().getStringExtra("role");
+        roleName = getIntent().getStringExtra("roleName");
+
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading....");
         dialog.setCancelable(false);
@@ -153,8 +149,6 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
         getMyData();
         getSectorsData();
 
-//        setContentFragment(new DashboardFragment());
-//        setContentFragment(new DashboardRegionalFragment());
         bottomNavigationView = findViewById(R.id.btm_nav);
 
 
