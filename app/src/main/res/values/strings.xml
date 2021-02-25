@@ -32,6 +32,8 @@
     <string name="hospitals_filter">Hospitals Filter</string>
     <string name="filters">Filters</string>
     <string name="doctors_filter">Doctors Filter</string>
+    <string name="products">Products</string>
+    <string name="cities">Cities</string>
 
 
     <string-array name="months">

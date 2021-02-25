@@ -7,8 +7,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.cat.pianopatienttracker.LoginActivity;
@@ -38,7 +42,13 @@ import retrofit2.Response;
 
 public class Admin_home extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-
+    public void updateStatusBarColor(String color){// Color must be in hexadecimal fromat
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.parseColor(color));
+        }
+    }
     public void setContentFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.contentLayout, fragment);
@@ -77,8 +87,18 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
 //    private String role = "regional";
 //    private String accessToken = "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZXYucHRyYWNrZXIub3JnXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE0MTg2NzA5LCJleHAiOjE2MTQ2MTg3MDksIm5iZiI6MTYxNDE4NjcwOSwianRpIjoiOEJpMHR5RTkxQUdQdDB3NCIsInN1YiI6OSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.390hS1zxXHOkUfTfRT-6VJb2CWQCw2TjP-A4hDX1TkU";
     //manager
+
+    private String name = "Name Name";
     private String role = "manager";
     private String accessToken = "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kZXYucHRyYWNrZXIub3JnXC9hcGlcL2F1dGhcL2xvZ2luIiwiaWF0IjoxNjE0MDk2OTg2LCJleHAiOjE2MTQ1Mjg5ODYsIm5iZiI6MTYxNDA5Njk4NiwianRpIjoiUTVxbTdiRmthb0ZtNHgwdyIsInN1YiI6MywicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.sLRE_VnEMe1uv77kbF0wYch0ocGOjOAcpoCg3XfNmYk";
+
+    public String getName() {
+        return name;
+    }
+
+    public String getRole() {
+        return role;
+    }
 
     public String getAccessToken() {
         return accessToken;
