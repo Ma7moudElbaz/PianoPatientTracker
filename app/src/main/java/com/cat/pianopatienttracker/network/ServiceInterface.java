@@ -52,6 +52,9 @@ public interface ServiceInterface {
     @GET("get-progress")
     Call<ResponseBody> getProgressFlm(@Header("Authorization") String auth, @Query("country_id") int countryId, @Query("brand_id") int brandId, @Query("flm_id") int flmId);
 
+    @GET("team-leader/get-patient-process")
+    Call<ResponseBody> getRequests(@Header("Authorization") String auth ,@Query("brand_id") int brandId);
+
     @GET("jakavi-patient?dropped=0&switched=0")
     Call<ResponseBody> getJakaviPatients(@Header("Authorization") String auth);
 
@@ -63,8 +66,6 @@ public interface ServiceInterface {
 //    @POST("auth/register")
 //    @FormUrlEncoded
 //    Call<ResponseBody> register(@FieldMap Map<String, String> map);
-//
-//
 //
 //    @POST("auth/update-password")
 //    @FormUrlEncoded
@@ -79,15 +80,12 @@ public interface ServiceInterface {
 //    @GET("products")
 //    Call<ResponseBody> getProducts(@Query("page") int pageNum);
 //
-//
 //    @GET("tournaments/{tournamentId}")
 //    Call<ResponseBody> getTournamentDetails(@Path("tournamentId") int tournamentId);
-//
 //
 //    @Multipart
 //    @POST("save-team-image")
 //    Call<ResponseBody> saveTeamData(@Part MultipartBody.Part image, @Part("team_name") RequestBody teamName);
-//
 //
 //    @POST("mobile-tournament-registration")
 //    @FormUrlEncoded

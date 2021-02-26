@@ -164,7 +164,8 @@ public class FlmProgressFragment extends Fragment implements BottomSheet_country
                 final int userId = currentObject.getInt("user_id");
                 final String name = currentObject.getString("name");
                 final String address = currentObject.getString("area_name");
-                final int repsNo = currentObject.getInt("child_count");
+//                final int repsNo = currentObject.getInt("child_count");
+                final int repsNo = 0;
                 final int actualTarget = currentObject.getInt("actual_target");
                 final int totalTarget = currentObject.getInt("total_target");
                 final double targetPercent = currentObject.getDouble("target_percent");

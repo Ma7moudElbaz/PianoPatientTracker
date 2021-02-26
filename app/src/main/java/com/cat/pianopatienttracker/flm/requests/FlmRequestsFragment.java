@@ -1,18 +1,41 @@
 package com.cat.pianopatienttracker.flm.requests;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.cat.pianopatienttracker.LoginActivity;
 import com.cat.pianopatienttracker.R;
+import com.cat.pianopatienttracker.admin_manager_regional.bottom_sheet.BottomSheet_country_brand_fragment;
+import com.cat.pianopatienttracker.flm.Flm_home;
+import com.cat.pianopatienttracker.network.Webservice;
+import com.cat.pianopatienttracker.rep.Rep_home;
+import com.cat.pianopatienttracker.rep.home.RepHome_adapter;
+import com.cat.pianopatienttracker.rep.home.RepHome_item;
 
-public class FlmRequestsFragment extends Fragment {
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class FlmRequestsFragment extends Fragment implements BottomSheet_country_brand_fragment.ItemClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -20,8 +43,123 @@ public class FlmRequestsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_flm_requests, container, false);
     }
 
+    public void showCountriesBrandsBottomSheet() {
+        BottomSheet_country_brand_fragment countriesBrandsBottomSheet =
+                new BottomSheet_country_brand_fragment(activity.getCountries_list(), activity.getSelectedCountryIndex(), activity.getSelectedBrandIndex());
+        countriesBrandsBottomSheet.setTargetFragment(this, 300);
+        countriesBrandsBottomSheet.show(getFragmentManager(), "country_brand");
+    }
+
+    private ProgressDialog dialog;
+    String accessToken;
+
+    ArrayList<Request_item> requests_list = new ArrayList<>();
+    Request_adapter requests_adapter;
+
+
+    RecyclerView requestRecycler;
+
+    Flm_home activity;
+
+
+    ImageView selectCountryBrand;
+
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        activity = (Flm_home) getActivity();
+
+        accessToken = activity.getAccessToken();
+
+        dialog = new ProgressDialog(getActivity());
+        dialog.setMessage("Loading....");
+        dialog.setCancelable(false);
+
+        selectCountryBrand = view.findViewById(R.id.selectCountry);
+        selectCountryBrand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCountriesBrandsBottomSheet();
+            }
+        });
+
+        getRequests();
+    }
+
+    public void getRequests() {
+        dialog.show();
+        Webservice.getInstance().getApi().getRequests(accessToken,activity.getSelectedBrandId()).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if (response.code() == 200) {
+                    JSONObject responseObject = null;
+                    try {
+                        responseObject = new JSONObject(response.body().string());
+                        JSONArray dataArr = responseObject.getJSONArray("data");
+                        setRequestsList(dataArr);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else if (response.code() == 401) {
+                    Intent i = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(i);
+                    getActivity().finish();
+                }
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Network error", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+    }
+
+    public void setRequestsList(JSONArray list) {
+        requests_list.clear();
+        try {
+
+            for (int i = 0; i < list.length(); i++) {
+                JSONObject currentObject = list.getJSONObject(i);
+                final int id = currentObject.getInt("id");
+                final String process = currentObject.getString("process");
+                final JSONObject patientObject = currentObject.getJSONObject("patient");
+                final String hospital = patientObject.getString("hospital");
+                final String sector = patientObject.getString("sector");
+                final String doctor = patientObject.getString("doctor");
+                final String dose = patientObject.getString("dose") +" mg";
+                final String byName = patientObject.getString("rep_name");
+
+
+                requests_list.add(new Request_item(id, hospital,sector, doctor, dose, byName, process));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        initRepHomeRecyclerView();
+    }
+
+    private void initRepHomeRecyclerView() {
+        requestRecycler = getView().findViewById(R.id.recycler);
+//        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        requestRecycler.setLayoutManager(layoutManager);
+
+        requests_adapter = new Request_adapter(getActivity(), requests_list);
+        requestRecycler.setAdapter(requests_adapter);
+    }
+
+    @Override
+    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex) {
+        activity.setSelectedCountryIndex(selectedCountryIndex);
+        activity.setSelectedBrandIndex(selectedBrandIndex);
+
+        getRequests();
     }
 }

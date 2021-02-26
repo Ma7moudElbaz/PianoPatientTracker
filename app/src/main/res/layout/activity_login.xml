@@ -58,7 +58,7 @@
                 android:paddingEnd="10dp"
                 android:paddingBottom="5dp"
                 android:textAlignment="viewStart"
-                android:text="rep@gmail.com"/>
+                android:text="flm@gmail.com"/>
 
             <View
                 android:layout_width="match_parent"

@@ -13,8 +13,11 @@
 
 
 
+    <color name="green">#3B913E</color>
+    <color name="light_green">#BCFDC0</color>
     <color name="white">#FEFEFE</color>
     <color name="red">#F44336</color>
+    <color name="light_red">#FAB7B2</color>
     <color name="gray">#999999</color>
     <color name="dark_gray">#424242</color>
     <color name="light_gray">#D2D2D2</color>
