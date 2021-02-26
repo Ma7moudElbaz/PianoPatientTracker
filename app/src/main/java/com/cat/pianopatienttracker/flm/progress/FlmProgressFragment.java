@@ -24,6 +24,8 @@ import com.cat.pianopatienttracker.admin_manager_regional.Admin_home;
 import com.cat.pianopatienttracker.admin_manager_regional.bottom_sheet.BottomSheet_country_brand_fragment;
 import com.cat.pianopatienttracker.admin_manager_regional.progress.Progress_adapter;
 import com.cat.pianopatienttracker.admin_manager_regional.progress.Progress_item;
+import com.cat.pianopatienttracker.admin_manager_regional.progress.progress_flm.ProgressFlm_adapter;
+import com.cat.pianopatienttracker.admin_manager_regional.progress.progress_flm.ProgressFlm_item;
 import com.cat.pianopatienttracker.flm.Flm_home;
 import com.cat.pianopatienttracker.network.Webservice;
 
@@ -58,8 +60,8 @@ public class FlmProgressFragment extends Fragment implements BottomSheet_country
     private ProgressDialog dialog;
     String accessToken;
 
-    ArrayList<Progress_item> progress_list = new ArrayList<>();
-    Progress_adapter progress_adapter;
+    ArrayList<ProgressFlm_item> progress_list = new ArrayList<>();
+    ProgressFlm_adapter progress_adapter;
 
     RecyclerView progressRecycler;
 
@@ -164,8 +166,6 @@ public class FlmProgressFragment extends Fragment implements BottomSheet_country
                 final int userId = currentObject.getInt("user_id");
                 final String name = currentObject.getString("name");
                 final String address = currentObject.getString("area_name");
-//                final int repsNo = currentObject.getInt("child_count");
-                final int repsNo = 0;
                 final int actualTarget = currentObject.getInt("actual_target");
                 final int totalTarget = currentObject.getInt("total_target");
                 final double targetPercent = currentObject.getDouble("target_percent");
@@ -174,7 +174,7 @@ public class FlmProgressFragment extends Fragment implements BottomSheet_country
                 final double marketPercent = currentObject.getDouble("market_share");
 
 
-                progress_list.add(new Progress_item(userId, name, address, repsNo, actualTarget, totalTarget, targetPercent, actualMarket, totalMarket, marketPercent));
+                progress_list.add(new ProgressFlm_item(userId, name, address, actualTarget, totalTarget, targetPercent, actualMarket, totalMarket, marketPercent));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -188,7 +188,7 @@ public class FlmProgressFragment extends Fragment implements BottomSheet_country
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         progressRecycler.setLayoutManager(layoutManager);
 
-        progress_adapter = new Progress_adapter(getActivity(), progress_list,activity.getSelectedCountryId(),activity.getSelectedBrandId(),accessToken);
+        progress_adapter = new ProgressFlm_adapter(getActivity(), progress_list);
         progressRecycler.setAdapter(progress_adapter);
 
     }
