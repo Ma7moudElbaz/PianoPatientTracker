@@ -185,6 +185,8 @@ public class DashboardFragment extends Fragment implements BottomSheet_country_b
             }
         });
 
+        getDashboard();
+
     }
 
     public void getDashboard() {

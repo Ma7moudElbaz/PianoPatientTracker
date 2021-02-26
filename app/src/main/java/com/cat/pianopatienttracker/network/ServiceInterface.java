@@ -35,6 +35,11 @@ public interface ServiceInterface {
     @GET("dashboard")
     Call<ResponseBody> getDashboard(@Header("Authorization") String auth, @Query("country_id") int countryId, @Query("brand_id") int brandId);
 
+
+    @GET("ranking-slice")
+    Call<ResponseBody> getRankingFlm(@Header("Authorization") String auth,@Query("brand_id") int brandId, @Query("type") String type,@QueryMap Map<String, String> filters);
+
+
     @GET("ranking-slice")
     Call<ResponseBody> getRanking(@Header("Authorization") String auth, @Query("country_id") int countryId, @Query("brand_id") int brandId, @Query("type") String type);
 

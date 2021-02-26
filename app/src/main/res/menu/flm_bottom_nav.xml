@@ -16,14 +16,14 @@
         android:id="@+id/navigation_progress"
         android:icon="@drawable/ic_target"
         android:title="@string/progress" />
+    <item
+        android:id="@+id/navigation_requests"
+        android:icon="@drawable/ic_heart"
+        android:title="@string/requests" />
 
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_users"
         android:title="@string/profile" />
 
-    <item
-        android:id="@+id/navigation_requests"
-        android:icon="@drawable/ic_heart"
-        android:title="@string/requests" />
 </menu>
