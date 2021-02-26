@@ -1,10 +1,12 @@
 package com.cat.pianopatienttracker.rep.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.admin_manager_regional.dashboard.regional.ProductTarget_item;
+import com.cat.pianopatienttracker.rep.home.patients.PatientsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,13 +24,15 @@ public class RepHome_adapter extends RecyclerView.Adapter<RepHome_adapter.ViewHo
     private static final String TAG = "RecyclerViewAdapter";
 
     private List<RepHome_item> items;
+    private String accessToken;
 
     private Context mContext;
 
-    public RepHome_adapter(Context context, ArrayList<RepHome_item> items) {
+    public RepHome_adapter(Context context, ArrayList<RepHome_item> items,String accessToken) {
 
         this.mContext = context;
         this.items = items;
+        this.accessToken = accessToken;
     }
 
     @NonNull
@@ -56,6 +61,15 @@ public class RepHome_adapter extends RecyclerView.Adapter<RepHome_adapter.ViewHo
         holder.marketPercent.setText(marketPercentString);
         holder.marketProgress.setProgress((int) items.get(position).getMarketPercent());
 
+        holder.parent_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext, PatientsActivity.class);
+                i.putExtra("accessToken",accessToken);
+                mContext.startActivity(i);
+            }
+        });
+
 
     }
 
@@ -69,6 +83,7 @@ public class RepHome_adapter extends RecyclerView.Adapter<RepHome_adapter.ViewHo
 
         TextView name, targetNo, targetPercent, marketNo, marketPercent;
         ContentLoadingProgressBar targetProgress, marketProgress;
+        LinearLayout parent_layout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,6 +94,7 @@ public class RepHome_adapter extends RecyclerView.Adapter<RepHome_adapter.ViewHo
             marketPercent = itemView.findViewById(R.id.marketPercent);
             targetProgress = itemView.findViewById(R.id.targetProgress);
             marketProgress = itemView.findViewById(R.id.marketProgress);
+            parent_layout = itemView.findViewById(R.id.parent_layout);
         }
     }
 }

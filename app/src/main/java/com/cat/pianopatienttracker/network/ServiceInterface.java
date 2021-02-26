@@ -52,6 +52,9 @@ public interface ServiceInterface {
     @GET("get-progress")
     Call<ResponseBody> getProgressFlm(@Header("Authorization") String auth, @Query("country_id") int countryId, @Query("brand_id") int brandId, @Query("flm_id") int flmId);
 
+    @GET("jakavi-patient?dropped=0&switched=0")
+    Call<ResponseBody> getJakaviPatients(@Header("Authorization") String auth);
+
     @POST("auth/login")
     @FormUrlEncoded
     Call<ResponseBody> login(@FieldMap Map<String, String> map);

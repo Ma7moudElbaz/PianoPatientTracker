@@ -16,7 +16,8 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-        <activity android:name=".flm.Flm_home"></activity>
+        <activity android:name=".rep.home.patients.PatientsActivity"></activity>
+        <activity android:name=".flm.Flm_home" />
         <activity
             android:name=".admin_manager_regional.progress.progress_flm.ProgressFlmActivity"
             android:screenOrientation="portrait" /> <!-- Intent filter to capture System Browser or Authenticator calling back to our app after sign-in -->

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:orientation="vertical"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp">
+
+
+
+        <LinearLayout
+            android:id="@+id/parent_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/hospital"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:drawablePadding="5dp"
+                            android:text="hospital"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:drawableLeftCompat="@drawable/ic_home"
+                            app:drawableTint="@color/colorAccent" />
+
+                        <TextView
+                            android:id="@+id/sector"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:drawablePadding="5dp"
+                            android:text="sector"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:drawableLeftCompat="@drawable/ic_heart"
+                            app:drawableTint="@color/colorAccent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+
+                        <TextView
+                            android:id="@+id/doctor"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="10dp"
+                            android:drawablePadding="5dp"
+                            android:text="Doctor"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:drawableLeftCompat="@drawable/ic_doctor"
+                            app:drawableTint="@color/colorAccent" />
+
+
+                        <TextView
+                            android:id="@+id/dose"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="10dp"
+                            android:drawablePadding="5dp"
+                            android:text="dose"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:drawableLeftCompat="@drawable/ic_pill"
+                            app:drawableTint="@color/colorAccent" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

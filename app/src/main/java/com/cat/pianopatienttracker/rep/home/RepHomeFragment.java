@@ -136,7 +136,7 @@ public class RepHomeFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         repHomeRecycler.setLayoutManager(layoutManager);
 
-        repHome_adapter = new RepHome_adapter(getActivity(), repHome_list);
+        repHome_adapter = new RepHome_adapter(getActivity(), repHome_list,accessToken);
         repHomeRecycler.setAdapter(repHome_adapter);
 
     }
