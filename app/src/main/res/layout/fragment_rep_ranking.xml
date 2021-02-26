@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="5">
+            android:weightSum="3">
 
             <TextView
                 android:id="@+id/ranking_reps_btn"
@@ -64,15 +64,17 @@
                 android:gravity="center"
                 android:text="@string/reps"
                 android:textColor="@color/light_gray"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                android:visibility="gone" />
+
 
             <TextView
-                android:id="@+id/ranking_sectors_btn"
+                android:id="@+id/ranking_doctors_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.4"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/hc_sectors"
+                android:text="@string/doctors"
                 android:textColor="@color/light_gray"
                 android:textSize="17sp" />
 
@@ -81,19 +83,19 @@
                 android:id="@+id/ranking_hospitals_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.4"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/hospitals"
                 android:textColor="@color/light_gray"
                 android:textSize="17sp" />
 
             <TextView
-                android:id="@+id/ranking_doctors_btn"
+                android:id="@+id/ranking_sectors_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.2"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/doctors"
+                android:text="@string/hc_sectors"
                 android:textColor="@color/light_gray"
                 android:textSize="17sp" />
 

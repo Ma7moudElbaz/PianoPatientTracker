@@ -60,6 +60,7 @@ public class FlmRankingFragment extends Fragment implements BottomSheet_country_
         return inflater.inflate(R.layout.fragment_flm_ranking, container, false);
     }
 
+
     public void showCountriesBrandsBottomSheet() {
         BottomSheet_country_brand_fragment bottomSheet =
                 new BottomSheet_country_brand_fragment(activity.getCountries_list(), activity.getSelectedCountryIndex(), activity.getSelectedBrandIndex());
@@ -122,8 +123,6 @@ public class FlmRankingFragment extends Fragment implements BottomSheet_country_
 
     ImageView selectCountryBrand;
 
-    Map<String, String> noFilterMap = new HashMap<>();
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -147,28 +146,28 @@ public class FlmRankingFragment extends Fragment implements BottomSheet_country_
         ranking_hospitals_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getRankingFlm("hospitals",noFilterMap);
+                getRanking("hospitals");
             }
         });
 
         ranking_reps_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getRankingFlm("reps",noFilterMap);
+                getRanking("reps");
             }
         });
 
         ranking_sectors_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getRankingFlm("sectors",noFilterMap);
+                getRanking("sectors");
             }
         });
 
         ranking_doctors_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getRankingFlm("doctors",noFilterMap);
+                getRanking("doctors");
             }
         });
 
@@ -201,14 +200,60 @@ public class FlmRankingFragment extends Fragment implements BottomSheet_country_
 
         //hospitals,reps,sectors,doctors
         initRankingRecyclerView();
-        getRankingFlm(selectedTab,noFilterMap);
+        getRanking(selectedTab);
     }
 
 
-
-    public void getRankingFlm(String type, Map<String, String> filter) {
+    public void getRanking(String type) {
         dialog.show();
-        Webservice.getInstance().getApi().getRankingFlm(accessToken, activity.getSelectedBrandId(), type, filter).enqueue(new Callback<ResponseBody>() {
+
+        Webservice.getInstance().getApi().getRanking(accessToken, activity.getSelectedCountryId(), activity.getSelectedBrandId(), type).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if (response.code() == 200) {
+                    JSONObject responseObject = null;
+                    try {
+                        responseObject = new JSONObject(response.body().string());
+                        JSONArray rankingArr = responseObject.getJSONArray("data");
+
+                        if (type.equals("hospitals")) {
+                            setRankingHospitalsList(rankingArr);
+                        } else if (type.equals("reps")) {
+                            setRankingRepsList(rankingArr);
+                        } else if (type.equals("sectors")) {
+                            setRankingSectorsList(rankingArr);
+                            ;
+                        } else if (type.equals("doctors")) {
+                            setRankingDoctorsList(rankingArr);
+                            ;
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else if (response.code() == 401) {
+                    Intent i = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(i);
+                    getActivity().finish();
+                }
+                dialog.dismiss();
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Network error", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+    }
+
+
+    public void getRankingFiltered(String type, Map<String, String> filter) {
+        dialog.show();
+
+        Webservice.getInstance().getApi().getRankingFiltered(accessToken, activity.getSelectedCountryId(), activity.getSelectedBrandId(), type, filter).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
@@ -410,7 +455,7 @@ public class FlmRankingFragment extends Fragment implements BottomSheet_country_
         activity.setSelectedCountryIndex(selectedCountryIndex);
         activity.setSelectedBrandIndex(selectedBrandIndex);
 
-        getRankingFlm(selectedTab,noFilterMap);
+        getRanking(selectedTab);
     }
 
 
@@ -419,28 +464,28 @@ public class FlmRankingFragment extends Fragment implements BottomSheet_country_
         Map<String, String> filterMap = new HashMap<>();
         if (filterType == 0) {
             filterMap.put("year", String.valueOf(year));
-            getRankingFlm(selectedTab, filterMap);
+            getRankingFiltered(selectedTab, filterMap);
         } else if (filterType == 1) {
-            getRankingFlm(selectedTab,noFilterMap);
+            getRanking(selectedTab);
         } else if (filterType == 2) {
             filterMap.put("year", String.valueOf(year));
             filterMap.put("month", String.valueOf(month));
-            getRankingFlm(selectedTab, filterMap);
+            getRankingFiltered(selectedTab, filterMap);
         }
     }
 
     @Override
     public void repFilterOnItemClick(Map<String, String> filterMap) {
-        getRankingFlm(selectedTab,filterMap);
+        getRankingFiltered(selectedTab,filterMap);
     }
 
     @Override
     public void doctorsFilterOnItemClick(Map<String, String> filterMap) {
-        getRankingFlm(selectedTab,filterMap);
+        getRankingFiltered(selectedTab,filterMap);
     }
 
     @Override
     public void hospitalsFilterOnItemClick(Map<String, String> filterMap) {
-        getRankingFlm(selectedTab,filterMap);
+        getRankingFiltered(selectedTab,filterMap);
     }
 }
