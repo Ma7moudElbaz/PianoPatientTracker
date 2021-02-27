@@ -28,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PatientsActivity extends AppCompatActivity {
+public class PatientsActivity extends AppCompatActivity implements Patients_adapter.OnPatientClickListener {
 
     private ProgressDialog dialog;
     String accessToken;
@@ -103,9 +103,9 @@ public class PatientsActivity extends AppCompatActivity {
                 final String hospital = currentObject.getString("hospital");
                 final String sector = currentObject.getString("sector");
                 final String doctor = currentObject.getString("doctor");
-                final String dose = currentObject.getString("dose") +" mg";
+                final String dose = currentObject.getString("dose") + " mg";
 
-                patients_list.add(new Patient_item(id, hospital,sector, doctor, dose));
+                patients_list.add(new Patient_item(id, hospital, sector, doctor, dose));
 
             }
         } catch (Exception e) {
@@ -120,8 +120,18 @@ public class PatientsActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         patientsRecycler.setLayoutManager(layoutManager);
 
-        patients_adapter = new Patients_adapter(this, patients_list);
+        patients_adapter = new Patients_adapter(this, patients_list, this);
         patientsRecycler.setAdapter(patients_adapter);
 
+    }
+
+    @Override
+    public void onDropPatientClick(int patientId) {
+        Toast.makeText(this, "Patient" + patientId + "Dropped", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onUpdatePatientClick(int patientId) {
+        Toast.makeText(this, "Patient" + patientId + "Updated", Toast.LENGTH_SHORT).show();
     }
 }

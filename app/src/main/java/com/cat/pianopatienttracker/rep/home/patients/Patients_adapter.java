@@ -12,11 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cat.pianopatienttracker.R;
-import com.cat.pianopatienttracker.rep.home.RepHome_item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,14 +22,16 @@ import java.util.List;
 public class Patients_adapter extends RecyclerView.Adapter<Patients_adapter.ViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
 
+    private OnPatientClickListener mOnPatientClickListener;
+
     private List<Patient_item> items;
 
     private Context mContext;
 
-    public Patients_adapter(Context context, ArrayList<Patient_item> items) {
-
+    public Patients_adapter(Context context, ArrayList<Patient_item> items, OnPatientClickListener onPatientClickListener) {
         this.mContext = context;
         this.items = items;
+        this.mOnPatientClickListener = onPatientClickListener;
     }
 
     @NonNull
@@ -63,11 +63,11 @@ public class Patients_adapter extends RecyclerView.Adapter<Patients_adapter.View
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
-                        Toast.makeText(
-                                mContext,
-                                "You Clicked : " + item.getTitle(),
-                                Toast.LENGTH_SHORT
-                        ).show();
+                        if (item.getItemId() == R.id.action_drop) {
+                            mOnPatientClickListener.onDropPatientClick(items.get(position).getId());
+                        } else if (item.getItemId() == R.id.action_update) {
+                            mOnPatientClickListener.onUpdatePatientClick(items.get(position).getId());
+                        }
                         return true;
                     }
                 });
@@ -75,7 +75,6 @@ public class Patients_adapter extends RecyclerView.Adapter<Patients_adapter.View
                 popup.show(); //showing popup menu
             }
         });
-
 
     }
 
@@ -87,7 +86,7 @@ public class Patients_adapter extends RecyclerView.Adapter<Patients_adapter.View
     public class ViewHolder extends RecyclerView.ViewHolder {
 
 
-        TextView hospital,sector,doctor,dose;
+        TextView hospital, sector, doctor, dose;
         ImageView more;
 
         public ViewHolder(@NonNull View itemView) {
@@ -98,5 +97,11 @@ public class Patients_adapter extends RecyclerView.Adapter<Patients_adapter.View
             dose = itemView.findViewById(R.id.dose);
             more = itemView.findViewById(R.id.more);
         }
+    }
+
+    public interface OnPatientClickListener {
+        void onDropPatientClick(int patientId);
+
+        void onUpdatePatientClick(int patientId);
     }
 }

@@ -21,13 +21,13 @@ import java.util.List;
 public class Request_adapter extends RecyclerView.Adapter<Request_adapter.ViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
 
+    private OnRequestListener mOnRequestListener;
 
     private List<Request_item> items;
     private  String accessToken;
     private  int brandId;
 
     private Context mContext;
-    private OnRequestListener mOnRequestListener;
 
     public Request_adapter(Context context, ArrayList<Request_item> items, String accessToken, int brandId, OnRequestListener onRequestListener) {
 
@@ -42,7 +42,7 @@ public class Request_adapter extends RecyclerView.Adapter<Request_adapter.ViewHo
     @Override
     public Request_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_request, parent, false);
-        Request_adapter.ViewHolder holder = new Request_adapter.ViewHolder(view, mOnRequestListener);
+        Request_adapter.ViewHolder holder = new Request_adapter.ViewHolder(view);
         return holder;
     }
 
@@ -101,9 +101,8 @@ public class Request_adapter extends RecyclerView.Adapter<Request_adapter.ViewHo
 
         TextView hospital,sector,doctor,dose,byName,confirm_btn;
         CardView switchLabel,dropLabel;
-        OnRequestListener onRequestListener;
 
-        public ViewHolder(@NonNull View itemView , OnRequestListener onRequestListener) {
+        public ViewHolder(@NonNull View itemView ) {
             super(itemView);
             hospital = itemView.findViewById(R.id.hospital);
             sector = itemView.findViewById(R.id.sector);
@@ -114,7 +113,6 @@ public class Request_adapter extends RecyclerView.Adapter<Request_adapter.ViewHo
             switchLabel = itemView.findViewById(R.id.switch_label);
             dropLabel = itemView.findViewById(R.id.drop_label);
 
-//            this.onRequestListener = onRequestListener;
         }
 
 
