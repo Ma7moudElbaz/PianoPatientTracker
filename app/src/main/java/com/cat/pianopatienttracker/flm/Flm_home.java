@@ -17,22 +17,17 @@ import android.widget.Toast;
 
 import com.cat.pianopatienttracker.LoginActivity;
 import com.cat.pianopatienttracker.R;
-import com.cat.pianopatienttracker.admin_manager_regional.dashboard.brand.DashboardFragment;
-import com.cat.pianopatienttracker.admin_manager_regional.dashboard.regional.DashboardRegionalFragment;
-import com.cat.pianopatienttracker.admin_manager_regional.shared.Brand_item;
-import com.cat.pianopatienttracker.admin_manager_regional.shared.City_item;
-import com.cat.pianopatienttracker.admin_manager_regional.shared.Country_item;
-import com.cat.pianopatienttracker.admin_manager_regional.shared.Region_item;
-import com.cat.pianopatienttracker.admin_manager_regional.shared.Sector_item;
+import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.Brand_item;
+import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.City_item;
+import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.Country_item;
+import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.Region_item;
+import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.Sector_item;
 import com.cat.pianopatienttracker.flm.dashboard.FlmDashboardFragment;
 import com.cat.pianopatienttracker.flm.profile.FlmProfileFragment;
 import com.cat.pianopatienttracker.flm.progress.FlmProgressFragment;
 import com.cat.pianopatienttracker.flm.ranking.FlmRankingFragment;
 import com.cat.pianopatienttracker.flm.requests.FlmRequestsFragment;
 import com.cat.pianopatienttracker.network.Webservice;
-import com.cat.pianopatienttracker.rep.home.RepHomeFragment;
-import com.cat.pianopatienttracker.rep.profile.RepProfileFragment;
-import com.cat.pianopatienttracker.rep.ranking.RepRankingFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;

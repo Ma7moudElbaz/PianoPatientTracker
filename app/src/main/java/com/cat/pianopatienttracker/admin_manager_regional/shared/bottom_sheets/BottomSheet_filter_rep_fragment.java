@@ -1,4 +1,4 @@
-package com.cat.pianopatienttracker.admin_manager_regional.bottom_sheet;
+package com.cat.pianopatienttracker.admin_manager_regional.shared.bottom_sheets;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,16 +14,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.cat.pianopatienttracker.R;
-import com.cat.pianopatienttracker.admin_manager_regional.shared.CitiesSpinnerAdapter;
-import com.cat.pianopatienttracker.admin_manager_regional.shared.Country_item;
-import com.cat.pianopatienttracker.admin_manager_regional.shared.RegionsSpinnerAdapter;
+import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.CitiesSpinnerAdapter;
+import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.Country_item;
+import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.RegionsSpinnerAdapter;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BottomSheet_filter_doctors_fragment extends BottomSheetDialogFragment {
+public class BottomSheet_filter_rep_fragment extends BottomSheetDialogFragment {
 
     ArrayList<Country_item> countries_list;
     int selectedCountryIndex;
@@ -34,7 +34,7 @@ public class BottomSheet_filter_doctors_fragment extends BottomSheetDialogFragme
 //        return new BottomSheet_country_brand_fragment();
 //    }
 
-    public BottomSheet_filter_doctors_fragment(
+    public BottomSheet_filter_rep_fragment(
             ArrayList<Country_item> countries_list, int selectedCountryIndex) {
         this.countries_list = countries_list;
         this.selectedCountryIndex = selectedCountryIndex;
@@ -45,7 +45,7 @@ public class BottomSheet_filter_doctors_fragment extends BottomSheetDialogFragme
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.bottom_sheet_filter_doctors, container, false);
+        return inflater.inflate(R.layout.bottom_sheet_filter_reps, container, false);
     }
 
     Spinner region_spinner, city_spinner;
@@ -135,13 +135,13 @@ public class BottomSheet_filter_doctors_fragment extends BottomSheetDialogFragme
 
 
     public interface ItemClickListener {
-        void doctorsFilterOnItemClick(Map<String, String> filterMap);
+        void repFilterOnItemClick(Map<String, String> filterMap);
     }
 
     public void sendBackResult(Map<String, String> filterMap) {
         // Notice the use of `getTargetFragment` which will be set when the dialog is displayed
         ItemClickListener listener = (ItemClickListener) getTargetFragment();
-        listener.doctorsFilterOnItemClick(filterMap);
+        listener.repFilterOnItemClick(filterMap);
         dismiss();
     }
 }

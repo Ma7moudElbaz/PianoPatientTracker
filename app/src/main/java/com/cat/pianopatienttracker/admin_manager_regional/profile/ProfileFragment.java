@@ -14,10 +14,10 @@ import android.widget.TextView;
 import com.adroitandroid.chipcloud.ChipCloud;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.admin_manager_regional.Admin_home;
-import com.cat.pianopatienttracker.admin_manager_regional.shared.Brand_item;
-import com.cat.pianopatienttracker.admin_manager_regional.shared.City_item;
-import com.cat.pianopatienttracker.admin_manager_regional.shared.Country_item;
-import com.cat.pianopatienttracker.admin_manager_regional.shared.Region_item;
+import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.Brand_item;
+import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.City_item;
+import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.Country_item;
+import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.Region_item;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.cat.pianopatienttracker.admin_manager_regional.bottom_sheet;
+package com.cat.pianopatienttracker.admin_manager_regional.shared.bottom_sheets;
 
 import android.content.Context;
 import android.os.Bundle;

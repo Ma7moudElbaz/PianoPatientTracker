@@ -1,4 +1,4 @@
-package com.cat.pianopatienttracker.admin_manager_regional.shared;
+package com.cat.pianopatienttracker.admin_manager_regional.shared.spinners;
 
 public class Sector_item {
 

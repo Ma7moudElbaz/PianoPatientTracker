@@ -1,4 +1,4 @@
-package com.cat.pianopatienttracker.admin_manager_regional.shared;
+package com.cat.pianopatienttracker.admin_manager_regional.shared.spinners;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,12 +11,12 @@ import com.cat.pianopatienttracker.R;
 
 import java.util.ArrayList;
 
-public class SectorsSpinnerAdapter extends BaseAdapter {
+public class BrandsSpinnerAdapter extends BaseAdapter {
     Context context;
-    ArrayList<Sector_item> items;
+    ArrayList<Brand_item> items;
     LayoutInflater inflater;
 
-    public SectorsSpinnerAdapter(Context applicationContext, ArrayList<Sector_item> items) {
+    public BrandsSpinnerAdapter(Context applicationContext, ArrayList<Brand_item> items) {
         this.context = applicationContext;
         this.items = items;
         inflater = (LayoutInflater.from(applicationContext));
