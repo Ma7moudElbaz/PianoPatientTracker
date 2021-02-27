@@ -5,12 +5,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.cat.pianopatienttracker.R;
 
 import java.util.ArrayList;
@@ -49,6 +51,10 @@ public class DashboardRegional_adapter extends RecyclerView.Adapter<DashboardReg
 
         holder.name.setText(items.get(position).getName());
 
+        String imageName = "flag_"+items.get(position).getIso().toLowerCase();
+        int imgDrawable = mContext.getResources().getIdentifier(imageName, "drawable", mContext.getPackageName());
+        Glide.with(mContext).load(imgDrawable).into(holder.image);
+
 
     }
 
@@ -62,10 +68,12 @@ public class DashboardRegional_adapter extends RecyclerView.Adapter<DashboardReg
 
         TextView name;
         RecyclerView brand_target_recycler;
+        ImageView image;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
+            image = itemView.findViewById(R.id.image);
             brand_target_recycler = itemView.findViewById(R.id.brand_target_recycler);
         }
     }

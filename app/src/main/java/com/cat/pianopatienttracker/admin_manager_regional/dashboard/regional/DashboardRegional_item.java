@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 public class DashboardRegional_item {
     int id;
-    String name;
+    String name,iso;
     ArrayList<ProductTarget_item> productTarget_items;
 
-    public DashboardRegional_item(int id, String name, ArrayList<ProductTarget_item> productTarget_items) {
+    public DashboardRegional_item(int id, String name, String iso, ArrayList<ProductTarget_item> productTarget_items) {
         this.id = id;
         this.name = name;
+        this.iso = iso;
         this.productTarget_items = productTarget_items;
     }
 
@@ -27,6 +28,14 @@ public class DashboardRegional_item {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getIso() {
+        return iso;
+    }
+
+    public void setIso(String iso) {
+        this.iso = iso;
     }
 
     public ArrayList<ProductTarget_item> getProductTarget_items() {

@@ -105,13 +105,14 @@ public class DashboardRegionalFragment extends Fragment {
                 JSONObject currentObject = list.getJSONObject(i);
                 final int id = currentObject.getInt("id");
                 final String name = currentObject.getString("name");
+                final String iso = currentObject.getString("iso");
                 final JSONArray productsData = currentObject.getJSONArray("products");
 
                 ArrayList<ProductTarget_item> productsTarget_list = new ArrayList<>();
                 productsTarget_list = setProductsTargerList(productsData);
 
 
-                dashboardRegional_list.add(new DashboardRegional_item(id, name, productsTarget_list));
+                dashboardRegional_list.add(new DashboardRegional_item(id, name,iso, productsTarget_list));
             }
         } catch (Exception e) {
             e.printStackTrace();
