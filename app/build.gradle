@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
 }
+apply plugin: 'kotlin-android'
 
 def msalVersion = "2.+"
 
@@ -99,6 +100,10 @@ dependencies {
     implementation 'com.github.razerdp:AnimatedPieView:1.2.6'
     implementation 'org.apmem.tools:layouts:1.10@aar'
 
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
 
     //Azure SSO
     if (findProject(':msal') != null) {
@@ -110,4 +115,9 @@ dependencies {
         // Downloads and Builds MSAL from maven central.
         implementation "com.microsoft.identity.client:msal:${msalVersion}"
     }
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

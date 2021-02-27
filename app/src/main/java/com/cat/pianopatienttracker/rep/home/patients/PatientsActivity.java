@@ -22,6 +22,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -59,6 +61,37 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
         dialog.setCancelable(false);
 
         getPatients();
+    }
+
+    public void DropUpdatePatients(Map<String, String> map) {
+        dialog.show();
+        Webservice.getInstance().getApi().dropUpdateJakaviPatients(accessToken,map).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if (response.code() == 200) {
+                    JSONObject responseObject = null;
+                    try {
+                        responseObject = new JSONObject(response.body().string());
+                        Toast.makeText(PatientsActivity.this, "Done Successfully", Toast.LENGTH_SHORT).show();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else if (response.code() == 401) {
+                    Intent i = new Intent(PatientsActivity.this, LoginActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(PatientsActivity.this, "Network error", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
     }
 
     public void getPatients() {
@@ -127,7 +160,10 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
 
     @Override
     public void onDropPatientClick(int patientId) {
-        Toast.makeText(this, "Patient" + patientId + "Dropped", Toast.LENGTH_SHORT).show();
+        Map<String, String> map = new HashMap<>();
+        map.put("patient_id",String.valueOf(patientId));
+        map.put("process","dropped");
+        DropUpdatePatients(map);
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.admin_manager_regional.dashboard.regional.ProductTarget_item;
 import com.cat.pianopatienttracker.rep.home.patients.PatientsActivity;
@@ -61,6 +63,10 @@ public class RepHome_adapter extends RecyclerView.Adapter<RepHome_adapter.ViewHo
         holder.marketPercent.setText(marketPercentString);
         holder.marketProgress.setProgress((int) items.get(position).getMarketPercent());
 
+        String imageName = items.get(position).getName().toLowerCase()+"_logo";
+        int imgDrawable = mContext.getResources().getIdentifier(imageName, "drawable", mContext.getPackageName());
+        Glide.with(mContext).load(imgDrawable).into(holder.image);
+
         holder.parent_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +90,7 @@ public class RepHome_adapter extends RecyclerView.Adapter<RepHome_adapter.ViewHo
         TextView name, targetNo, targetPercent, marketNo, marketPercent;
         ContentLoadingProgressBar targetProgress, marketProgress;
         LinearLayout parent_layout;
+        ImageView image;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -95,6 +102,7 @@ public class RepHome_adapter extends RecyclerView.Adapter<RepHome_adapter.ViewHo
             targetProgress = itemView.findViewById(R.id.targetProgress);
             marketProgress = itemView.findViewById(R.id.marketProgress);
             parent_layout = itemView.findViewById(R.id.parent_layout);
+            image = itemView.findViewById(R.id.image);
         }
     }
 }

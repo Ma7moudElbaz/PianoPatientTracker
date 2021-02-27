@@ -60,6 +60,10 @@ public interface ServiceInterface {
     @GET("jakavi-patient?dropped=0&switched=0")
     Call<ResponseBody> getJakaviPatients(@Header("Authorization") String auth);
 
+    @POST("rep/change-jakavi-patient-process")
+    @FormUrlEncoded
+    Call<ResponseBody> dropUpdateJakaviPatients(@Header("Authorization") String auth,@FieldMap Map<String, String> map);
+
     @POST("auth/login")
     @FormUrlEncoded
     Call<ResponseBody> login(@FieldMap Map<String, String> map);
