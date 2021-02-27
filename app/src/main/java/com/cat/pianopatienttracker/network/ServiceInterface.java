@@ -55,6 +55,10 @@ public interface ServiceInterface {
     @GET("team-leader/get-patient-process")
     Call<ResponseBody> getRequests(@Header("Authorization") String auth ,@Query("brand_id") int brandId);
 
+    @POST("team-leader/approve-patient-process")
+    @FormUrlEncoded
+    Call<ResponseBody> confirRequest(@Header("Authorization") String auth ,@FieldMap Map<String, String> map);
+
     @GET("jakavi-patient?dropped=0&switched=0")
     Call<ResponseBody> getJakaviPatients(@Header("Authorization") String auth);
 

@@ -29,13 +29,16 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FlmRequestsFragment extends Fragment implements BottomSheet_country_brand_fragment.ItemClickListener{
+public class FlmRequestsFragment extends Fragment implements BottomSheet_country_brand_fragment.ItemClickListener, Request_adapter.OnRequestListener {
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -90,7 +93,7 @@ public class FlmRequestsFragment extends Fragment implements BottomSheet_country
 
     public void getRequests() {
         dialog.show();
-        Webservice.getInstance().getApi().getRequests(accessToken,activity.getSelectedBrandId()).enqueue(new Callback<ResponseBody>() {
+        Webservice.getInstance().getApi().getRequests(accessToken, activity.getSelectedBrandId()).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
@@ -129,14 +132,15 @@ public class FlmRequestsFragment extends Fragment implements BottomSheet_country
                 final int id = currentObject.getInt("id");
                 final String process = currentObject.getString("process");
                 final JSONObject patientObject = currentObject.getJSONObject("patient");
+                final int patientId = patientObject.getInt("id");
                 final String hospital = patientObject.getString("hospital");
                 final String sector = patientObject.getString("sector");
                 final String doctor = patientObject.getString("doctor");
-                final String dose = patientObject.getString("dose") +" mg";
+                final String dose = patientObject.getString("dose") + " mg";
                 final String byName = patientObject.getString("rep_name");
 
 
-                requests_list.add(new Request_item(id, hospital,sector, doctor, dose, byName, process));
+                requests_list.add(new Request_item(id, patientId, hospital, sector, doctor, dose, byName, process));
 
             }
         } catch (Exception e) {
@@ -151,7 +155,7 @@ public class FlmRequestsFragment extends Fragment implements BottomSheet_country
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         requestRecycler.setLayoutManager(layoutManager);
 
-        requests_adapter = new Request_adapter(getActivity(), requests_list);
+        requests_adapter = new Request_adapter(getActivity(), requests_list, accessToken, activity.getSelectedBrandId(), this);
         requestRecycler.setAdapter(requests_adapter);
     }
 
@@ -162,4 +166,46 @@ public class FlmRequestsFragment extends Fragment implements BottomSheet_country
 
         getRequests();
     }
+
+
+    public void confirmRequest(int patientId) {
+        dialog.show();
+        Map<String, String> map = new HashMap<>();
+        map.put("brand_id",String.valueOf(activity.getSelectedBrandId()));
+        map.put("patient_id",String.valueOf(patientId));
+        Webservice.getInstance().getApi().confirRequest(accessToken,map).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if (response.code() == 200) {
+                    JSONObject responseObject = null;
+                    try {
+                        responseObject = new JSONObject(response.body().string());
+                        Toast.makeText(activity, "Confirmation Success", Toast.LENGTH_SHORT).show();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else if (response.code() == 401) {
+                    Intent i = new Intent(getActivity(), LoginActivity.class);
+                    getActivity().startActivity(i);
+                    getActivity().finish();
+                }
+                dialog.dismiss();
+                getRequests();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getActivity(), "Network error", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+    }
+
+    @Override
+    public void onConfirmRequestClick(int patientId) {
+        confirmRequest(patientId);
+    }
+
 }

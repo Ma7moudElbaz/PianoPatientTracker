@@ -1,6 +1,8 @@
 package com.cat.pianopatienttracker.flm.requests;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +14,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cat.pianopatienttracker.R;
-import com.cat.pianopatienttracker.rep.home.patients.Patient_item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,21 +21,28 @@ import java.util.List;
 public class Request_adapter extends RecyclerView.Adapter<Request_adapter.ViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
 
+
     private List<Request_item> items;
+    private  String accessToken;
+    private  int brandId;
 
     private Context mContext;
+    private OnRequestListener mOnRequestListener;
 
-    public Request_adapter(Context context, ArrayList<Request_item> items) {
+    public Request_adapter(Context context, ArrayList<Request_item> items, String accessToken, int brandId, OnRequestListener onRequestListener) {
 
         this.mContext = context;
         this.items = items;
+        this.accessToken = accessToken;
+        this.brandId = brandId;
+        this.mOnRequestListener = onRequestListener;
     }
 
     @NonNull
     @Override
     public Request_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_request, parent, false);
-        Request_adapter.ViewHolder holder = new Request_adapter.ViewHolder(view);
+        Request_adapter.ViewHolder holder = new Request_adapter.ViewHolder(view, mOnRequestListener);
         return holder;
     }
 
@@ -57,6 +65,29 @@ public class Request_adapter extends RecyclerView.Adapter<Request_adapter.ViewHo
         holder.dose.setText(items.get(position).getDose());
         holder.byName.setText("by "+items.get(position).getByName());
 
+        holder.confirm_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(mContext)
+                        .setTitle("Confirm Request")
+                    .setMessage("Are you sure you want to confirm this request")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Continue with delete operation
+
+                                mOnRequestListener.onConfirmRequestClick(items.get(position).getPatientId());
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Continue with delete operation
+
+                            }
+                        })
+                        .setCancelable(true)
+                        .show();
+            }
+        });
 
     }
 
@@ -70,8 +101,9 @@ public class Request_adapter extends RecyclerView.Adapter<Request_adapter.ViewHo
 
         TextView hospital,sector,doctor,dose,byName,confirm_btn;
         CardView switchLabel,dropLabel;
+        OnRequestListener onRequestListener;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView , OnRequestListener onRequestListener) {
             super(itemView);
             hospital = itemView.findViewById(R.id.hospital);
             sector = itemView.findViewById(R.id.sector);
@@ -81,6 +113,17 @@ public class Request_adapter extends RecyclerView.Adapter<Request_adapter.ViewHo
             confirm_btn = itemView.findViewById(R.id.confirm_btn);
             switchLabel = itemView.findViewById(R.id.switch_label);
             dropLabel = itemView.findViewById(R.id.drop_label);
+
+//            this.onRequestListener = onRequestListener;
         }
+
+
+    }
+
+
+
+
+    public interface OnRequestListener {
+        void onConfirmRequestClick(int patientId);
     }
 }

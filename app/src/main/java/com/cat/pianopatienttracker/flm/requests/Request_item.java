@@ -1,11 +1,12 @@
 package com.cat.pianopatienttracker.flm.requests;
 
 public class Request_item {
-    int id;
+    int id,patientId;
     String hospital,sector,doctor,dose,byName,process;
 
-    public Request_item(int id, String hospital, String sector, String doctor, String dose, String byName, String process) {
+    public Request_item(int id, int patientId, String hospital, String sector, String doctor, String dose, String byName, String process) {
         this.id = id;
+        this.patientId = patientId;
         this.hospital = hospital;
         this.sector = sector;
         this.doctor = doctor;
@@ -20,6 +21,14 @@ public class Request_item {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
     }
 
     public String getHospital() {
