@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/navigation_rank"
-        android:icon="@drawable/ic_rank"
+        android:icon="@drawable/ic_rank_rep"
         android:title="@string/ranking" />
 
     <item

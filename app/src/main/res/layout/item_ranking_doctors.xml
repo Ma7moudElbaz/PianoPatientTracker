@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="50dp"
+            android:layout_marginEnd="40dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/img_description"
             android:src="@drawable/doctor_card_bg" />
