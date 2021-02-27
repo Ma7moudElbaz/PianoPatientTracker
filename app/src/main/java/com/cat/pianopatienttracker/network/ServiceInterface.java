@@ -66,34 +66,5 @@ public interface ServiceInterface {
     @FormUrlEncoded
     Call<ResponseBody> login(@FieldMap Map<String, String> map);
 
-//    @Headers({"Accept:application/json", "Content-Type:application/x-www-form-urlencoded;"})
-//    @POST("auth/register")
-//    @FormUrlEncoded
-//    Call<ResponseBody> register(@FieldMap Map<String, String> map);
-//
-//    @POST("auth/update-password")
-//    @FormUrlEncoded
-//    Call<ResponseBody> updatePassword(@FieldMap Map<String, String> map, @Header("Authorization") String auth);
-//
-//    @GET("homepage")
-//    Call<ResponseBody> getHomeData();
-//
-//    @GET("news")
-//    Call<ResponseBody> getNews(@Query("page") int pageNum);
-//
-//    @GET("products")
-//    Call<ResponseBody> getProducts(@Query("page") int pageNum);
-//
-//    @GET("tournaments/{tournamentId}")
-//    Call<ResponseBody> getTournamentDetails(@Path("tournamentId") int tournamentId);
-//
-//    @Multipart
-//    @POST("save-team-image")
-//    Call<ResponseBody> saveTeamData(@Part MultipartBody.Part image, @Part("team_name") RequestBody teamName);
-//
-//    @POST("mobile-tournament-registration")
-//    @FormUrlEncoded
-//    Call<ResponseBody> registerTeamPlayers(@FieldMap Map<String, Object> map);
-
 
 }
