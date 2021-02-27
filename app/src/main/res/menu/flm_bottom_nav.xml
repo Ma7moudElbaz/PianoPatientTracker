@@ -18,7 +18,7 @@
         android:title="@string/progress" />
     <item
         android:id="@+id/navigation_requests"
-        android:icon="@drawable/ic_heart"
+        android:icon="@drawable/ic_edit"
         android:title="@string/requests" />
 
     <item
