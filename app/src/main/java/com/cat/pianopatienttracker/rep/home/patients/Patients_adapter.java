@@ -3,9 +3,13 @@ package com.cat.pianopatienttracker.rep.home.patients;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.widget.ContentLoadingProgressBar;
@@ -48,6 +52,30 @@ public class Patients_adapter extends RecyclerView.Adapter<Patients_adapter.View
         holder.doctor.setText(items.get(position).getDoctor());
         holder.dose.setText(items.get(position).getDose());
 
+        holder.more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(mContext, holder.more);
+                //Inflating the Popup using xml file
+                popup.getMenuInflater()
+                        .inflate(R.menu.patient_action, popup.getMenu());
+
+                //registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Toast.makeText(
+                                mContext,
+                                "You Clicked : " + item.getTitle(),
+                                Toast.LENGTH_SHORT
+                        ).show();
+                        return true;
+                    }
+                });
+
+                popup.show(); //showing popup menu
+            }
+        });
+
 
     }
 
@@ -60,6 +88,7 @@ public class Patients_adapter extends RecyclerView.Adapter<Patients_adapter.View
 
 
         TextView hospital,sector,doctor,dose;
+        ImageView more;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,6 +96,7 @@ public class Patients_adapter extends RecyclerView.Adapter<Patients_adapter.View
             sector = itemView.findViewById(R.id.sector);
             doctor = itemView.findViewById(R.id.doctor);
             dose = itemView.findViewById(R.id.dose);
+            more = itemView.findViewById(R.id.more);
         }
     }
 }

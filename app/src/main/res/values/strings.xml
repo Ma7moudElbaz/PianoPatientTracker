@@ -35,6 +35,8 @@
     <string name="products">Products</string>
     <string name="cities">Cities</string>
     <string name="requests">Requests</string>
+    <string name="drop">Drop</string>
+    <string name="update">Update</string>
 
 
     <string-array name="months">
