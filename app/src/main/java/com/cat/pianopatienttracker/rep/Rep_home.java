@@ -15,7 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.cat.pianopatienttracker.LoginActivity;
+import com.cat.pianopatienttracker.login.LoginActivity;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.Brand_item;
 import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.City_item;

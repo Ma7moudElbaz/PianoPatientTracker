@@ -16,25 +16,14 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-        <activity android:name=".rep.home.patients.add_patient.PatientAddPiqrayActivity"></activity>
+        <activity android:name=".login.LoginSsoWebview"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".rep.home.patients.add_patient.PatientAddPiqrayActivity" />
         <activity android:name=".rep.home.patients.PatientsActivity" />
         <activity android:name=".flm.Flm_home" />
         <activity
             android:name=".admin_manager_regional.progress.progress_flm.ProgressFlmActivity"
             android:screenOrientation="portrait" /> <!-- Intent filter to capture System Browser or Authenticator calling back to our app after sign-in -->
-        <activity android:name="com.microsoft.identity.client.BrowserTabActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="com.cat.pianopatienttracker"
-                    android:path="/TOwtRm0r7BbDYXyFuoVUh3YXCbc="
-                    android:scheme="msauth" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".rep.Rep_home"
             android:screenOrientation="portrait" />
@@ -42,7 +31,7 @@
             android:name=".admin_manager_regional.Admin_home"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".SplashActivity"

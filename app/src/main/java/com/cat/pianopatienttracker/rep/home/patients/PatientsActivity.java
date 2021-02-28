@@ -12,12 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cat.pianopatienttracker.LoginActivity;
+import com.cat.pianopatienttracker.login.LoginActivity;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.network.Webservice;
-import com.cat.pianopatienttracker.rep.Rep_home;
-import com.cat.pianopatienttracker.rep.home.RepHome_adapter;
-import com.cat.pianopatienttracker.rep.home.RepHome_item;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddPiqrayActivity;
 
 import org.json.JSONArray;

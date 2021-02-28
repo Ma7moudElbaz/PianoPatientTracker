@@ -8,13 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cat.pianopatienttracker.LoginActivity;
+import com.cat.pianopatienttracker.login.LoginActivity;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.network.Webservice;
 import com.cat.pianopatienttracker.admin_manager_regional.Admin_home;

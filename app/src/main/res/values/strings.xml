@@ -63,7 +63,7 @@
     </string-array>
 
 
-<!--    Piqray Product Data-->
+    <!--    Piqray Product Data-->
     <string-array name="piqray_lines">
         <item>1st line</item>
         <item>2nd line</item>

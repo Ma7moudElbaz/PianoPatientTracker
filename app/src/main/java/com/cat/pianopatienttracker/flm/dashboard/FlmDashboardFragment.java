@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.adroitandroid.chipcloud.ChipCloud;
 import com.adroitandroid.chipcloud.ChipListener;
-import com.cat.pianopatienttracker.LoginActivity;
+import com.cat.pianopatienttracker.login.LoginActivity;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.admin_manager_regional.shared.bottom_sheets.BottomSheet_country_brand_fragment;
 import com.cat.pianopatienttracker.admin_manager_regional.dashboard.brand.Ranking_dashboard_adapter;

@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.cat.pianopatienttracker.login.LoginActivity;
+import com.cat.pianopatienttracker.login.LoginSsoWebview;
+
 public class SplashActivity extends AppCompatActivity {
     // Splash screen timer
     int SPLASH_TIME_OUT = 600;
@@ -37,7 +40,7 @@ public class SplashActivity extends AppCompatActivity {
                 public void run() {
                     // This method will be executed once the timer is over
                     // Start your app main activity
-                    Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                    Intent i = new Intent(getApplicationContext(), LoginSsoWebview.class);
                     startActivity(i);
 
                     // close this activity

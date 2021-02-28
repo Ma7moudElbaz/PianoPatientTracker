@@ -15,7 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.cat.pianopatienttracker.LoginActivity;
+import com.cat.pianopatienttracker.login.LoginActivity;
 import com.cat.pianopatienttracker.admin_manager_regional.dashboard.brand.DashboardFragment;
 import com.cat.pianopatienttracker.admin_manager_regional.dashboard.regional.DashboardRegionalFragment;
 import com.cat.pianopatienttracker.admin_manager_regional.ranking.RankingFragment;

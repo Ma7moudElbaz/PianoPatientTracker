@@ -15,12 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.cat.pianopatienttracker.LoginActivity;
+import com.cat.pianopatienttracker.login.LoginActivity;
 import com.cat.pianopatienttracker.R;
-import com.cat.pianopatienttracker.admin_manager_regional.Admin_home;
-import com.cat.pianopatienttracker.admin_manager_regional.dashboard.regional.DashboardRegional_adapter;
-import com.cat.pianopatienttracker.admin_manager_regional.dashboard.regional.DashboardRegional_item;
-import com.cat.pianopatienttracker.admin_manager_regional.dashboard.regional.ProductTarget_item;
 import com.cat.pianopatienttracker.network.Webservice;
 import com.cat.pianopatienttracker.rep.Rep_home;
 
