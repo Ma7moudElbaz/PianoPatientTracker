@@ -5,8 +5,8 @@
         android:id="@+id/action_drop"
         android:title="@string/drop" />
 
-    <item
-        android:id="@+id/action_update"
-        android:title="@string/update" />
+<!--    <item-->
+<!--        android:id="@+id/action_update"-->
+<!--        android:title="@string/update" />-->
 
 </menu>

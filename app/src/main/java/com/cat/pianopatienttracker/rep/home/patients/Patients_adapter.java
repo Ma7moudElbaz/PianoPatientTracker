@@ -65,9 +65,10 @@ public class Patients_adapter extends RecyclerView.Adapter<Patients_adapter.View
                     public boolean onMenuItemClick(MenuItem item) {
                         if (item.getItemId() == R.id.action_drop) {
                             mOnPatientClickListener.onDropPatientClick(items.get(position).getId());
-                        } else if (item.getItemId() == R.id.action_update) {
-                            mOnPatientClickListener.onUpdatePatientClick(items.get(position).getId());
                         }
+//                        else if (item.getItemId() == R.id.action_update) {
+//                            mOnPatientClickListener.onUpdatePatientClick(items.get(position).getId());
+//                        }
                         return true;
                     }
                 });

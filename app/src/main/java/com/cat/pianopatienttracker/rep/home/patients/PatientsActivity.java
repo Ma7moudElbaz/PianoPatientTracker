@@ -16,6 +16,7 @@ import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.Countr
 import com.cat.pianopatienttracker.login.LoginActivity;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.network.Webservice;
+import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddAfinitorActivity;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddPiqrayActivity;
 
 import org.json.JSONArray;
@@ -47,7 +48,8 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
     TextView brandName_tv;
 
 
-     List<Country_item> country_items;
+    List<Country_item> country_items;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +75,14 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
                     i.putExtra("accessToken", accessToken);
                     i.putExtra("countries", (Serializable) country_items);
                     startActivity(i);
+                } else if (brandName.toLowerCase().equals("afinitor")) {
+                    Intent i = new Intent(PatientsActivity.this, PatientAddAfinitorActivity.class);
+                    i.putExtra("brandId", brandId);
+                    i.putExtra("accessToken", accessToken);
+                    i.putExtra("countries", (Serializable) country_items);
+                    startActivity(i);
                 }
+
             }
         });
 
@@ -88,7 +97,6 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
         dialog.setMessage("Loading....");
         dialog.setCancelable(false);
 
-        getPatients();
     }
 
     public void DropUpdatePatients(Map<String, String> map) {
@@ -155,7 +163,7 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
     }
 
     public void setPatientsList(JSONArray list) {
-
+        patients_list.clear();
         try {
 
             for (int i = 0; i < list.length(); i++) {
@@ -196,6 +204,12 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
 
     @Override
     public void onUpdatePatientClick(int patientId) {
-        Toast.makeText(this, "Patient" + patientId + "Updated", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Patient" + patientId + "Updated", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getPatients();
     }
 }

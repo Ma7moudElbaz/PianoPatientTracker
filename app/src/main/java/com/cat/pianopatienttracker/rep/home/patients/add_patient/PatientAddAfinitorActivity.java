@@ -35,7 +35,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PatientAddPiqrayActivity extends AppCompatActivity {
+public class PatientAddAfinitorActivity extends AppCompatActivity {
+
     int brandId;
     String accessToken;
 
@@ -63,8 +64,7 @@ public class PatientAddPiqrayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_add_piqray);
-
+        setContentView(R.layout.activity_patient_add_afinitor);
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading....");
         dialog.setCancelable(false);
@@ -87,7 +87,7 @@ public class PatientAddPiqrayActivity extends AppCompatActivity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validateFields()){
+                if (validateFields()) {
                     try {
                         addPatient();
                     } catch (JSONException e) {
@@ -189,7 +189,7 @@ public class PatientAddPiqrayActivity extends AppCompatActivity {
         Map<String, String> map = new HashMap<>();
         map.put("brand_id", String.valueOf(brandId));
         map.put("city_id", String.valueOf(cityId));
-        map.put("sector_id",String.valueOf(sectorId));
+        map.put("sector_id", String.valueOf(sectorId));
         map.put("hospital_id", String.valueOf(hospitalId));
         map.put("doctor_id", String.valueOf(doctorId));
 
@@ -209,7 +209,7 @@ public class PatientAddPiqrayActivity extends AppCompatActivity {
                 if (response.code() == 200) {
                     JSONObject responseObject = null;
                     try {
-                        Toast.makeText(PatientAddPiqrayActivity.this, "data added successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PatientAddAfinitorActivity.this, "data added successfully", Toast.LENGTH_SHORT).show();
                         onBackPressed();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -249,7 +249,7 @@ public class PatientAddPiqrayActivity extends AppCompatActivity {
         hospitalsDoctorsList.clear();
         ArrayList<Doctor_item> doctorsListInitial = new ArrayList<>();
         doctorsListInitial.add(new Doctor_item(0, "Select Doctor"));
-        hospitalsDoctorsList.add(new Hospital_item(0,0, "Select Hospital", doctorsListInitial));
+        hospitalsDoctorsList.add(new Hospital_item(0, 0, "Select Hospital", doctorsListInitial));
         try {
 
             for (int i = 0; i < list.length(); i++) {
@@ -259,7 +259,7 @@ public class PatientAddPiqrayActivity extends AppCompatActivity {
                 final int sectorId = currentObject.getInt("sector_id");
                 final JSONArray doctorsArr = currentObject.getJSONArray("doctors");
                 ArrayList<Doctor_item> doctorsList = setDoctorsList(doctorsArr);
-                hospitalsDoctorsList.add(new Hospital_item(id,sectorId, name, doctorsList));
+                hospitalsDoctorsList.add(new Hospital_item(id, sectorId, name, doctorsList));
 
             }
         } catch (Exception e) {
@@ -343,5 +343,4 @@ public class PatientAddPiqrayActivity extends AppCompatActivity {
             return true;
         }
     }
-
 }

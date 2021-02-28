@@ -16,8 +16,10 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-        <activity android:name=".login.LoginSsoWebview"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".rep.home.patients.add_patient.PatientAddAfinitorActivity"></activity>
+        <activity
+            android:name=".login.LoginSsoWebview"
+            android:screenOrientation="portrait" />
         <activity android:name=".rep.home.patients.add_patient.PatientAddPiqrayActivity" />
         <activity android:name=".rep.home.patients.PatientsActivity" />
         <activity android:name=".flm.Flm_home" />

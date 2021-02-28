@@ -65,6 +65,7 @@
 
     <!--    Piqray Product Data-->
     <string-array name="piqray_lines">
+        <item>Select Line</item>
         <item>1st line</item>
         <item>2nd line</item>
         <item>3rd line</item>
@@ -72,8 +73,26 @@
     </string-array>
 
     <string-array name="piqray_doses">
+        <item>Select Dose</item>
         <item>300</item>
         <item>250</item>
         <item>200</item>
+    </string-array>
+
+
+
+    <!--    Afintor Product Data-->
+    <string-array name="afintor_lines">
+        <item>Select Line</item>
+        <item>1st line</item>
+        <item>2nd line</item>
+        <item>3rd line</item>
+        <item>4th line</item>
+    </string-array>
+
+    <string-array name="afintor_doses">
+        <item>Select Dose</item>
+        <item>10</item>
+        <item>5</item>
     </string-array>
 </resources>
