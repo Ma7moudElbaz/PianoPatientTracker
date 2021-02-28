@@ -63,7 +63,7 @@
     </string-array>
 
 
-    <!--    Piqray Product Data-->
+    <!-- Start Piqray -->
     <string-array name="piqray_lines">
         <item>Select Line</item>
         <item>1st line</item>
@@ -78,10 +78,10 @@
         <item>250</item>
         <item>200</item>
     </string-array>
+    <!-- End Piqray -->
 
 
-
-    <!--    Afintor Product Data-->
+    <!-- Start Afintor -->
     <string-array name="afintor_lines">
         <item>Select Line</item>
         <item>1st line</item>
@@ -95,4 +95,34 @@
         <item>10</item>
         <item>5</item>
     </string-array>
+    <!-- End Afintor -->
+
+
+    <!-- Start Palbociclib -->
+    <string-array name="palbociclib_pos_pre">
+        <item>Select PRE or POST</item>
+        <item>PRE</item>
+        <item>POST</item>
+    </string-array>
+
+    <string-array name="palbociclib_medical_surgical">
+        <item>Select Medical or Surgical</item>
+        <item>Medical</item>
+        <item>Surgical</item>
+    </string-array>
+
+    <string-array name="palbociclib_line">
+        <item>Select line</item>
+        <item>1st Line</item>
+        <item>2nd line</item>
+        <item>3rd line</item>
+    </string-array>
+
+    <string-array name="palbociclib_ai_ful">
+        <item>Select Ai or Ful</item>
+        <item>Ai</item>
+        <item>Ful</item>
+    </string-array>
+    <!-- End Palbociclib -->
+
 </resources>

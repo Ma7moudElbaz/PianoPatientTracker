@@ -35,7 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PatientAddAfinitorActivity extends AppCompatActivity {
+public class PatientAddPalbociclibActivity extends AppCompatActivity {
 
     int brandId;
     String accessToken;
@@ -54,7 +54,8 @@ public class PatientAddAfinitorActivity extends AppCompatActivity {
     ArrayList<String> doctorsList = new ArrayList<>();
     ArrayList<Integer> doctorIdList = new ArrayList<>();
 
-    Spinner citySpinner, hospitalSpinner, doctorSpinner, lineSpinner, doseSpinner;
+    Spinner citySpinner, hospitalSpinner, doctorSpinner;
+    Spinner prePostSpinner, medicalSurgicalSpinner, lineSpinner, aiFulSpinner;
     ImageView back;
     TextView addBtn;
 
@@ -64,7 +65,8 @@ public class PatientAddAfinitorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_add_afinitor);
+        setContentView(R.layout.activity_patient_add_palbociclib);
+
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading....");
         dialog.setCancelable(false);
@@ -72,8 +74,10 @@ public class PatientAddAfinitorActivity extends AppCompatActivity {
         citySpinner = findViewById(R.id.city_spinner);
         hospitalSpinner = findViewById(R.id.hospital_spinner);
         doctorSpinner = findViewById(R.id.doctor_spinner);
+        prePostSpinner = findViewById(R.id.pre_post_spinner);
+        medicalSurgicalSpinner = findViewById(R.id.medical_surgical_spinner);
         lineSpinner = findViewById(R.id.line_spinner);
-        doseSpinner = findViewById(R.id.dose_spinner);
+        aiFulSpinner = findViewById(R.id.ai_ful_spinner);
         back = findViewById(R.id.back);
         addBtn = findViewById(R.id.add_btn);
 
@@ -142,6 +146,22 @@ public class PatientAddAfinitorActivity extends AppCompatActivity {
 
             }
         });
+
+        prePostSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 1) {
+                    medicalSurgicalSpinner.setVisibility(View.VISIBLE);
+                } else {
+                    medicalSurgicalSpinner.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void getHospitalsDoctors(int areaId) {
@@ -182,6 +202,10 @@ public class PatientAddAfinitorActivity extends AppCompatActivity {
         int selectedHospitalIndex = hospitalSpinner.getSelectedItemPosition();
         int selectedDoctor = doctorSpinner.getSelectedItemPosition();
 
+
+        int selectedPrePost = prePostSpinner.getSelectedItemPosition();
+        int selectedAiFul = aiFulSpinner.getSelectedItemPosition();
+
         int cityId = citiesIdList.get(selectedCityIndex);
         int hospitalId = hospitalIdList.get(selectedHospitalIndex);
         int sectorId = hospitalSectorIdList.get(selectedHospitalIndex);
@@ -194,8 +218,23 @@ public class PatientAddAfinitorActivity extends AppCompatActivity {
         map.put("doctor_id", String.valueOf(doctorId));
 
         JSONObject patientObj = new JSONObject();
+
+        if (selectedPrePost == 1) {
+            patientObj.put("is_pre", 1);
+            patientObj.put("is_post", 0);
+            patientObj.put("pre_type", medicalSurgicalSpinner.getSelectedItem().toString());
+        } else if (selectedPrePost == 2) {
+            patientObj.put("is_pre", 0);
+            patientObj.put("is_post", 1);
+        }
+        if (selectedAiFul == 1) {
+            patientObj.put("is_ai", 1);
+            patientObj.put("is_ful", 0);
+        } else if (selectedAiFul == 2) {
+            patientObj.put("is_ai", 0);
+            patientObj.put("is_ful", 1);
+        }
         patientObj.put("current_management_line", String.valueOf(lineSpinner.getSelectedItemPosition()));
-        patientObj.put("dose", doseSpinner.getSelectedItem().toString());
 
         map.put("patient_details", patientObj.toString());
 
@@ -209,7 +248,7 @@ public class PatientAddAfinitorActivity extends AppCompatActivity {
                 if (response.code() == 200) {
                     JSONObject responseObject = null;
                     try {
-                        Toast.makeText(PatientAddAfinitorActivity.this, "data added successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PatientAddPalbociclibActivity.this, "data added successfully", Toast.LENGTH_SHORT).show();
                         onBackPressed();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -334,9 +373,13 @@ public class PatientAddAfinitorActivity extends AppCompatActivity {
     }
 
     private boolean validateFields() {
+
         if (citySpinner.getSelectedItemPosition() == 0 || hospitalSpinner.getSelectedItemPosition() == 0
                 || doctorSpinner.getSelectedItemPosition() == 0 || lineSpinner.getSelectedItemPosition() == 0
-                || doseSpinner.getSelectedItemPosition() == 0) {
+                || prePostSpinner.getSelectedItemPosition() == 0|| aiFulSpinner.getSelectedItemPosition() == 0) {
+            Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if(prePostSpinner.getSelectedItemPosition() == 1 && medicalSurgicalSpinner.getSelectedItemPosition() == 0){
             Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_SHORT).show();
             return false;
         } else {

@@ -17,6 +17,7 @@ import com.cat.pianopatienttracker.login.LoginActivity;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.network.Webservice;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddAfinitorActivity;
+import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddPalbociclibActivity;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddPiqrayActivity;
 
 import org.json.JSONArray;
@@ -77,6 +78,12 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
                     startActivity(i);
                 } else if (brandName.toLowerCase().equals("afinitor")) {
                     Intent i = new Intent(PatientsActivity.this, PatientAddAfinitorActivity.class);
+                    i.putExtra("brandId", brandId);
+                    i.putExtra("accessToken", accessToken);
+                    i.putExtra("countries", (Serializable) country_items);
+                    startActivity(i);
+                } else if (brandName.toLowerCase().equals("palbociclib")) {
+                    Intent i = new Intent(PatientsActivity.this, PatientAddPalbociclibActivity.class);
                     i.putExtra("brandId", brandId);
                     i.putExtra("accessToken", accessToken);
                     i.putExtra("countries", (Serializable) country_items);
@@ -172,7 +179,10 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
                 final String hospital = currentObject.getString("hospital");
                 final String sector = currentObject.getString("sector");
                 final String doctor = currentObject.getString("doctor");
-                final String dose = currentObject.getString("dose") + " mg";
+                String dose ="";
+                if (currentObject.has("dose")){
+                     dose = currentObject.getString("dose") + " mg";
+                }
 
                 patients_list.add(new Patient_item(id, hospital, sector, doctor, dose));
 

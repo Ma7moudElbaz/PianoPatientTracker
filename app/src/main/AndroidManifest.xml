@@ -16,7 +16,8 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-        <activity android:name=".rep.home.patients.add_patient.PatientAddAfinitorActivity"></activity>
+        <activity android:name=".rep.home.patients.add_patient.PatientAddPalbociclibActivity"></activity>
+        <activity android:name=".rep.home.patients.add_patient.PatientAddAfinitorActivity" />
         <activity
             android:name=".login.LoginSsoWebview"
             android:screenOrientation="portrait" />

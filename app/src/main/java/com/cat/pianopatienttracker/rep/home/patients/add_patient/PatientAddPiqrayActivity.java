@@ -336,7 +336,7 @@ public class PatientAddPiqrayActivity extends AppCompatActivity {
     private boolean validateFields() {
         if (citySpinner.getSelectedItemPosition() == 0 || hospitalSpinner.getSelectedItemPosition() == 0
                 || doctorSpinner.getSelectedItemPosition() == 0 || lineSpinner.getSelectedItemPosition() == 0
-                || doctorSpinner.getSelectedItemPosition() == 0) {
+                || doseSpinner.getSelectedItemPosition() == 0) {
             Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_SHORT).show();
             return false;
         } else {
