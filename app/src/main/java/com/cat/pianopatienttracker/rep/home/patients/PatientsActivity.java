@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cat.pianopatienttracker.LoginActivity;
@@ -33,7 +34,8 @@ import retrofit2.Response;
 public class PatientsActivity extends AppCompatActivity implements Patients_adapter.OnPatientClickListener {
 
     private ProgressDialog dialog;
-    String accessToken;
+    String accessToken,brandName;
+    int brandId;
 
     ArrayList<Patient_item> patients_list = new ArrayList<>();
     Patients_adapter patients_adapter;
@@ -41,12 +43,15 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
 
     RecyclerView patientsRecycler;
     ImageView back;
+    TextView brandName_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patients);
         back = findViewById(R.id.back);
+        brandName_tv = findViewById(R.id.brandName);
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +60,10 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
         });
 
         accessToken = getIntent().getStringExtra("accessToken");
+        brandId = getIntent().getIntExtra("brandId",0);
+        brandName = getIntent().getStringExtra("brandName");
+
+        brandName_tv.setText(brandName);
 
         dialog = new ProgressDialog(PatientsActivity.this);
         dialog.setMessage("Loading....");
@@ -96,7 +105,7 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
 
     public void getPatients() {
         dialog.show();
-        Webservice.getInstance().getApi().getJakaviPatients(accessToken).enqueue(new Callback<ResponseBody>() {
+        Webservice.getInstance().getApi().getPatients(accessToken,brandId).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 

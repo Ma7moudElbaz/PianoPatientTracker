@@ -29,7 +29,7 @@
             android:id="@+id/image"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:src="@drawable/flag_eg"
+            android:src="@drawable/flag_egy1"
             android:adjustViewBounds="true"/>
 
 

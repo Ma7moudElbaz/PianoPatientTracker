@@ -57,8 +57,11 @@ public interface ServiceInterface {
     @FormUrlEncoded
     Call<ResponseBody> confirRequest(@Header("Authorization") String auth ,@FieldMap Map<String, String> map);
 
-    @GET("jakavi-patient?dropped=0&switched=0")
-    Call<ResponseBody> getJakaviPatients(@Header("Authorization") String auth);
+//    @GET("jakavi-patient?dropped=0&switched=0")
+//    Call<ResponseBody> getJakaviPatients(@Header("Authorization") String auth);
+
+    @GET("get-patients")
+    Call<ResponseBody> getPatients(@Header("Authorization") String auth,@Query("brand_id") int brandId);
 
     @POST("rep/change-jakavi-patient-process")
     @FormUrlEncoded

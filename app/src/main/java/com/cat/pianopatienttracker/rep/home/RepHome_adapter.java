@@ -72,6 +72,8 @@ public class RepHome_adapter extends RecyclerView.Adapter<RepHome_adapter.ViewHo
             public void onClick(View v) {
                 Intent i = new Intent(mContext, PatientsActivity.class);
                 i.putExtra("accessToken",accessToken);
+                i.putExtra("brandId",items.get(position).getId());
+                i.putExtra("brandName",items.get(position).getName());
                 mContext.startActivity(i);
             }
         });
