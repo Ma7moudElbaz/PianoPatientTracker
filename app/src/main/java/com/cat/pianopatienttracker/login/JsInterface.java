@@ -18,7 +18,7 @@ public class JsInterface {
     @JavascriptInterface
     public void ssoLoginCallBack(String tokenObj) throws JSONException {
         JSONObject object = new JSONObject(tokenObj);
-        String key = object.getString("key");
+        String key = object.getString("access_token");
         Log.e("TAG", key);
     }
 }
