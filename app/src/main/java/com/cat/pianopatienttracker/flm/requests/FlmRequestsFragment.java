@@ -156,14 +156,6 @@ public class FlmRequestsFragment extends Fragment implements BottomSheet_country
         requestRecycler.setAdapter(requests_adapter);
     }
 
-    @Override
-    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex) {
-        activity.setSelectedCountryIndex(selectedCountryIndex);
-        activity.setSelectedBrandIndex(selectedBrandIndex);
-
-        getRequests();
-    }
-
 
     public void confirmRequest(int patientId) {
         dialog.show();
@@ -205,4 +197,11 @@ public class FlmRequestsFragment extends Fragment implements BottomSheet_country
         confirmRequest(patientId);
     }
 
+    @Override
+    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex, String selectedCountryName, String selectedBrandName) {
+        activity.setSelectedCountryIndex(selectedCountryIndex);
+        activity.setSelectedBrandIndex(selectedBrandIndex);
+
+        getRequests();
+    }
 }

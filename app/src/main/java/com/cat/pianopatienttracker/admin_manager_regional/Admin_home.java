@@ -63,6 +63,25 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
     int selectedCountryIndex = 0;
     int selectedBrandIndex = 0;
 
+    String selectedCountryName = "";
+    String selectedBrandName = "";
+
+    public String getSelectedCountryName() {
+        return selectedCountryName;
+    }
+
+    public void setSelectedCountryName(String selectedCountryName) {
+        this.selectedCountryName = selectedCountryName;
+    }
+
+    public String getSelectedBrandName() {
+        return selectedBrandName;
+    }
+
+    public void setSelectedBrandName(String selectedBrandName) {
+        this.selectedBrandName = selectedBrandName;
+    }
+
     public int getSelectedCountryIndex() {
         return selectedCountryIndex;
     }
@@ -263,6 +282,7 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
                 JSONObject currentObject = list.getJSONObject(i);
                 final int id = currentObject.getInt("id");
                 final String name = currentObject.getString("name");
+                final String iso = currentObject.getString("iso");
                 final JSONArray productsData = currentObject.getJSONArray("products");
                 final JSONArray regionsData = currentObject.getJSONArray("regions");
 
@@ -271,13 +291,15 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
                 brands_list = setBrandsList(productsData);
                 regions_list = setRegionsList(regionsData);
 
-                countries_list.add(new Country_item(id, name, brands_list, regions_list));
+                countries_list.add(new Country_item(id, name,iso, brands_list, regions_list));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         setSelectedCountryId(countries_list.get(0).getId());
         setSelectedBrandId(countries_list.get(0).getBrand_list().get(0).getId());
+
+        setSelectedCountryBrandName();
 
         if (role.equals("manager")) {
             setContentFragment(new DashboardFragment());
@@ -350,5 +372,10 @@ public class Admin_home extends AppCompatActivity implements BottomNavigationVie
             e.printStackTrace();
         }
         return cities_list;
+    }
+
+    void setSelectedCountryBrandName() {
+        selectedCountryName = countries_list.get(selectedCountryIndex).getIso();
+        selectedBrandName = countries_list.get(selectedCountryIndex).getBrand_list().get(selectedBrandIndex).getName();
     }
 }

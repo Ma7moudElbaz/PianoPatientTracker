@@ -441,13 +441,7 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
     }
 
 
-    @Override
-    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex) {
-        activity.setSelectedCountryIndex(selectedCountryIndex);
-        activity.setSelectedBrandIndex(selectedBrandIndex);
 
-        getRanking(selectedTab);
-    }
 
 
     @Override
@@ -478,5 +472,13 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
     @Override
     public void hospitalsFilterOnItemClick(Map<String, String> filterMap) {
         getRankingFiltered(selectedTab,filterMap);
+    }
+
+    @Override
+    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex, String selectedCountryName, String selectedBrandName) {
+        activity.setSelectedCountryIndex(selectedCountryIndex);
+        activity.setSelectedBrandIndex(selectedBrandIndex);
+
+        getRanking(selectedTab);
     }
 }

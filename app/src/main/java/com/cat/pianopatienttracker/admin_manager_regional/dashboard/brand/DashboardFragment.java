@@ -514,12 +514,10 @@ public class DashboardFragment extends Fragment implements BottomSheet_country_b
     }
 
     @Override
-    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex) {
+    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex, String selectedCountryName, String selectedBrandName) {
         activity.setSelectedCountryIndex(selectedCountryIndex);
         activity.setSelectedBrandIndex(selectedBrandIndex);
 
         getDashboard();
-
     }
-
 }

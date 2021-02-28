@@ -514,13 +514,12 @@ public class FlmDashboardFragment extends Fragment implements BottomSheet_countr
 
     }
 
+
     @Override
-    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex) {
+    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex, String selectedCountryName, String selectedBrandName) {
         activity.setSelectedCountryIndex(selectedCountryIndex);
         activity.setSelectedBrandIndex(selectedBrandIndex);
 
         getDashboard();
-
     }
-
 }

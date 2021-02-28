@@ -448,16 +448,6 @@ public class FlmRankingFragment extends Fragment implements BottomSheet_country_
         rankingRecycler.setAdapter(ranking_doctors_adapter);
     }
 
-
-    @Override
-    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex) {
-        activity.setSelectedCountryIndex(selectedCountryIndex);
-        activity.setSelectedBrandIndex(selectedBrandIndex);
-
-        getRanking(selectedTab);
-    }
-
-
     @Override
     public void periodOnItemClick(int filterType, int year, int month) {
         Map<String, String> filterMap = new HashMap<>();
@@ -486,5 +476,13 @@ public class FlmRankingFragment extends Fragment implements BottomSheet_country_
     @Override
     public void hospitalsFilterOnItemClick(Map<String, String> filterMap) {
         getRankingFiltered(selectedTab,filterMap);
+    }
+
+    @Override
+    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex, String selectedCountryName, String selectedBrandName) {
+        activity.setSelectedCountryIndex(selectedCountryIndex);
+        activity.setSelectedBrandIndex(selectedBrandIndex);
+
+        getRanking(selectedTab);
     }
 }

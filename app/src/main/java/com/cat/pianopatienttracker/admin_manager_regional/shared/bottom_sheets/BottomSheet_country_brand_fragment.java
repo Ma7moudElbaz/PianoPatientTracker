@@ -67,8 +67,10 @@ public class BottomSheet_country_brand_fragment extends BottomSheetDialogFragmen
 //                        .get(brand_spinner.getSelectedItemPosition()).getId();
                 int selectedCountryIndex = country_spinner.getSelectedItemPosition();
                 int selectedBrandIndex = brand_spinner.getSelectedItemPosition();
-                sendBackResult(selectedCountryIndex, selectedBrandIndex);
-//                mListener.onItemClick(selectedCountryId, selectedBrandId);
+                String selectedCountryName = countriesBrands_list.get(selectedCountryIndex).getIso();
+                String selectedBrandName = countriesBrands_list.get(selectedCountryIndex).getBrand_list().get(selectedBrandIndex).getName();
+                sendBackResult(selectedCountryIndex, selectedBrandIndex, selectedCountryName, selectedBrandName);
+
             }
         });
 
@@ -132,13 +134,13 @@ public class BottomSheet_country_brand_fragment extends BottomSheetDialogFragmen
 
 
     public interface ItemClickListener {
-        void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex);
+        void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex, String selectedCountryName, String selectedBrandName);
     }
 
-    public void sendBackResult(int selectedCountryIndex, int selectedBrandIndex) {
+    public void sendBackResult(int selectedCountryIndex, int selectedBrandIndex, String selectedCountryName, String selectedBrandName) {
         // Notice the use of `getTargetFragment` which will be set when the dialog is displayed
         ItemClickListener listener = (ItemClickListener) getTargetFragment();
-        listener.countryBrandOnItemClick(selectedCountryIndex, selectedBrandIndex);
+        listener.countryBrandOnItemClick(selectedCountryIndex, selectedBrandIndex, selectedCountryName, selectedBrandName);
         dismiss();
     }
 }

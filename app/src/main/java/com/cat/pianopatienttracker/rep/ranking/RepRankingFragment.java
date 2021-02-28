@@ -451,15 +451,6 @@ public class RepRankingFragment extends Fragment implements BottomSheet_country_
 
 
     @Override
-    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex) {
-        activity.setSelectedCountryIndex(selectedCountryIndex);
-        activity.setSelectedBrandIndex(selectedBrandIndex);
-
-        getRanking(selectedTab);
-    }
-
-
-    @Override
     public void periodOnItemClick(int filterType, int year, int month) {
         Map<String, String> filterMap = new HashMap<>();
         if (filterType == 0) {
@@ -488,5 +479,13 @@ public class RepRankingFragment extends Fragment implements BottomSheet_country_
     public void hospitalsFilterOnItemClick(Map<String, String> filterMap) {
         getRankingFiltered(selectedTab, filterMap);
 
+    }
+
+    @Override
+    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex, String selectedCountryName, String selectedBrandName) {
+        activity.setSelectedCountryIndex(selectedCountryIndex);
+        activity.setSelectedBrandIndex(selectedBrandIndex);
+
+        getRanking(selectedTab);
     }
 }

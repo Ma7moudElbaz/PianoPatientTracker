@@ -46,7 +46,6 @@ public class FlmProgressFragment extends Fragment implements BottomSheet_country
     }
 
 
-
     public void showCountriesBrandsBottomSheet() {
         BottomSheet_country_brand_fragment countriesBrandsBottomSheet =
                 new BottomSheet_country_brand_fragment(activity.getCountries_list(), activity.getSelectedCountryIndex(), activity.getSelectedBrandIndex());
@@ -191,7 +190,7 @@ public class FlmProgressFragment extends Fragment implements BottomSheet_country
     }
 
     @Override
-    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex) {
+    public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex, String selectedCountryName, String selectedBrandName) {
         activity.setSelectedCountryIndex(selectedCountryIndex);
         activity.setSelectedBrandIndex(selectedBrandIndex);
 
