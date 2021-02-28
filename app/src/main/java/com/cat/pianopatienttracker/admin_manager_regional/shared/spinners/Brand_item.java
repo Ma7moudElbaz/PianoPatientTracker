@@ -1,6 +1,8 @@
 package com.cat.pianopatienttracker.admin_manager_regional.shared.spinners;
 
-public class Brand_item {
+import java.io.Serializable;
+
+public class Brand_item implements Serializable {
    private int id;
     private String name;
     private String imageUrl;

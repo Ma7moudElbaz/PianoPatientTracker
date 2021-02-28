@@ -1,6 +1,8 @@
 package com.cat.pianopatienttracker.admin_manager_regional.shared.spinners;
 
-public class City_item {
+import java.io.Serializable;
+
+public class City_item implements Serializable {
 
     private int id;
     private String name;

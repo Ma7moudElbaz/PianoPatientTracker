@@ -117,7 +117,7 @@ public class RepHomeFragment extends Fragment {
                 final double marketPercent = currentObject.getDouble("market_share");
 
 
-                repHome_list.add(new RepHome_item(id, name,imageUrl, actualTarget, totalTarget, targetPercent, actualMarket, totalMarket, marketPercent));
+                repHome_list.add(new RepHome_item(id, name, imageUrl, actualTarget, totalTarget, targetPercent, actualMarket, totalMarket, marketPercent));
 
             }
         } catch (Exception e) {
@@ -132,7 +132,7 @@ public class RepHomeFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         repHomeRecycler.setLayoutManager(layoutManager);
 
-        repHome_adapter = new RepHome_adapter(getActivity(), repHome_list,accessToken);
+        repHome_adapter = new RepHome_adapter(getActivity(), repHome_list, accessToken, activity.getCountries_list());
         repHomeRecycler.setAdapter(repHome_adapter);
 
     }

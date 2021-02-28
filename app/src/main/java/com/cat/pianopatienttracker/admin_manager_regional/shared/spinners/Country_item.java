@@ -1,8 +1,9 @@
 package com.cat.pianopatienttracker.admin_manager_regional.shared.spinners;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Country_item {
+public class Country_item implements Serializable {
     private int id;
     private String name,iso;
     private ArrayList<Brand_item> brand_list = new ArrayList<>();

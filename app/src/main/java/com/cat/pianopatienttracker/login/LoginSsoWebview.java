@@ -26,7 +26,7 @@ public class LoginSsoWebview extends AppCompatActivity {
 
         webView = findViewById(R.id.webView);
 
-        url = "http://dev.ptracker.org/test";
+        url = "https://test.piano-tracker.net/login/azure";
 
         final ProgressDialog progDailog = ProgressDialog.show(this, "","Loading ,Please wait...", true);
         progDailog.setCancelable(true);

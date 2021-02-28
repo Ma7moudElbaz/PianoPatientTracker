@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.Country_item;
 import com.cat.pianopatienttracker.login.LoginActivity;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.network.Webservice;
@@ -20,8 +21,10 @@ import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddPiqra
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
@@ -32,7 +35,7 @@ import retrofit2.Response;
 public class PatientsActivity extends AppCompatActivity implements Patients_adapter.OnPatientClickListener {
 
     private ProgressDialog dialog;
-    String accessToken,brandName;
+    String accessToken, brandName;
     int brandId;
 
     ArrayList<Patient_item> patients_list = new ArrayList<>();
@@ -40,8 +43,11 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
 
 
     RecyclerView patientsRecycler;
-    ImageView back,add;
+    ImageView back, add;
     TextView brandName_tv;
+
+
+     List<Country_item> country_items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,17 +67,20 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (brandName.toLowerCase().equals("piqray")){
+                if (brandName.toLowerCase().equals("piqray")) {
                     Intent i = new Intent(PatientsActivity.this, PatientAddPiqrayActivity.class);
-                    i.putExtra("brandId",brandId);
+                    i.putExtra("brandId", brandId);
+                    i.putExtra("accessToken", accessToken);
+                    i.putExtra("countries", (Serializable) country_items);
                     startActivity(i);
                 }
             }
         });
 
         accessToken = getIntent().getStringExtra("accessToken");
-        brandId = getIntent().getIntExtra("brandId",0);
+        brandId = getIntent().getIntExtra("brandId", 0);
         brandName = getIntent().getStringExtra("brandName");
+        country_items = (ArrayList<Country_item>) getIntent().getSerializableExtra("countries");
 
         brandName_tv.setText(brandName);
 
@@ -84,7 +93,7 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
 
     public void DropUpdatePatients(Map<String, String> map) {
         dialog.show();
-        Webservice.getInstance().getApi().dropUpdateJakaviPatients(accessToken,map).enqueue(new Callback<ResponseBody>() {
+        Webservice.getInstance().getApi().dropUpdateJakaviPatients(accessToken, map).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
@@ -115,7 +124,7 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
 
     public void getPatients() {
         dialog.show();
-        Webservice.getInstance().getApi().getPatients(accessToken,brandId).enqueue(new Callback<ResponseBody>() {
+        Webservice.getInstance().getApi().getPatients(accessToken, brandId).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
@@ -180,8 +189,8 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
     @Override
     public void onDropPatientClick(int patientId) {
         Map<String, String> map = new HashMap<>();
-        map.put("patient_id",String.valueOf(patientId));
-        map.put("process","dropped");
+        map.put("patient_id", String.valueOf(patientId));
+        map.put("process", "dropped");
         DropUpdatePatients(map);
     }
 

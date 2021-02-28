@@ -17,24 +17,29 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.admin_manager_regional.dashboard.regional.ProductTarget_item;
+import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.Country_item;
 import com.cat.pianopatienttracker.rep.home.patients.PatientsActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RepHome_adapter extends RecyclerView.Adapter<RepHome_adapter.ViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
 
+    List<Country_item> country_items = new ArrayList<>();
     private List<RepHome_item> items;
     private String accessToken;
 
     private Context mContext;
 
-    public RepHome_adapter(Context context, ArrayList<RepHome_item> items,String accessToken) {
+    public RepHome_adapter(Context context, ArrayList<RepHome_item> items, String accessToken,
+                           List<Country_item> country_items) {
 
         this.mContext = context;
         this.items = items;
         this.accessToken = accessToken;
+        this.country_items = country_items;
     }
 
     @NonNull
@@ -51,9 +56,9 @@ public class RepHome_adapter extends RecyclerView.Adapter<RepHome_adapter.ViewHo
         Log.d(TAG, "onBindViewHolder: called.");
 
         String targetNoString = items.get(position).getActualTarget() + " of " + items.get(position).getTotalTarget();
-        String targetPercentString = items.get(position).getTargetPercent() + "%" ;
+        String targetPercentString = items.get(position).getTargetPercent() + "%";
         String marketNoString = items.get(position).getActualMarket() + " of " + items.get(position).getTotalMarket();
-        String marketPercentString = items.get(position).getMarketPercent() + "%" ;
+        String marketPercentString = items.get(position).getMarketPercent() + "%";
 
         holder.name.setText(items.get(position).getName());
         holder.targetNo.setText(targetNoString);
@@ -63,7 +68,7 @@ public class RepHome_adapter extends RecyclerView.Adapter<RepHome_adapter.ViewHo
         holder.marketPercent.setText(marketPercentString);
         holder.marketProgress.setProgress((int) items.get(position).getMarketPercent());
 
-        String imageName = items.get(position).getName().toLowerCase()+"_logo";
+        String imageName = items.get(position).getName().toLowerCase() + "_logo";
         int imgDrawable = mContext.getResources().getIdentifier(imageName, "drawable", mContext.getPackageName());
         Glide.with(mContext).load(imgDrawable).into(holder.image);
 
@@ -71,9 +76,10 @@ public class RepHome_adapter extends RecyclerView.Adapter<RepHome_adapter.ViewHo
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(mContext, PatientsActivity.class);
-                i.putExtra("accessToken",accessToken);
-                i.putExtra("brandId",items.get(position).getId());
-                i.putExtra("brandName",items.get(position).getName());
+                i.putExtra("accessToken", accessToken);
+                i.putExtra("brandId", items.get(position).getId());
+                i.putExtra("brandName", items.get(position).getName());
+                i.putExtra("countries", (Serializable) country_items);
                 mContext.startActivity(i);
             }
         });

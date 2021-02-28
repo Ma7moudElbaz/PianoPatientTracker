@@ -80,7 +80,9 @@
                     android:layout_height="match_parent"
                     android:dropDownWidth="match_parent"
                     android:paddingStart="5dp"
+                    android:paddingTop="10dp"
                     android:paddingEnd="5dp"
+                    android:paddingBottom="10dp"
                     android:spinnerMode="dropdown" />
 
             </androidx.cardview.widget.CardView>
@@ -100,7 +102,9 @@
                     android:layout_height="match_parent"
                     android:dropDownWidth="match_parent"
                     android:paddingStart="5dp"
+                    android:paddingTop="10dp"
                     android:paddingEnd="5dp"
+                    android:paddingBottom="10dp"
                     android:spinnerMode="dropdown" />
 
             </androidx.cardview.widget.CardView>
@@ -120,7 +124,9 @@
                     android:layout_height="match_parent"
                     android:dropDownWidth="match_parent"
                     android:paddingStart="5dp"
+                    android:paddingTop="10dp"
                     android:paddingEnd="5dp"
+                    android:paddingBottom="10dp"
                     android:spinnerMode="dropdown" />
 
             </androidx.cardview.widget.CardView>

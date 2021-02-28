@@ -63,6 +63,9 @@ public interface ServiceInterface {
     @GET("get-patients")
     Call<ResponseBody> getPatients(@Header("Authorization") String auth,@Query("brand_id") int brandId);
 
+    @GET("hospitals")
+    Call<ResponseBody> getHospitals(@Header("Authorization") String auth,@Query("area_id") int areaId);
+
     @POST("rep/change-jakavi-patient-process")
     @FormUrlEncoded
     Call<ResponseBody> dropUpdateJakaviPatients(@Header("Authorization") String auth,@FieldMap Map<String, String> map);
