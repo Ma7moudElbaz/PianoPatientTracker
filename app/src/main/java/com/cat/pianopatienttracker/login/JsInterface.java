@@ -9,10 +9,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class JsInterface {
-    Context mcontext;
+    Context mContext;
 
-    JsInterface(Context mcontext) {
-        mcontext = mcontext;
+    JsInterface(Context mContext) {
+        mContext = mContext;
     }
 
     @JavascriptInterface
