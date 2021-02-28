@@ -18,6 +18,7 @@ import com.cat.pianopatienttracker.network.Webservice;
 import com.cat.pianopatienttracker.rep.Rep_home;
 import com.cat.pianopatienttracker.rep.home.RepHome_adapter;
 import com.cat.pianopatienttracker.rep.home.RepHome_item;
+import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddPiqrayActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -42,7 +43,7 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
 
 
     RecyclerView patientsRecycler;
-    ImageView back;
+    ImageView back,add;
     TextView brandName_tv;
 
     @Override
@@ -50,12 +51,24 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patients);
         back = findViewById(R.id.back);
+        add = findViewById(R.id.add);
         brandName_tv = findViewById(R.id.brandName);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (brandName.toLowerCase().equals("piqray")){
+                    Intent i = new Intent(PatientsActivity.this, PatientAddPiqrayActivity.class);
+                    i.putExtra("brandId",brandId);
+                    startActivity(i);
+                }
             }
         });
 

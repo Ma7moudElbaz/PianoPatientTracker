@@ -111,6 +111,7 @@
             app:cardBackgroundColor="@color/more_light_gray"
             app:cardCornerRadius="5dp"
             app:cardElevation="0dp">
+
             <Spinner
                 android:id="@+id/years_spinner"
                 android:layout_width="match_parent"
