@@ -36,22 +36,21 @@
                 android:adjustViewBounds="true"
                 android:layout_marginEnd="10dp"
                 android:contentDescription="@string/img_description"
-                android:src="@drawable/ic_location" />
+                android:src="@drawable/ic_location"
+                android:visibility="gone"/>
 
             <RelativeLayout
-                android:id="@+id/selectCountry_cont"
+                android:id="@+id/selectCountryBrand_cont"
                 android:layout_width="wrap_content"
                 android:layout_height="?android:attr/actionBarSize"
                 android:layout_alignParentEnd="true"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
-                android:visibility="gone">
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp">
 
                 <ImageView
                     android:id="@+id/selectedProduct_img"
                     android:layout_width="wrap_content"
                     android:layout_height="?android:attr/actionBarSize"
-                    android:adjustViewBounds="true"
                     android:contentDescription="@string/img_description"
                     android:src="@drawable/round_jakavi" />
 
@@ -60,8 +59,7 @@
                     android:id="@+id/selectedCountry_img"
                     android:layout_width="wrap_content"
                     android:layout_height="?android:attr/actionBarSize"
-                    android:layout_marginLeft="20dp"
-                    android:adjustViewBounds="true"
+                    android:layout_marginLeft="15dp"
                     android:contentDescription="@string/img_description"
                     android:src="@drawable/round_ksa" />
 

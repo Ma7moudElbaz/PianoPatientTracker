@@ -14,8 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.cat.pianopatienttracker.login.LoginActivity;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.admin_manager_regional.shared.bottom_sheets.BottomSheet_country_brand_fragment;
@@ -65,11 +67,29 @@ public class FlmRequestsFragment extends Fragment implements BottomSheet_country
     ImageView selectCountryBrand;
 
 
+    RelativeLayout selectCountryBrand_cont;
+    ImageView selectedCountry_img,selectedProduct_img;
+
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         activity = (Flm_home) getActivity();
+
+
+        selectCountryBrand_cont = view.findViewById(R.id.selectCountryBrand_cont);
+        selectedCountry_img = view.findViewById(R.id.selectedCountry_img);
+        selectedProduct_img = view.findViewById(R.id.selectedProduct_img);
+
+        selectCountryBrand_cont.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCountriesBrandsBottomSheet();
+            }
+        });
+
+        setCountryBrandImage();
 
         accessToken = activity.getAccessToken();
 
@@ -201,7 +221,20 @@ public class FlmRequestsFragment extends Fragment implements BottomSheet_country
     public void countryBrandOnItemClick(int selectedCountryIndex, int selectedBrandIndex, String selectedCountryName, String selectedBrandName) {
         activity.setSelectedCountryIndex(selectedCountryIndex);
         activity.setSelectedBrandIndex(selectedBrandIndex);
+        activity.setSelectedCountryName(selectedCountryName);
+        activity.setSelectedBrandName(selectedBrandName);
 
         getRequests();
+        setCountryBrandImage();
+    }
+
+
+    void setCountryBrandImage() {
+        String countryImageName = "round_"+activity.getSelectedCountryName().toLowerCase();
+        String brandImageName = "round_"+activity.getSelectedBrandName().toLowerCase();
+        int countryImgDrawable = getResources().getIdentifier(countryImageName, "drawable", activity.getPackageName());
+        int brandImgDrawable = getResources().getIdentifier(brandImageName, "drawable", activity.getPackageName());
+        Glide.with(this).load(countryImgDrawable).into(selectedCountry_img);
+        Glide.with(this).load(brandImgDrawable).into(selectedProduct_img);
     }
 }
