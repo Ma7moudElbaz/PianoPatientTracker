@@ -16,7 +16,10 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-        <activity android:name=".rep.home.patients.add_patient.PatientAddTasignaActivity"></activity>
+        <activity android:name=".rep.home.patients.add_patient.PatientAddAdakveoActivity"></activity>
+        <activity android:name=".rep.home.patients.add_patient.PatientAddRevoladeActivity" />
+        <activity android:name=".rep.home.patients.add_patient.PatientAddJakaviActivity" />
+        <activity android:name=".rep.home.patients.add_patient.PatientAddTasignaActivity" />
         <activity android:name=".rep.home.patients.add_patient.PatientAddAbemaciclibActivity" />
         <activity android:name=".rep.home.patients.add_patient.PatientAddKisqaliActivity" />
         <activity android:name=".rep.home.patients.add_patient.PatientAddPalbociclibActivity" />
