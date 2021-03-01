@@ -35,7 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PatientAddPalbociclibActivity extends AppCompatActivity {
+public class PatientAddKisqaliActivity extends AppCompatActivity {
 
     int brandId;
     String accessToken;
@@ -55,7 +55,7 @@ public class PatientAddPalbociclibActivity extends AppCompatActivity {
     ArrayList<Integer> doctorIdList = new ArrayList<>();
 
     Spinner citySpinner, hospitalSpinner, doctorSpinner;
-    Spinner prePostSpinner, medicalSurgicalSpinner, lineSpinner, aiFulSpinner;
+    Spinner prePostSpinner, medicalSurgicalSpinner, lineSpinner, aiFulSpinner,doseSpinner;
     ImageView back;
     TextView addBtn;
 
@@ -65,7 +65,8 @@ public class PatientAddPalbociclibActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_add_palbociclib);
+        setContentView(R.layout.activity_patient_add_kisqali);
+
 
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading....");
@@ -78,6 +79,7 @@ public class PatientAddPalbociclibActivity extends AppCompatActivity {
         medicalSurgicalSpinner = findViewById(R.id.medical_surgical_spinner);
         lineSpinner = findViewById(R.id.line_spinner);
         aiFulSpinner = findViewById(R.id.ai_ful_spinner);
+        doseSpinner = findViewById(R.id.dose_spinner);
         back = findViewById(R.id.back);
         addBtn = findViewById(R.id.add_btn);
 
@@ -237,7 +239,7 @@ public class PatientAddPalbociclibActivity extends AppCompatActivity {
             patientObj.put("current_management", "ful");
         }
         patientObj.put("current_management_line", String.valueOf(lineSpinner.getSelectedItemPosition()));
-
+        patientObj.put("dose", doseSpinner.getSelectedItem().toString());
         map.put("patient_details", patientObj.toString());
 
         Log.e("TAG", map.toString());
@@ -250,7 +252,7 @@ public class PatientAddPalbociclibActivity extends AppCompatActivity {
                 if (response.code() == 200) {
                     JSONObject responseObject = null;
                     try {
-                        Toast.makeText(PatientAddPalbociclibActivity.this, "data added successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PatientAddKisqaliActivity.this, "data added successfully", Toast.LENGTH_SHORT).show();
                         onBackPressed();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -378,7 +380,8 @@ public class PatientAddPalbociclibActivity extends AppCompatActivity {
 
         if (citySpinner.getSelectedItemPosition() == 0 || hospitalSpinner.getSelectedItemPosition() == 0
                 || doctorSpinner.getSelectedItemPosition() == 0 || lineSpinner.getSelectedItemPosition() == 0
-                || prePostSpinner.getSelectedItemPosition() == 0|| aiFulSpinner.getSelectedItemPosition() == 0) {
+                || prePostSpinner.getSelectedItemPosition() == 0|| aiFulSpinner.getSelectedItemPosition() == 0
+                || doseSpinner.getSelectedItemPosition() == 0) {
             Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_SHORT).show();
             return false;
         }else if(prePostSpinner.getSelectedItemPosition() == 1 && medicalSurgicalSpinner.getSelectedItemPosition() == 0){

@@ -125,4 +125,39 @@
     </string-array>
     <!-- End Palbociclib -->
 
+
+    <!-- Start Kisqali -->
+    <string-array name="kisqali_pos_pre">
+        <item>Select PRE or POST</item>
+        <item>PRE</item>
+        <item>POST</item>
+    </string-array>
+
+    <string-array name="kisqali_medical_surgical">
+        <item>Select Medical or Surgical</item>
+        <item>Medical</item>
+        <item>Surgical</item>
+    </string-array>
+
+    <string-array name="kisqali_line">
+        <item>Select line</item>
+        <item>1st Line</item>
+        <item>2nd line</item>
+        <item>3rd line</item>
+    </string-array>
+
+    <string-array name="kisqali_ai_ful">
+        <item>Select Ai or Ful</item>
+        <item>Ai</item>
+        <item>Ful</item>
+    </string-array>
+
+    <string-array name="kisqali_dose">
+        <item>Select Dose</item>
+        <item>600</item>
+        <item>400</item>
+        <item>200</item>
+    </string-array>
+    <!-- End Palbociclib -->
+
 </resources>

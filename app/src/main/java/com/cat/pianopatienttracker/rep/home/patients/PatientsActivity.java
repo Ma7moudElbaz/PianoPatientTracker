@@ -17,6 +17,7 @@ import com.cat.pianopatienttracker.login.LoginActivity;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.network.Webservice;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddAfinitorActivity;
+import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddKisqaliActivity;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddPalbociclibActivity;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddPiqrayActivity;
 
@@ -88,6 +89,12 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
                     i.putExtra("accessToken", accessToken);
                     i.putExtra("countries", (Serializable) country_items);
                     startActivity(i);
+                } else if (brandName.toLowerCase().equals("kisqali")) {
+                    Intent i = new Intent(PatientsActivity.this, PatientAddKisqaliActivity.class);
+                    i.putExtra("brandId", brandId);
+                    i.putExtra("accessToken", accessToken);
+                    i.putExtra("countries", (Serializable) country_items);
+                    startActivity(i);
                 }
 
             }
@@ -108,7 +115,7 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
 
     public void DropUpdatePatients(Map<String, String> map) {
         dialog.show();
-        Webservice.getInstance().getApi().dropUpdateJakaviPatients(accessToken, map).enqueue(new Callback<ResponseBody>() {
+        Webservice.getInstance().getApi().dropUpdatePatients(accessToken, map).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
@@ -207,6 +214,7 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
     @Override
     public void onDropPatientClick(int patientId) {
         Map<String, String> map = new HashMap<>();
+        map.put("brand_id", String.valueOf(brandId));
         map.put("patient_id", String.valueOf(patientId));
         map.put("process", "dropped");
         DropUpdatePatients(map);

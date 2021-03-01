@@ -70,6 +70,10 @@ public interface ServiceInterface {
     @FormUrlEncoded
     Call<ResponseBody> dropUpdateJakaviPatients(@Header("Authorization") String auth,@FieldMap Map<String, String> map);
 
+    @POST("rep/change-patient-process")
+    @FormUrlEncoded
+    Call<ResponseBody> dropUpdatePatients(@Header("Authorization") String auth,@FieldMap Map<String, String> map);
+
 
     @POST("rep/add-bc-patient")
     @FormUrlEncoded
