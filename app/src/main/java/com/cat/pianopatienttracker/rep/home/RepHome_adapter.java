@@ -30,16 +30,18 @@ public class RepHome_adapter extends RecyclerView.Adapter<RepHome_adapter.ViewHo
     List<Country_item> country_items = new ArrayList<>();
     private List<RepHome_item> items;
     private String accessToken;
+    private int userId;
 
     private Context mContext;
 
     public RepHome_adapter(Context context, ArrayList<RepHome_item> items, String accessToken,
-                           List<Country_item> country_items) {
+                           List<Country_item> country_items,int userId) {
 
         this.mContext = context;
         this.items = items;
         this.accessToken = accessToken;
         this.country_items = country_items;
+        this.userId=userId;
     }
 
     @NonNull
@@ -77,6 +79,7 @@ public class RepHome_adapter extends RecyclerView.Adapter<RepHome_adapter.ViewHo
             public void onClick(View v) {
                 Intent i = new Intent(mContext, PatientsActivity.class);
                 i.putExtra("accessToken", accessToken);
+                i.putExtra("userId", userId);
                 i.putExtra("brandId", items.get(position).getId());
                 i.putExtra("brandName", items.get(position).getName());
                 i.putExtra("countries", (Serializable) country_items);

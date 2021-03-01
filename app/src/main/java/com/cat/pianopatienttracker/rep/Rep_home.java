@@ -100,6 +100,11 @@ public class Rep_home extends AppCompatActivity implements BottomNavigationView.
     }
 
     private String accessToken, userName, role, roleName;
+    int userId;
+
+    public int getUserId() {
+        return userId;
+    }
 
     public String getUserName() {
         return userName;
@@ -151,6 +156,7 @@ public class Rep_home extends AppCompatActivity implements BottomNavigationView.
         setContentView(R.layout.activity_rep_home);
 
         accessToken = getIntent().getStringExtra("accessToken");
+        userId = getIntent().getIntExtra("userId",0);
         userName = getIntent().getStringExtra("userName");
         role = getIntent().getStringExtra("role");
         roleName = getIntent().getStringExtra("roleName");

@@ -42,6 +42,7 @@ public class RepHomeFragment extends Fragment {
 
     private ProgressDialog dialog;
     String accessToken;
+    int userId;
 
     ArrayList<RepHome_item> repHome_list = new ArrayList<>();
     RepHome_adapter repHome_adapter;
@@ -59,6 +60,7 @@ public class RepHomeFragment extends Fragment {
         activity = (Rep_home) getActivity();
 
         accessToken = activity.getAccessToken();
+        userId = activity.getUserId();
 
         dialog = new ProgressDialog(getActivity());
         dialog.setMessage("Loading....");
@@ -132,7 +134,7 @@ public class RepHomeFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         repHomeRecycler.setLayoutManager(layoutManager);
 
-        repHome_adapter = new RepHome_adapter(getActivity(), repHome_list, accessToken, activity.getCountries_list());
+        repHome_adapter = new RepHome_adapter(getActivity(), repHome_list, accessToken, activity.getCountries_list(),userId);
         repHomeRecycler.setAdapter(repHome_adapter);
 
     }

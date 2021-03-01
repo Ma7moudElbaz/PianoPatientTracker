@@ -161,8 +161,6 @@
     <!-- End kisqali -->
 
 
-
-
     <!-- Start Abemaciclib -->
     <string-array name="abemaciclib_pos_pre">
         <item>Select PRE or POST or Brain Mets</item>
@@ -196,5 +194,31 @@
         <item>Ful</item>
     </string-array>
     <!-- End Abemaciclib -->
+
+
+    <!-- Start Tasigna -->
+    <string-array name="tasigna_lines">
+        <item>Select Line</item>
+        <item>1st line</item>
+        <item>2nd line</item>
+        <item>3rd line</item>
+    </string-array>
+
+    <string-array name="tasigna_managment">
+        <item>Current Management</item>
+        <item>Glivec</item>
+        <item>Imatinib Gx</item>
+        <item>Dasatinib Gx</item>
+        <item>Sprycel</item>
+        <item>Tasigna</item>
+        <item>Bosulif</item>
+    </string-array>
+
+    <string-array name="tasigna_doses">
+        <item>Select Dose</item>
+        <item>150</item>
+        <item>200</item>
+    </string-array>
+    <!-- End Tasigna -->
 
 </resources>

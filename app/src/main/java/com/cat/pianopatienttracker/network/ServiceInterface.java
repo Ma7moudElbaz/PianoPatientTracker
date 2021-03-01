@@ -71,6 +71,10 @@ public interface ServiceInterface {
     @FormUrlEncoded
     Call<ResponseBody> addBcPatient(@Header("Authorization") String auth,@FieldMap Map<String, String> map);
 
+    @POST("rep/add-tasigna-patient")
+    @FormUrlEncoded
+    Call<ResponseBody> addTasignaPatient(@Header("Authorization") String auth,@FieldMap Map<String, String> map);
+
     @POST("auth/login")
     @FormUrlEncoded
     Call<ResponseBody> login(@FieldMap Map<String, String> map);

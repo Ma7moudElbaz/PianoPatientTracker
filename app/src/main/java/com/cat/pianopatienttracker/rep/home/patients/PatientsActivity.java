@@ -21,6 +21,7 @@ import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddAfini
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddKisqaliActivity;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddPalbociclibActivity;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddPiqrayActivity;
+import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddTasignaActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -40,7 +41,7 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
 
     private ProgressDialog dialog;
     String accessToken, brandName;
-    int brandId;
+    int brandId,userId;
 
     ArrayList<Patient_item> patients_list = new ArrayList<>();
     Patients_adapter patients_adapter;
@@ -75,30 +76,42 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
                 if (brandName.toLowerCase().equals("piqray")) {
                     Intent i = new Intent(PatientsActivity.this, PatientAddPiqrayActivity.class);
                     i.putExtra("brandId", brandId);
+                    i.putExtra("userId", userId);
                     i.putExtra("accessToken", accessToken);
                     i.putExtra("countries", (Serializable) country_items);
                     startActivity(i);
                 } else if (brandName.toLowerCase().equals("afinitor")) {
                     Intent i = new Intent(PatientsActivity.this, PatientAddAfinitorActivity.class);
                     i.putExtra("brandId", brandId);
+                    i.putExtra("userId", userId);
                     i.putExtra("accessToken", accessToken);
                     i.putExtra("countries", (Serializable) country_items);
                     startActivity(i);
                 } else if (brandName.toLowerCase().equals("palbociclib")) {
                     Intent i = new Intent(PatientsActivity.this, PatientAddPalbociclibActivity.class);
                     i.putExtra("brandId", brandId);
+                    i.putExtra("userId", userId);
                     i.putExtra("accessToken", accessToken);
                     i.putExtra("countries", (Serializable) country_items);
                     startActivity(i);
                 } else if (brandName.toLowerCase().equals("kisqali")) {
                     Intent i = new Intent(PatientsActivity.this, PatientAddKisqaliActivity.class);
                     i.putExtra("brandId", brandId);
+                    i.putExtra("userId", userId);
                     i.putExtra("accessToken", accessToken);
                     i.putExtra("countries", (Serializable) country_items);
                     startActivity(i);
                 }else if (brandName.toLowerCase().equals("abemaciclib")) {
                     Intent i = new Intent(PatientsActivity.this, PatientAddAbemaciclibActivity.class);
                     i.putExtra("brandId", brandId);
+                    i.putExtra("userId", userId);
+                    i.putExtra("accessToken", accessToken);
+                    i.putExtra("countries", (Serializable) country_items);
+                    startActivity(i);
+                }else if (brandName.toLowerCase().equals("tasigna")) {
+                    Intent i = new Intent(PatientsActivity.this, PatientAddTasignaActivity.class);
+                    i.putExtra("brandId", brandId);
+                    i.putExtra("userId", userId);
                     i.putExtra("accessToken", accessToken);
                     i.putExtra("countries", (Serializable) country_items);
                     startActivity(i);
@@ -109,6 +122,7 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
 
         accessToken = getIntent().getStringExtra("accessToken");
         brandId = getIntent().getIntExtra("brandId", 0);
+        userId = getIntent().getIntExtra("userId", 0);
         brandName = getIntent().getStringExtra("brandName");
         country_items = (ArrayList<Country_item>) getIntent().getSerializableExtra("countries");
 
@@ -195,7 +209,11 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
                 final String doctor = currentObject.getString("doctor");
                 String dose ="";
                 if (currentObject.has("dose")){
-                     dose = currentObject.getString("dose") + " mg";
+                 String doseData = currentObject.getString("dose");
+                 if (!doseData.equals("null")){
+                     dose = doseData + " mg";
+                 }
+
                 }
 
                 patients_list.add(new Patient_item(id, hospital, sector, doctor, dose));

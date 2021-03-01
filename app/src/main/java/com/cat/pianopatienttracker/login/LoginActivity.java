@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading....");
         dialog.setCancelable(false);
-        
+
 //        accessToken = getIntent().getStringExtra("accessToken");
 //        getMyData(accessToken);
 
@@ -85,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             JSONObject userData = res.getJSONObject("data").getJSONObject("original").getJSONObject("data");
                             String userName = userData.getString("name");
+                            int userId = userData.getInt("id");
                             JSONArray roleArr = userData.getJSONArray("role");
                             String role = roleArr.getJSONObject(0).getString("name");
                             String roleName = roleArr.getJSONObject(0).getString("display_name");
@@ -104,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                                 i.putExtra("role", role);
                                 i.putExtra("roleName", roleName);
                                 i.putExtra("userName", userName);
+                                i.putExtra("userId", userId);
                                 startActivity(i);
                                 finish();
                             } else if (role.equals("flm")) {
@@ -149,6 +151,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         JSONObject userData = res.getJSONObject("data");
                         String userName = userData.getString("name");
+                        int userId = userData.getInt("id");
                         JSONArray roleArr = userData.getJSONArray("role");
                         String role = roleArr.getJSONObject(0).getString("name");
                         String roleName = roleArr.getJSONObject(0).getString("display_name");
@@ -168,6 +171,7 @@ public class LoginActivity extends AppCompatActivity {
                             i.putExtra("role", role);
                             i.putExtra("roleName", roleName);
                             i.putExtra("userName", userName);
+                            i.putExtra("userId", userId);
                             startActivity(i);
                             finish();
                         } else if (role.equals("flm")) {
