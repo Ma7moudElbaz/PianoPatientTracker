@@ -19,7 +19,8 @@ public class JsInterface {
     @JavascriptInterface
     public void ssoLoginCallBack(String tokenObj) throws JSONException {
         JSONObject object = new JSONObject(tokenObj);
-        String accessToken = "Bearer "+object.getString("access_token");
+//        String accessToken = "Bearer "+object.getString("access_token");
+        String accessToken = object.getString("access_token");
 
         Intent i = new Intent(mContext,LoginActivity.class);
         i.putExtra("accessToken",accessToken);

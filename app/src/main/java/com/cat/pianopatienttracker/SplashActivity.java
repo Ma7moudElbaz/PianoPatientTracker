@@ -21,6 +21,20 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                // This method will be executed once the timer is over
+//                // Start your app main activity
+////                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+//                Intent i = new Intent(getApplicationContext(), LoginSsoWebview.class);
+//                startActivity(i);
+//
+//                // close this activity
+//                finish();
+//            }
+//        }, SPLASH_TIME_OUT);
+
         if (RootDetectionUtil.isDeviceRooted()) {
             new AlertDialog.Builder(this)
                     .setTitle("Root Alert")
@@ -40,8 +54,8 @@ public class SplashActivity extends AppCompatActivity {
                 public void run() {
                     // This method will be executed once the timer is over
                     // Start your app main activity
-//                    Intent i = new Intent(getApplicationContext(), LoginActivity.class);
-                    Intent i = new Intent(getApplicationContext(), LoginSsoWebview.class);
+                    Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+//                    Intent i = new Intent(getApplicationContext(), LoginSsoWebview.class);
                     startActivity(i);
 
                     // close this activity

@@ -46,8 +46,9 @@ public class LoginActivity extends AppCompatActivity {
         dialog.setMessage("Loading....");
         dialog.setCancelable(false);
 
-        accessToken = getIntent().getStringExtra("accessToken");
-        getMyData(accessToken);
+        //sso
+//        accessToken = getIntent().getStringExtra("accessToken");
+//        getMyData(accessToken);
 
         loginBtn = findViewById(R.id.login_btn);
         email = findViewById(R.id.login_email);
