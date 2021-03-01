@@ -221,4 +221,70 @@
     </string-array>
     <!-- End Tasigna -->
 
+
+
+    <!-- Start Revolade -->
+    <string-array name="revolade_itp_saa">
+        <item>Select ITP or SAA</item>
+        <item>ITP</item>
+        <item>SAA</item>
+    </string-array>
+
+    <string-array name="revolade_itp_adult_ped">
+        <item>Select Adult/Ped</item>
+        <item>Adult</item>
+        <item>Pediatric</item>
+    </string-array>
+
+    <string-array name="revolade_itp_lines">
+        <item>Select Line</item>
+        <item>1st line</item>
+        <item>2nd line</item>
+        <item>3rd line</item>
+    </string-array>
+
+    <string-array name="revolade_saa_lines">
+        <item>Select Line</item>
+        <item>1st line</item>
+        <item>2nd line</item>
+    </string-array>
+
+
+    <string-array name="revolade_itp_managemnt_1st">
+        <item>Select Management</item>
+        <item>Newly Diagnosed</item>
+        <item>Steroid</item>
+        <item>IVIG</item>
+    </string-array>
+
+
+    <string-array name="revolade_itp_managemnt_2nd_3rd">
+        <item>Select Management</item>
+        <item>Nplate</item>
+        <item>Revolade</item>
+        <item>Avatrombopag</item>
+        <item>Rituximab</item>
+        <item>Splenoctomy</item>
+        <item>Fostamatinib</item>
+    </string-array>
+
+    <string-array name="revolade_saa_managemnt_1st_2nd">
+        <item>Select Management</item>
+        <item>HSCT</item>
+        <item>IST</item>
+        <item>IST + Revolade</item>
+    </string-array>
+
+
+    <string-array name="revolade_dose">
+        <item>Select Dose</item>
+        <item>Nplate</item>
+        <item>Revolade</item>
+        <item>Avatrombopag</item>
+        <item>Rituximab</item>
+        <item>Splenoctomy</item>
+        <item>Fostamatinib</item>
+    </string-array>
+    <!-- End Revolade -->
+
 </resources>
