@@ -36,9 +36,6 @@ public interface ServiceInterface {
     Call<ResponseBody> getDashboard(@Header("Authorization") String auth, @Query("country_id") int countryId, @Query("brand_id") int brandId);
 
     @GET("ranking-slice")
-    Call<ResponseBody> getRankingFlm(@Header("Authorization") String auth,@Query("brand_id") int brandId, @Query("type") String type,@QueryMap Map<String, String> filters);
-
-    @GET("ranking-slice")
     Call<ResponseBody> getRanking(@Header("Authorization") String auth, @Query("country_id") int countryId, @Query("brand_id") int brandId, @Query("type") String type);
 
     @GET("ranking-slice")
@@ -57,23 +54,15 @@ public interface ServiceInterface {
     @FormUrlEncoded
     Call<ResponseBody> confirRequest(@Header("Authorization") String auth ,@FieldMap Map<String, String> map);
 
-//    @GET("jakavi-patient?dropped=0&switched=0")
-//    Call<ResponseBody> getJakaviPatients(@Header("Authorization") String auth);
-
     @GET("get-patients")
     Call<ResponseBody> getPatients(@Header("Authorization") String auth,@Query("brand_id") int brandId);
 
     @GET("hospitals")
     Call<ResponseBody> getHospitals(@Header("Authorization") String auth,@Query("area_id") int areaId);
 
-    @POST("rep/change-jakavi-patient-process")
-    @FormUrlEncoded
-    Call<ResponseBody> dropUpdateJakaviPatients(@Header("Authorization") String auth,@FieldMap Map<String, String> map);
-
     @POST("rep/change-patient-process")
     @FormUrlEncoded
     Call<ResponseBody> dropUpdatePatients(@Header("Authorization") String auth,@FieldMap Map<String, String> map);
-
 
     @POST("rep/add-bc-patient")
     @FormUrlEncoded
@@ -82,6 +71,5 @@ public interface ServiceInterface {
     @POST("auth/login")
     @FormUrlEncoded
     Call<ResponseBody> login(@FieldMap Map<String, String> map);
-
 
 }
