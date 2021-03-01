@@ -158,6 +158,43 @@
         <item>400</item>
         <item>200</item>
     </string-array>
-    <!-- End Palbociclib -->
+    <!-- End kisqali -->
+
+
+
+
+    <!-- Start Abemaciclib -->
+    <string-array name="abemaciclib_pos_pre">
+        <item>Select PRE or POST or Brain Mets</item>
+        <item>PRE</item>
+        <item>POST</item>
+        <item>Brain Mets</item>
+    </string-array>
+
+    <string-array name="abemaciclib_medical_surgical">
+        <item>Select Medical or Surgical</item>
+        <item>Medical</item>
+        <item>Surgical</item>
+    </string-array>
+
+    <string-array name="abemaciclib_line">
+        <item>Select line</item>
+        <item>1st Line</item>
+        <item>2nd line</item>
+        <item>3rd line</item>
+    </string-array>
+
+    <string-array name="abemaciclib_mono_combo">
+        <item>Select mono or combo</item>
+        <item>Mono</item>
+        <item>Combo</item>
+    </string-array>
+
+    <string-array name="abemaciclib_ai_ful">
+        <item>Select Ai or Ful</item>
+        <item>Ai</item>
+        <item>Ful</item>
+    </string-array>
+    <!-- End Abemaciclib -->
 
 </resources>

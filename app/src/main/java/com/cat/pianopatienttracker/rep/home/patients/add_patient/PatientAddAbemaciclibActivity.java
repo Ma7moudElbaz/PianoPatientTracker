@@ -35,7 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PatientAddPalbociclibActivity extends AppCompatActivity {
+public class PatientAddAbemaciclibActivity extends AppCompatActivity {
 
     int brandId;
     String accessToken;
@@ -55,7 +55,7 @@ public class PatientAddPalbociclibActivity extends AppCompatActivity {
     ArrayList<Integer> doctorIdList = new ArrayList<>();
 
     Spinner citySpinner, hospitalSpinner, doctorSpinner;
-    Spinner prePostSpinner, medicalSurgicalSpinner, lineSpinner, aiFulSpinner;
+    Spinner prePostSpinner, medicalSurgicalSpinner, lineSpinner, monoComboSpinner, aiFulSpinner;
     ImageView back;
     TextView addBtn;
 
@@ -65,7 +65,7 @@ public class PatientAddPalbociclibActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_add_palbociclib);
+        setContentView(R.layout.activity_patient_add_abemaciclib);
 
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading....");
@@ -77,6 +77,7 @@ public class PatientAddPalbociclibActivity extends AppCompatActivity {
         prePostSpinner = findViewById(R.id.pre_post_spinner);
         medicalSurgicalSpinner = findViewById(R.id.medical_surgical_spinner);
         lineSpinner = findViewById(R.id.line_spinner);
+        monoComboSpinner = findViewById(R.id.mono_combo_spinner);
         aiFulSpinner = findViewById(R.id.ai_ful_spinner);
         back = findViewById(R.id.back);
         addBtn = findViewById(R.id.add_btn);
@@ -162,6 +163,22 @@ public class PatientAddPalbociclibActivity extends AppCompatActivity {
 
             }
         });
+
+        monoComboSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 2) {
+                    aiFulSpinner.setVisibility(View.VISIBLE);
+                } else {
+                    aiFulSpinner.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void getHospitalsDoctors(int areaId) {
@@ -204,6 +221,7 @@ public class PatientAddPalbociclibActivity extends AppCompatActivity {
 
 
         int selectedPrePost = prePostSpinner.getSelectedItemPosition();
+        int selectedMonoCombo = monoComboSpinner.getSelectedItemPosition();
         int selectedAiFul = aiFulSpinner.getSelectedItemPosition();
 
         int cityId = citiesIdList.get(selectedCityIndex);
@@ -222,20 +240,27 @@ public class PatientAddPalbociclibActivity extends AppCompatActivity {
         if (selectedPrePost == 1) {
             patientObj.put("is_pre", 1);
             patientObj.put("is_post", 0);
-            patientObj.put("pre_type", medicalSurgicalSpinner.getSelectedItem().toString().toLowerCase());
+            patientObj.put("is_brainmets", 0);
+            patientObj.put("pre_type", medicalSurgicalSpinner.getSelectedItem().toString());
         } else if (selectedPrePost == 2) {
             patientObj.put("is_pre", 0);
             patientObj.put("is_post", 1);
+            patientObj.put("is_brainmets", 0);
+        }else if (selectedPrePost == 3) {
+            patientObj.put("is_pre", 0);
+            patientObj.put("is_post", 0);
+            patientObj.put("is_brainmets", 1);
         }
-        if (selectedAiFul == 1) {
-            patientObj.put("is_ai", 1);
-            patientObj.put("is_ful", 0);
-            patientObj.put("current_management", "ai");
-        } else if (selectedAiFul == 2) {
-            patientObj.put("is_ai", 0);
-            patientObj.put("is_ful", 1);
-            patientObj.put("current_management", "ful");
+
+        if (selectedMonoCombo == 1){
+            patientObj.put("is_mono", 1);
+            patientObj.put("is_combo", 0);
+        }else if (selectedMonoCombo ==2){
+            patientObj.put("is_mono", 0);
+            patientObj.put("is_combo", 1);
+            patientObj.put("combo_type", medicalSurgicalSpinner.getSelectedItem().toString().toLowerCase());
         }
+
         patientObj.put("current_management_line", String.valueOf(lineSpinner.getSelectedItemPosition()));
 
         map.put("patient_details", patientObj.toString());
@@ -250,7 +275,7 @@ public class PatientAddPalbociclibActivity extends AppCompatActivity {
                 if (response.code() == 200) {
                     JSONObject responseObject = null;
                     try {
-                        Toast.makeText(PatientAddPalbociclibActivity.this, "data added successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PatientAddAbemaciclibActivity.this, "data added successfully", Toast.LENGTH_SHORT).show();
                         onBackPressed();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -378,10 +403,11 @@ public class PatientAddPalbociclibActivity extends AppCompatActivity {
 
         if (citySpinner.getSelectedItemPosition() == 0 || hospitalSpinner.getSelectedItemPosition() == 0
                 || doctorSpinner.getSelectedItemPosition() == 0 || lineSpinner.getSelectedItemPosition() == 0
-                || prePostSpinner.getSelectedItemPosition() == 0|| aiFulSpinner.getSelectedItemPosition() == 0) {
+                || prePostSpinner.getSelectedItemPosition() == 0|| monoComboSpinner.getSelectedItemPosition() == 0) {
             Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_SHORT).show();
             return false;
-        }else if(prePostSpinner.getSelectedItemPosition() == 1 && medicalSurgicalSpinner.getSelectedItemPosition() == 0){
+        }else if((prePostSpinner.getSelectedItemPosition() == 1 && medicalSurgicalSpinner.getSelectedItemPosition() == 0)
+        || (monoComboSpinner.getSelectedItemPosition() == 2 && medicalSurgicalSpinner.getSelectedItemPosition() == 0)){
             Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_SHORT).show();
             return false;
         } else {

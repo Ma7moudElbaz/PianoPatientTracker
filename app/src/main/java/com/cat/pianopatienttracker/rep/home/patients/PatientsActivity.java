@@ -16,6 +16,7 @@ import com.cat.pianopatienttracker.admin_manager_regional.shared.spinners.Countr
 import com.cat.pianopatienttracker.login.LoginActivity;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.network.Webservice;
+import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddAbemaciclibActivity;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddAfinitorActivity;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddKisqaliActivity;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddPalbociclibActivity;
@@ -91,6 +92,12 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
                     startActivity(i);
                 } else if (brandName.toLowerCase().equals("kisqali")) {
                     Intent i = new Intent(PatientsActivity.this, PatientAddKisqaliActivity.class);
+                    i.putExtra("brandId", brandId);
+                    i.putExtra("accessToken", accessToken);
+                    i.putExtra("countries", (Serializable) country_items);
+                    startActivity(i);
+                }else if (brandName.toLowerCase().equals("abemaciclib")) {
+                    Intent i = new Intent(PatientsActivity.this, PatientAddAbemaciclibActivity.class);
                     i.putExtra("brandId", brandId);
                     i.putExtra("accessToken", accessToken);
                     i.putExtra("countries", (Serializable) country_items);

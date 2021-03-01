@@ -224,7 +224,7 @@ public class PatientAddKisqaliActivity extends AppCompatActivity {
         if (selectedPrePost == 1) {
             patientObj.put("is_pre", 1);
             patientObj.put("is_post", 0);
-            patientObj.put("pre_type", medicalSurgicalSpinner.getSelectedItem().toString());
+            patientObj.put("pre_type", medicalSurgicalSpinner.getSelectedItem().toString().toLowerCase());
         } else if (selectedPrePost == 2) {
             patientObj.put("is_pre", 0);
             patientObj.put("is_post", 1);

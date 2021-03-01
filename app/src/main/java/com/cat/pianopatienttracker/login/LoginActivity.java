@@ -47,8 +47,9 @@ public class LoginActivity extends AppCompatActivity {
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading....");
         dialog.setCancelable(false);
-        accessToken = getIntent().getStringExtra("accessToken");
-        getMyData(accessToken);
+        
+//        accessToken = getIntent().getStringExtra("accessToken");
+//        getMyData(accessToken);
 
         loginBtn = findViewById(R.id.login_btn);
         email = findViewById(R.id.login_email);
