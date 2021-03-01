@@ -79,6 +79,14 @@ public interface ServiceInterface {
     @FormUrlEncoded
     Call<ResponseBody> addRevoladePatient(@Header("Authorization") String auth,@FieldMap Map<String, String> map);
 
+    @POST("rep/add-jakavi-patient")
+    @FormUrlEncoded
+    Call<ResponseBody> addJakaviPatient(@Header("Authorization") String auth,@FieldMap Map<String, String> map);
+
+    @POST("rep/add-adakview-patient")
+    @FormUrlEncoded
+    Call<ResponseBody> addAdakviewPatient(@Header("Authorization") String auth,@FieldMap Map<String, String> map);
+
     @POST("auth/login")
     @FormUrlEncoded
     Call<ResponseBody> login(@FieldMap Map<String, String> map);
