@@ -20,6 +20,9 @@ import retrofit2.http.QueryMap;
 
 public interface ServiceInterface {
 
+    @GET("auth/me")
+    Call<ResponseBody> getLoginData(@Header("Authorization") String auth);
+
     @GET("auth/metest")
     Call<ResponseBody> getMyProfile(@Header("Authorization") String auth);
 

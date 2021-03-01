@@ -27,6 +27,7 @@ import java.util.Map;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -36,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText email, password;
     private ProgressDialog dialog;
+    String accessToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading....");
         dialog.setCancelable(false);
+        accessToken = getIntent().getStringExtra("accessToken");
+        getMyData(accessToken);
 
         loginBtn = findViewById(R.id.login_btn);
         email = findViewById(R.id.login_email);
@@ -129,5 +133,68 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public void getMyData(String accessToken) {
+        dialog.show();
+        Webservice.getInstance().getApi().getLoginData(accessToken).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if (response.code() == 200) {
+                    JSONObject responseObject = null;
+                    try {
+                        JSONObject res = new JSONObject(response.body().string());
+
+                        JSONObject userData = res.getJSONObject("data");
+                        String userName = userData.getString("name");
+                        JSONArray roleArr = userData.getJSONArray("role");
+                        String role = roleArr.getJSONObject(0).getString("name");
+                        String roleName = roleArr.getJSONObject(0).getString("display_name");
+
+
+                        if (role.equals("manager") || role.equals("regional")) {
+                            Intent i = new Intent(getBaseContext(), Admin_home.class);
+                            i.putExtra("accessToken", accessToken);
+                            i.putExtra("role", role);
+                            i.putExtra("roleName", roleName);
+                            i.putExtra("userName", userName);
+                            startActivity(i);
+                            finish();
+                        } else if (role.equals("rep")) {
+                            Intent i = new Intent(getBaseContext(), Rep_home.class);
+                            i.putExtra("accessToken", accessToken);
+                            i.putExtra("role", role);
+                            i.putExtra("roleName", roleName);
+                            i.putExtra("userName", userName);
+                            startActivity(i);
+                            finish();
+                        } else if (role.equals("flm")) {
+                            Intent i = new Intent(getBaseContext(), Flm_home.class);
+                            i.putExtra("accessToken", accessToken);
+                            i.putExtra("role", role);
+                            i.putExtra("roleName", roleName);
+                            i.putExtra("userName", userName);
+                            startActivity(i);
+                            finish();
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else if (response.code() == 401) {
+                    Intent i = new Intent(getBaseContext(), LoginActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getBaseContext(), "Network error", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
     }
 }

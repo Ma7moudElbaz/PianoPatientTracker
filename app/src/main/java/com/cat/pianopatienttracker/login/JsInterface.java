@@ -1,6 +1,7 @@
 package com.cat.pianopatienttracker.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
@@ -12,13 +13,18 @@ public class JsInterface {
     Context mContext;
 
     JsInterface(Context mContext) {
-        mContext = mContext;
+        this.mContext = mContext;
     }
 
     @JavascriptInterface
     public void ssoLoginCallBack(String tokenObj) throws JSONException {
         JSONObject object = new JSONObject(tokenObj);
-//        String key = object.getString("access_token");
-        Log.e("TAG", tokenObj);
+        String accessToken = "Bearer "+object.getString("access_token");
+
+        Intent i = new Intent(mContext,LoginActivity.class);
+        i.putExtra("accessToken",accessToken);
+        mContext.startActivity(i);
+
+
     }
 }
