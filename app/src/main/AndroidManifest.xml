@@ -16,23 +16,45 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-        <activity android:name=".rep.home.patients.add_patient.PatientAddAdakveoActivity"></activity>
-        <activity android:name=".rep.home.patients.add_patient.PatientAddRevoladeActivity" />
-        <activity android:name=".rep.home.patients.add_patient.PatientAddJakaviActivity" />
-        <activity android:name=".rep.home.patients.add_patient.PatientAddTasignaActivity" />
-        <activity android:name=".rep.home.patients.add_patient.PatientAddAbemaciclibActivity" />
-        <activity android:name=".rep.home.patients.add_patient.PatientAddKisqaliActivity" />
-        <activity android:name=".rep.home.patients.add_patient.PatientAddPalbociclibActivity" />
-        <activity android:name=".rep.home.patients.add_patient.PatientAddAfinitorActivity" />
+        <activity
+            android:name=".rep.home.patients.add_patient.PatientAddAdakveoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".rep.home.patients.add_patient.PatientAddRevoladeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".rep.home.patients.add_patient.PatientAddJakaviActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".rep.home.patients.add_patient.PatientAddTasignaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".rep.home.patients.add_patient.PatientAddAbemaciclibActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".rep.home.patients.add_patient.PatientAddKisqaliActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".rep.home.patients.add_patient.PatientAddPalbociclibActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".rep.home.patients.add_patient.PatientAddAfinitorActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".login.LoginSsoWebview"
             android:screenOrientation="portrait" />
-        <activity android:name=".rep.home.patients.add_patient.PatientAddPiqrayActivity" />
-        <activity android:name=".rep.home.patients.PatientsActivity" />
-        <activity android:name=".flm.Flm_home" />
+        <activity
+            android:name=".rep.home.patients.add_patient.PatientAddPiqrayActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".rep.home.patients.PatientsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".flm.Flm_home"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".admin_manager_regional.progress.progress_flm.ProgressFlmActivity"
-            android:screenOrientation="portrait" /> <!-- Intent filter to capture System Browser or Authenticator calling back to our app after sign-in -->
+            android:screenOrientation="portrait" />
         <activity
             android:name=".rep.Rep_home"
             android:screenOrientation="portrait" />
