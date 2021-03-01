@@ -288,6 +288,79 @@
     <!-- End Revolade -->
 
 
+
+    <!-- Start Jakavi -->
+    <string-array name="jakavi_mpn_gvhd">
+        <item>Select MPN or GVHD</item>
+        <item>MPN</item>
+        <item>GVHD</item>
+    </string-array>
+
+    <string-array name="jakavi_mf_pv">
+        <item>Select MF/PV</item>
+        <item>MF</item>
+        <item>PV</item>
+    </string-array>
+
+    <string-array name="jakavi_acute_chronic">
+        <item>Select Acute/Chronic</item>
+        <item>Acute</item>
+        <item>Chronic</item>
+    </string-array>
+
+    <string-array name="jakavi_pv_lines">
+        <item>Select Line</item>
+        <item>1st line</item>
+        <item>2nd line</item>
+        <item>3rd line</item>
+    </string-array>
+
+    <string-array name="jakavi_mf_lines">
+        <item>Select Line</item>
+        <item>Low risk</item>
+        <item>Int1</item>
+        <item>Int2</item>
+        <item>High Risk</item>
+    </string-array>
+
+
+    <string-array name="jakavi_mf_managemnt">
+        <item>Select Management</item>
+        <item>Newly Diagnosed</item>
+        <item>Wait &amp; Watch</item>
+        <item>HU</item>
+        <item>Other</item>
+        <item>Jakavi</item>
+    </string-array>
+
+
+    <string-array name="jakavi_pv_managemnt">
+        <item>Select Management</item>
+        <item>Wait &amp; Watch</item>
+        <item>HU</item>
+        <item>IFN</item>
+        <item>Other</item>
+        <item>Jakavi</item>
+    </string-array>
+
+
+    <string-array name="jakavi_acute_chronic_managemnt">
+        <item>Select Management</item>
+        <item>Steroid</item>
+        <item>Jakavi</item>
+    </string-array>
+
+
+    <string-array name="jakavi_dose">
+        <item>Select Dose</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+    </string-array>
+    <!-- End Jakavi -->
+
+
     <string-array name="empty_arr">
     </string-array>
 

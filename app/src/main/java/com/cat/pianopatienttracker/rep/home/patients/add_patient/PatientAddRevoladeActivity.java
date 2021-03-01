@@ -38,6 +38,7 @@ import retrofit2.Response;
 
 public class PatientAddRevoladeActivity extends AppCompatActivity {
 
+
     int brandId, userId;
     String accessToken;
 
@@ -496,6 +497,5 @@ public class PatientAddRevoladeActivity extends AppCompatActivity {
             return true;
         }
     }
-
 
 }
