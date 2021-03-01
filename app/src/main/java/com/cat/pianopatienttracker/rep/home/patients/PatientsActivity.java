@@ -17,10 +17,13 @@ import com.cat.pianopatienttracker.login.LoginActivity;
 import com.cat.pianopatienttracker.R;
 import com.cat.pianopatienttracker.network.Webservice;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddAbemaciclibActivity;
+import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddAdakveoActivity;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddAfinitorActivity;
+import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddJakaviActivity;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddKisqaliActivity;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddPalbociclibActivity;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddPiqrayActivity;
+import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddRevoladeActivity;
 import com.cat.pianopatienttracker.rep.home.patients.add_patient.PatientAddTasignaActivity;
 
 import org.json.JSONArray;
@@ -115,6 +118,27 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
                     i.putExtra("accessToken", accessToken);
                     i.putExtra("countries", (Serializable) country_items);
                     startActivity(i);
+                }else if (brandName.toLowerCase().equals("revolade")) {
+                    Intent i = new Intent(PatientsActivity.this, PatientAddRevoladeActivity.class);
+                    i.putExtra("brandId", brandId);
+                    i.putExtra("userId", userId);
+                    i.putExtra("accessToken", accessToken);
+                    i.putExtra("countries", (Serializable) country_items);
+                    startActivity(i);
+                }else if (brandName.toLowerCase().equals("adakveo")) {
+                    Intent i = new Intent(PatientsActivity.this, PatientAddAdakveoActivity.class);
+                    i.putExtra("brandId", brandId);
+                    i.putExtra("userId", userId);
+                    i.putExtra("accessToken", accessToken);
+                    i.putExtra("countries", (Serializable) country_items);
+                    startActivity(i);
+                }else if (brandName.toLowerCase().equals("jakavi")) {
+                    Intent i = new Intent(PatientsActivity.this, PatientAddJakaviActivity.class);
+                    i.putExtra("brandId", brandId);
+                    i.putExtra("userId", userId);
+                    i.putExtra("accessToken", accessToken);
+                    i.putExtra("countries", (Serializable) country_items);
+                    startActivity(i);
                 }
 
             }
@@ -144,7 +168,7 @@ public class PatientsActivity extends AppCompatActivity implements Patients_adap
                     JSONObject responseObject = null;
                     try {
                         responseObject = new JSONObject(response.body().string());
-                        Toast.makeText(PatientsActivity.this, "Done Successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PatientsActivity.this, "Done Successfully ,waiting for your manager approval", Toast.LENGTH_SHORT).show();
 
                     } catch (Exception e) {
                         e.printStackTrace();

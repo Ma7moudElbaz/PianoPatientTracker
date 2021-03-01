@@ -261,8 +261,8 @@
     <string-array name="revolade_itp_managemnt_2nd_3rd">
         <item>Select Management</item>
         <item>Nplate</item>
-        <item>Revolade</item>
         <item>Avatrombopag</item>
+        <item>Revolade</item>
         <item>Rituximab</item>
         <item>Splenoctomy</item>
         <item>Fostamatinib</item>
@@ -278,13 +278,17 @@
 
     <string-array name="revolade_dose">
         <item>Select Dose</item>
-        <item>Nplate</item>
-        <item>Revolade</item>
-        <item>Avatrombopag</item>
-        <item>Rituximab</item>
-        <item>Splenoctomy</item>
-        <item>Fostamatinib</item>
+        <item>PFOS 12.5</item>
+        <item>25</item>
+        <item>50</item>
+        <item>75</item>
+        <item>100</item>
+        <item>150</item>
     </string-array>
     <!-- End Revolade -->
+
+
+    <string-array name="empty_arr">
+    </string-array>
 
 </resources>
