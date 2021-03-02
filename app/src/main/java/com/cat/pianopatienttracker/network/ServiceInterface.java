@@ -41,6 +41,9 @@ public interface ServiceInterface {
     @GET("ranking-slice")
     Call<ResponseBody> getRanking(@Header("Authorization") String auth, @Query("country_id") int countryId, @Query("brand_id") int brandId, @Query("type") String type);
 
+    @GET("ranking-slice-details")
+    Call<ResponseBody> getRankingDetails(@Header("Authorization") String auth, @QueryMap Map<String, String> filters);
+
     @GET("ranking-slice")
     Call<ResponseBody> getRankingFiltered(@Header("Authorization") String auth, @Query("country_id") int countryId, @Query("brand_id") int brandId, @Query("type") String type,@QueryMap Map<String, String> filters);
 

@@ -45,7 +45,7 @@ import retrofit2.Response;
 
 public class RankingFragment extends Fragment implements BottomSheet_country_brand_fragment.ItemClickListener
         , BottomSheet_period_fragment.ItemClickListener, BottomSheet_filter_rep_fragment.ItemClickListener
-, BottomSheet_filter_doctors_fragment.ItemClickListener,BottomSheet_filter_hospitals_fragment.ItemClickListener {
+        , BottomSheet_filter_doctors_fragment.ItemClickListener, BottomSheet_filter_hospitals_fragment.ItemClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,7 +77,7 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
 
     public void showHospitalsFilterBottomSheet() {
         BottomSheet_filter_hospitals_fragment bottomSheet =
-                new BottomSheet_filter_hospitals_fragment(activity.getCountries_list(), activity.getSelectedCountryIndex(),activity.getSectors_list());
+                new BottomSheet_filter_hospitals_fragment(activity.getCountries_list(), activity.getSelectedCountryIndex(), activity.getSectors_list());
         bottomSheet.setTargetFragment(this, 300);
         bottomSheet.show(getFragmentManager(), "hospitals");
     }
@@ -118,7 +118,7 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
 
 
     RelativeLayout selectCountryBrand_cont;
-    ImageView selectedCountry_img,selectedProduct_img;
+    ImageView selectedCountry_img, selectedProduct_img;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -187,11 +187,11 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
         filters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selectedTab.equals("reps")){
+                if (selectedTab.equals("reps")) {
                     showRepsFilterBottomSheet();
-                }else if (selectedTab.equals("doctors")){
+                } else if (selectedTab.equals("doctors")) {
                     showDoctorsFilterBottomSheet();
-                }else if (selectedTab.equals("hospitals")){
+                } else if (selectedTab.equals("hospitals")) {
                     showHospitalsFilterBottomSheet();
                 }
             }
@@ -430,7 +430,7 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
         filters.setVisibility(View.VISIBLE);
         selectedTab = "reps";
 
-        ranking_reps_adapter = new Ranking_reps_adapter(getActivity(), ranking_reps_list);
+        ranking_reps_adapter = new Ranking_reps_adapter(getActivity(), ranking_reps_list, accessToken, activity.getSelectedCountryId(), activity.getSelectedBrandId());
         rankingRecycler.setAdapter(ranking_reps_adapter);
     }
 
@@ -443,7 +443,7 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
         filters.setVisibility(View.GONE);
         selectedTab = "sectors";
 
-        ranking_sectors_adapter = new Ranking_sectors_adapter(getActivity(), ranking_sectors_list);
+        ranking_sectors_adapter = new Ranking_sectors_adapter(getActivity(), ranking_sectors_list, accessToken, activity.getSelectedCountryId(), activity.getSelectedBrandId());
         rankingRecycler.setAdapter(ranking_sectors_adapter);
     }
 
@@ -459,9 +459,6 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
         ranking_doctors_adapter = new Ranking_doctors_adapter(getActivity(), ranking_doctors_list);
         rankingRecycler.setAdapter(ranking_doctors_adapter);
     }
-
-
-
 
 
     @Override
@@ -481,17 +478,17 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
 
     @Override
     public void repFilterOnItemClick(Map<String, String> filterMap) {
-        getRankingFiltered(selectedTab,filterMap);
+        getRankingFiltered(selectedTab, filterMap);
     }
 
     @Override
     public void doctorsFilterOnItemClick(Map<String, String> filterMap) {
-        getRankingFiltered(selectedTab,filterMap);
+        getRankingFiltered(selectedTab, filterMap);
     }
 
     @Override
     public void hospitalsFilterOnItemClick(Map<String, String> filterMap) {
-        getRankingFiltered(selectedTab,filterMap);
+        getRankingFiltered(selectedTab, filterMap);
     }
 
     @Override
@@ -506,10 +503,9 @@ public class RankingFragment extends Fragment implements BottomSheet_country_bra
     }
 
 
-
     void setCountryBrandImage() {
-        String countryImageName = "round_"+activity.getSelectedCountryName().toLowerCase();
-        String brandImageName = "round_"+activity.getSelectedBrandName().toLowerCase();
+        String countryImageName = "round_" + activity.getSelectedCountryName().toLowerCase();
+        String brandImageName = "round_" + activity.getSelectedBrandName().toLowerCase();
         int countryImgDrawable = getResources().getIdentifier(countryImageName, "drawable", activity.getPackageName());
         int brandImgDrawable = getResources().getIdentifier(brandImageName, "drawable", activity.getPackageName());
         Glide.with(this).load(countryImgDrawable).into(selectedCountry_img);

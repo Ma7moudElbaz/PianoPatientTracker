@@ -439,7 +439,7 @@ public class RepRankingFragment extends Fragment implements BottomSheet_country_
         filters.setVisibility(View.VISIBLE);
         selectedTab = "reps";
 
-        ranking_reps_adapter = new Ranking_reps_adapter(getActivity(), ranking_reps_list);
+        ranking_reps_adapter = new Ranking_reps_adapter(getActivity(), ranking_reps_list, accessToken, activity.getSelectedCountryId(), activity.getSelectedBrandId());
         rankingRecycler.setAdapter(ranking_reps_adapter);
     }
 
@@ -452,7 +452,7 @@ public class RepRankingFragment extends Fragment implements BottomSheet_country_
         filters.setVisibility(View.GONE);
         selectedTab = "sectors";
 
-        ranking_sectors_adapter = new Ranking_sectors_adapter(getActivity(), ranking_sectors_list);
+        ranking_sectors_adapter = new Ranking_sectors_adapter(getActivity(), ranking_sectors_list, accessToken, activity.getSelectedCountryId(), activity.getSelectedBrandId());
         rankingRecycler.setAdapter(ranking_sectors_adapter);
     }
 
