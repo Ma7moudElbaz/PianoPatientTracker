@@ -62,7 +62,7 @@ public class Ranking_sectors_adapter extends RecyclerView.Adapter<Ranking_sector
                 i.putExtra("countryId",selectedCountryId);
                 i.putExtra("brandId",selectedBrandId);
                 i.putExtra("name",items.get(position).getName());
-                i.putExtra("detailsType","reps");
+                i.putExtra("detailsType","sectors");
                 i.putExtra("itemId",items.get(position).getId());
                 mContext.startActivity(i);
             }

@@ -52,6 +52,7 @@ public class SplashActivity extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), LoginActivity.class);
 //                Intent i = new Intent(getApplicationContext(), LoginSsoWebview.class);
                 startActivity(i);
+                finish();
             }
         }, SPLASH_TIME_OUT);
     }

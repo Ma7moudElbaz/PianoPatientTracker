@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -51,6 +52,7 @@ public class RankingDetails extends AppCompatActivity {
 
 
     TextView name_txt;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +68,17 @@ public class RankingDetails extends AppCompatActivity {
         selectedBrandId = getIntent().getIntExtra("brandId",0);
         selectedItemId = getIntent().getIntExtra("itemId",0);
 
+        back = findViewById(R.id.back);
         name_txt = findViewById(R.id.name_txt);
 
         name_txt.setText(name);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
 
         dialog = new ProgressDialog(RankingDetails.this);
@@ -147,7 +157,7 @@ public class RankingDetails extends AppCompatActivity {
     }
 
     private void initRankingRecyclerView() {
-        rankingRecycler = findViewById(R.id.ranking_recycler);
+        rankingRecycler = findViewById(R.id.recycler);
 //        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         LinearLayoutManager layoutManager = new LinearLayoutManager(RankingDetails.this, LinearLayoutManager.VERTICAL, false);
         rankingRecycler.setLayoutManager(layoutManager);
