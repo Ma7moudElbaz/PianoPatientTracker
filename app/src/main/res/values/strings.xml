@@ -363,7 +363,7 @@
 
 
     <!-- Start Adakveo -->
-    <string-array name="adakveo_dose">
+    <string-array name="adakveo_voc">
         <item>Select VOC</item>
         <item>0</item>
         <item>1–3</item>
@@ -374,7 +374,6 @@
 
 
     <string-array name="adakveo_comorbidities">
-        <item>Select Comorbidities</item>
         <item>Neurological Complications</item>
         <item>Hepatobiliary Complications</item>
         <item>Renal Complications</item>
@@ -389,7 +388,6 @@
 
 
     <string-array name="adakveo_management">
-        <item>Select Management</item>
         <item>Analgesics</item>
         <item>HU</item>
         <item>Opioid</item>
@@ -403,7 +401,8 @@
     </string-array>
 
 
-    <string-array name="adakveo_statues">
+    <string-array name="adakveo_status">
+        <item>Select Status</item>
         <item>Initiated</item>
         <item>In progress</item>
         <item>Completed</item>
