@@ -1,4 +1,4 @@
-package com.cat.pianopatienttracker.admin_manager_regional.ranking.rankin_details;
+package com.cat.pianopatienttracker.admin_manager_regional.ranking.ranking_details;
 
 import androidx.appcompat.app.AppCompatActivity;
 

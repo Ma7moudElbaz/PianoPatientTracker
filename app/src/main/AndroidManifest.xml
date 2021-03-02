@@ -17,7 +17,7 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-        <activity android:name=".admin_manager_regional.ranking.rankin_details.RankingDetails"></activity>
+        <activity android:name=".admin_manager_regional.ranking.ranking_details.RankingDetails"></activity>
         <activity
             android:name=".rep.home.patients.add_patient.PatientAddAdakveoActivity"
             android:screenOrientation="portrait" />

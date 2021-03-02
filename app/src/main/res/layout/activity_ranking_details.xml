@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".admin_manager_regional.ranking.rankin_details.RankingDetails">
+    tools:context=".admin_manager_regional.ranking.ranking_details.RankingDetails">
 
 
     <LinearLayout
