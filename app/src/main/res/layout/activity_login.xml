@@ -51,7 +51,7 @@
                     android:paddingTop="10dp"
                     android:paddingEnd="10dp"
                     android:paddingBottom="5dp"
-                    android:text="rep@gmail.com"
+                    android:text="manager@gmail.com"
                     android:textAlignment="viewStart" />
 
                 <View

@@ -210,7 +210,7 @@
                     app:cardElevation="0dp">
 
                     <Spinner
-                        android:id="@+id/status_spinner"
+                        android:id="@+id/adakveo_status_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:dropDownWidth="match_parent"
@@ -219,8 +219,31 @@
                         android:paddingTop="10dp"
                         android:paddingEnd="5dp"
                         android:paddingBottom="10dp"
-                        android:spinnerMode="dropdown"
-                        android:visibility="gone"/>
+                        android:spinnerMode="dropdown"/>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    app:cardBackgroundColor="@color/more_light_gray"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="0dp">
+
+                    <Spinner
+                        android:id="@+id/dpo_status_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:dropDownWidth="match_parent"
+                        android:entries="@array/dpo_status"
+                        android:paddingStart="5dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="10dp"
+                        android:spinnerMode="dropdown"/>
 
                 </androidx.cardview.widget.CardView>
 

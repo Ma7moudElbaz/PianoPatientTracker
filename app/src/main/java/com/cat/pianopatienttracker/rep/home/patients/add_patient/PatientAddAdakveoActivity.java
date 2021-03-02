@@ -67,7 +67,7 @@ public class PatientAddAdakveoActivity extends AppCompatActivity {
     ArrayList<String> doctorsList = new ArrayList<>();
     ArrayList<Integer> doctorIdList = new ArrayList<>();
 
-    Spinner citySpinner, hospitalSpinner, doctorSpinner, vocSpinner, statusSpinner;
+    Spinner citySpinner, hospitalSpinner, doctorSpinner, vocSpinner, adakveoStatusSpinner, dpoStatusSpinner;
     MultiSpinnerSearch comorbiditiesSpinner, managementSpinner;
     ImageView back;
     TextView addBtn;
@@ -92,7 +92,8 @@ public class PatientAddAdakveoActivity extends AppCompatActivity {
         managementSpinner = findViewById(R.id.management_spinner);
         initManagementSpinner();
         vocSpinner = findViewById(R.id.voc_spinner);
-        statusSpinner = findViewById(R.id.status_spinner);
+        adakveoStatusSpinner = findViewById(R.id.adakveo_status_spinner);
+        dpoStatusSpinner = findViewById(R.id.dpo_status_spinner);
         back = findViewById(R.id.back);
         addBtn = findViewById(R.id.add_btn);
 
@@ -216,7 +217,7 @@ public class PatientAddAdakveoActivity extends AppCompatActivity {
             @Override
             public void onItemsSelected(List<KeyPairBoolData> items) {
                 int selectedItemsCount = 0;
-                comorbiditiesItems ="";
+                comorbiditiesItems = "";
                 for (int i = 0; i < items.size(); i++) {
                     if (items.get(i).isSelected()) {
                         selectedItemsCount++;
@@ -256,21 +257,36 @@ public class PatientAddAdakveoActivity extends AppCompatActivity {
                 int selectedItemsCount = 0;
                 managementItems = "";
                 isAdakveoSelected = false;
+                isVoxelatorSelected = false;
                 for (int i = 0; i < items.size(); i++) {
                     if (items.get(i).isSelected()) {
                         selectedItemsCount++;
                         managementItems = managementItems + items.get(i).getName() + ",";
-                        if (items.get(i).getName().toLowerCase().equals("adakveo")){
+                        if (items.get(i).getName().toLowerCase().equals("adakveo")) {
                             isAdakveoSelected = true;
+                        }
+                        if (items.get(i).getName().toLowerCase().equals("voxelotor")) {
+                            isVoxelatorSelected = true;
                         }
                         Log.i("TAG", managementItems);
                     }
                 }
 
-                if (isAdakveoSelected){
-                    statusSpinner.setVisibility(View.VISIBLE);
-                }else {
-                    statusSpinner.setVisibility(View.GONE);
+                if (isAdakveoSelected) {
+                    adakveoStatusSpinner.setVisibility(View.VISIBLE);
+                    dpoStatusSpinner.setVisibility(View.VISIBLE);
+                    adakveoStatusSpinner.setSelection(0);
+                    dpoStatusSpinner.setSelection(0);
+                } else if (isVoxelatorSelected) {
+                    adakveoStatusSpinner.setVisibility(View.VISIBLE);
+                    dpoStatusSpinner.setVisibility(View.GONE);
+                    adakveoStatusSpinner.setSelection(0);
+                    dpoStatusSpinner.setSelection(0);
+                } else {
+                    adakveoStatusSpinner.setVisibility(View.GONE);
+                    dpoStatusSpinner.setVisibility(View.GONE);
+                    adakveoStatusSpinner.setSelection(0);
+                    dpoStatusSpinner.setSelection(0);
                 }
 
                 if (selectedItemsCount == 0) {
@@ -302,25 +318,28 @@ public class PatientAddAdakveoActivity extends AppCompatActivity {
         map.put("voc_freq", vocSpinner.getSelectedItem().toString());
         map.put("comorbidities", comorbiditiesSpinner.getSelectedItem().toString().toLowerCase());
 
-        if (isAdakveoSelected){
+        if (isAdakveoSelected && isVoxelatorSelected) {
             map.put("is_adakveo", "1");
-            map.put("dpo_status", "1");
-            map.put("adakveo_status", "1");
-        }else if (!isAdakveoSelected){
-            map.put("is_adakveo", "0");
-        }
-
-        if (isVoxelatorSelected){
             map.put("is_voxelator", "1");
-        }else if (!isVoxelatorSelected){
-            map.put("is_voxelator", "0");
+            map.put("adakveo_status", adakveoStatusSpinner.getSelectedItem().toString().toLowerCase());
+            map.put("dpo_status", dpoStatusSpinner.getSelectedItem().toString().toLowerCase());
+        } else {
+            if (isAdakveoSelected) {
+                map.put("is_adakveo", "1");
+                map.put("is_voxelator", "0");
+                map.put("adakveo_status", adakveoStatusSpinner.getSelectedItem().toString().toLowerCase());
+                map.put("dpo_status", dpoStatusSpinner.getSelectedItem().toString().toLowerCase());
+            } else if (isVoxelatorSelected) {
+                map.put("is_adakveo", "0");
+                map.put("is_voxelator", "1");
+                map.put("adakveo_status", adakveoStatusSpinner.getSelectedItem().toString().toLowerCase());
+            } else {
+                map.put("is_adakveo", "0");
+                map.put("is_voxelator", "0");
+            }
         }
 
-
-        map.put("current_management_line", managementSpinner.getSelectedItem().toString().toLowerCase());
         map.put("current_management", managementSpinner.getSelectedItem().toString().toLowerCase());
-
-
 
 
         Log.e("TAG", map.toString());
@@ -462,11 +481,13 @@ public class PatientAddAdakveoActivity extends AppCompatActivity {
                 || doctorSpinner.getSelectedItemPosition() == 0 || vocSpinner.getSelectedItemPosition() == 0 || isComorbiditiesEmpty || isManagementEmpty) {
             Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_SHORT).show();
             return false;
-        }else if (isAdakveoSelected && statusSpinner.getSelectedItemPosition() == 0){
+        } else if (isAdakveoSelected && adakveoStatusSpinner.getSelectedItemPosition() == 0 && dpoStatusSpinner.getSelectedItemPosition() == 0) {
             Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_SHORT).show();
             return false;
-        }
-        else {
+        } else if (isVoxelatorSelected && adakveoStatusSpinner.getSelectedItemPosition() == 0) {
+            Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
             return true;
         }
     }

@@ -222,7 +222,6 @@
     <!-- End Tasigna -->
 
 
-
     <!-- Start Revolade -->
     <string-array name="revolade_itp_saa">
         <item>Select ITP or SAA</item>
@@ -286,7 +285,6 @@
         <item>150</item>
     </string-array>
     <!-- End Revolade -->
-
 
 
     <!-- Start Jakavi -->
@@ -361,7 +359,6 @@
     <!-- End Jakavi -->
 
 
-
     <!-- Start Adakveo -->
     <string-array name="adakveo_voc">
         <item>Select VOC</item>
@@ -402,7 +399,15 @@
 
 
     <string-array name="adakveo_status">
-        <item>Select Status</item>
+        <item>Adakveo Status</item>
+        <item>Initiated</item>
+        <item>In progress</item>
+        <item>Completed</item>
+    </string-array>
+
+
+    <string-array name="dpo_status">
+        <item>DPO Status</item>
         <item>Initiated</item>
         <item>In progress</item>
         <item>Completed</item>
@@ -411,7 +416,6 @@
     <!-- End Adakveo -->
 
 
-    <string-array name="empty_arr">
-    </string-array>
+    <string-array name="empty_arr"></string-array>
 
 </resources>
