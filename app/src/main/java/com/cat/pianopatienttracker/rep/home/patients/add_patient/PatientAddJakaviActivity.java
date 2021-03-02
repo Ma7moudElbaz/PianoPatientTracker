@@ -155,7 +155,7 @@ public class PatientAddJakaviActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 initMpnGvhdChildSpinner(position);
-                initLineSpinner(position,mpnGvhdChildSpinner.getSelectedItemPosition());
+                initLineSpinner(position, mpnGvhdChildSpinner.getSelectedItemPosition());
                 initManagement(position, lineSpinner.getSelectedItemPosition());
 
             }
@@ -263,11 +263,11 @@ public class PatientAddJakaviActivity extends AppCompatActivity {
             map.put("mpn_type", mpnGvhdChildSpinner.getSelectedItem().toString().toLowerCase());
             if (mpnGvhdChildSpinner.getSelectedItemPosition() == 1) {
                 String mfType = lineSpinner.getSelectedItem().toString().toLowerCase();
-                if (mfType.equals("low risk")){
+                if (mfType.equals("low risk")) {
                     map.put("mf_type", "low_risk");
-                }else if (mfType.equals("high Risk")){
+                } else if (mfType.equals("high Risk")) {
                     map.put("mf_type", "high_Risk");
-                }else {
+                } else {
                     map.put("mf_type", mfType);
                 }
 
@@ -282,13 +282,13 @@ public class PatientAddJakaviActivity extends AppCompatActivity {
         String management = managementSpinner.getSelectedItem().toString().toLowerCase();
         if (management.equals("newly diagnosed")) {
             map.put("current_management", "newly_diagnosed");
-        }else if (management.equals("wait &amp; watch")) {
+        } else if (management.equals("wait &amp; watch")) {
             map.put("current_management", "wait_watch");
-        }else {
+        } else {
             map.put("current_management", management);
         }
 
-        if (management.equals("jakavi")){
+        if (management.equals("jakavi")) {
             map.put("dose", doseSpinner.getSelectedItem().toString());
         }
 
@@ -463,8 +463,7 @@ public class PatientAddJakaviActivity extends AppCompatActivity {
                 arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.empty_arr));
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 lineSpinner.setAdapter(arrayAdapter);
-            }
-            else if (mpnGvhdChildPosition == 1) {
+            } else if (mpnGvhdChildPosition == 1) {
                 lineSpinner.setVisibility(View.VISIBLE);
                 arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.jakavi_mf_lines));
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -515,22 +514,17 @@ public class PatientAddJakaviActivity extends AppCompatActivity {
 
 
     private boolean validateFields() {
-//        if (citySpinner.getSelectedItemPosition() == 0 || hospitalSpinner.getSelectedItemPosition() == 0
-//                || doctorSpinner.getSelectedItemPosition() == 0 || itpSaaSpinner.getSelectedItemPosition() == 0
-//                || lineSpinner.getSelectedItemPosition() == 0 || managementSpinner.getSelectedItemPosition() == 0) {
-//            Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_SHORT).show();
-//            return false;
-//        } else if (itpSaaSpinner.getSelectedItemPosition() == 1 && adultPedSpinner.getSelectedItemPosition() == 0) {
-//            Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_SHORT).show();
-//            return false;
-//        } else if (itpSaaSpinner.getSelectedItemPosition() == 1 && lineSpinner.getSelectedItemPosition() > 1
-//                && managementSpinner.getSelectedItemPosition() == 3 && doseSpinner.getSelectedItemPosition() == 0) {
-//            Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_SHORT).show();
-//            return false;
-//        } else {
-//            return true;
-//        }
-        return true;
+        if (citySpinner.getSelectedItemPosition() == 0 || hospitalSpinner.getSelectedItemPosition() == 0
+                || doctorSpinner.getSelectedItemPosition() == 0 || mpnGvhdSpinner.getSelectedItemPosition() == 0
+                || mpnGvhdChildSpinner.getSelectedItemPosition() == 0 || managementSpinner.getSelectedItemPosition() == 0) {
+            Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (managementSpinner.getSelectedItem().toString().toLowerCase().equals("jakavi") && doseSpinner.getSelectedItemPosition() == 0) {
+            Toast.makeText(this, "Please Fill all fields", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
     }
 
 

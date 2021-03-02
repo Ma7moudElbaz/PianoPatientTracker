@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+
+    <!-- Official Android N API -->
+    <domain-config>
+        <domain includeSubdomains="true">piano-tracker.net</domain>
+        <pin-set>
+            <pin digest="SHA-256">Maisuy/Ckl47BSBJLJXV0329GyhRsluOsShtTOSe/Jg=</pin>
+            <!-- backup pin -->
+            <pin digest="SHA-256">P1yz4S40R5VZb5TYAvixsrm471Bcx27BdGK4oOepz+M=</pin>
+        </pin-set>
+
+    </domain-config>
+
+</network-security-config>

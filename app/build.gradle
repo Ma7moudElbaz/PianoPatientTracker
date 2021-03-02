@@ -80,6 +80,13 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
+    //multi select spinner
+    implementation 'com.github.pratikbutani:MultiSelectSpinner:f47c0dadea'
+
+
+
+
+    implementation 'androidx.preference:preference-ktx:1.1.1'
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

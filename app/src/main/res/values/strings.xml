@@ -361,6 +361,57 @@
     <!-- End Jakavi -->
 
 
+
+    <!-- Start Adakveo -->
+    <string-array name="adakveo_dose">
+        <item>Select VOC</item>
+        <item>0</item>
+        <item>1–3</item>
+        <item>3–4</item>
+        <item>5–10</item>
+        <item>+10</item>
+    </string-array>
+
+
+    <string-array name="adakveo_comorbidities">
+        <item>Select Comorbidities</item>
+        <item>Neurological Complications</item>
+        <item>Hepatobiliary Complications</item>
+        <item>Renal Complications</item>
+        <item>Pulmounary Hypertension</item>
+        <item>Priapism</item>
+        <item>ACS</item>
+        <item>Spleen Complications</item>
+        <item>Retinopathy</item>
+        <item>AVN</item>
+        <item>Others</item>
+    </string-array>
+
+
+    <string-array name="adakveo_management">
+        <item>Select Management</item>
+        <item>Analgesics</item>
+        <item>HU</item>
+        <item>Opioid</item>
+        <item>Folic acid</item>
+        <item>Blood transfusion</item>
+        <item>HO BMT</item>
+        <item>Others</item>
+        <item>L-glutamine</item>
+        <item>Voxelotor</item>
+        <item>adakveo</item>
+    </string-array>
+
+
+    <string-array name="adakveo_statues">
+        <item>Initiated</item>
+        <item>In progress</item>
+        <item>Completed</item>
+    </string-array>
+
+    <!-- End Adakveo -->
+
+
     <string-array name="empty_arr">
     </string-array>
 
