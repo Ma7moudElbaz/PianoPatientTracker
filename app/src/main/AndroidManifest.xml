@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.cat.pianopatienttracker">
+    package="com.novartis.global.gbl.onlinepatienttracker">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,58 +16,66 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
-        tools:replace="android:supportsRtl">
-        <activity android:name=".admin_manager_regional.ranking.ranking_details.RankingDetails"></activity>
+        tools:replace="android:supportsRtl"
+        tools:targetApi="n">
+
+
         <activity
-            android:name=".rep.home.patients.add_patient.PatientAddAdakveoActivity"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.admin_manager_regional.ranking.ranking_details.HospitalDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".rep.home.patients.add_patient.PatientAddRevoladeActivity"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.admin_manager_regional.ranking.ranking_details.RepSectorDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".rep.home.patients.add_patient.PatientAddJakaviActivity"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.rep.home.patients.add_patient.PatientAddAdakveoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".rep.home.patients.add_patient.PatientAddTasignaActivity"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.rep.home.patients.add_patient.PatientAddRevoladeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".rep.home.patients.add_patient.PatientAddAbemaciclibActivity"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.rep.home.patients.add_patient.PatientAddJakaviActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".rep.home.patients.add_patient.PatientAddKisqaliActivity"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.rep.home.patients.add_patient.PatientAddTasignaActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".rep.home.patients.add_patient.PatientAddPalbociclibActivity"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.rep.home.patients.add_patient.PatientAddAbemaciclibActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".rep.home.patients.add_patient.PatientAddAfinitorActivity"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.rep.home.patients.add_patient.PatientAddKisqaliActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".login.LoginSsoWebview"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.rep.home.patients.add_patient.PatientAddPalbociclibActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".rep.home.patients.add_patient.PatientAddPiqrayActivity"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.rep.home.patients.add_patient.PatientAddAfinitorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".rep.home.patients.PatientsActivity"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.login.LoginSsoWebview"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".flm.Flm_home"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.rep.home.patients.add_patient.PatientAddPiqrayActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".admin_manager_regional.progress.progress_flm.ProgressFlmActivity"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.rep.home.patients.PatientsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".rep.Rep_home"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.flm.Flm_home"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".admin_manager_regional.Admin_home"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.admin_manager_regional.progress.progress_flm.ProgressFlmActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.rep.Rep_home"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SplashActivity"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.admin_manager_regional.Admin_home"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.novartis.global.gbl.onlinepatienttracker.login.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.novartis.global.gbl.onlinepatienttracker.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
