@@ -132,8 +132,7 @@ public class HospitalDetailsActivity extends AppCompatActivity {
                 final int id = currentObject.getInt("id");
                 final String name = currentObject.getString("name");
                 final String address = currentObject.getString("address");
-//                final int patientsNo = currentObject.getInt("p_count");
-                final int patientsNo = 1;
+                final int patientsNo = currentObject.getInt("p_count");
 
                 final JSONArray hospitalsArr = currentObject.getJSONArray("hospitals");
                 String hospital = "";
