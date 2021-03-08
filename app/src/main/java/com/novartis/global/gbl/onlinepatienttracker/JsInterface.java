@@ -1,4 +1,4 @@
-package com.novartis.global.gbl.onlinepatienttracker.login;
+package com.novartis.global.gbl.onlinepatienttracker;
 
 import android.content.Context;
 import android.content.Intent;

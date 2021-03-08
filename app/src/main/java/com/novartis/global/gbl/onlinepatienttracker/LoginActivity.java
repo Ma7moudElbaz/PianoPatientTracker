@@ -1,4 +1,4 @@
-package com.novartis.global.gbl.onlinepatienttracker.login;
+package com.novartis.global.gbl.onlinepatienttracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.novartis.global.gbl.onlinepatienttracker.R;
 import com.novartis.global.gbl.onlinepatienttracker.flm.Flm_home;
 import com.novartis.global.gbl.onlinepatienttracker.network.Webservice;
 import com.novartis.global.gbl.onlinepatienttracker.admin_manager_regional.Admin_home;

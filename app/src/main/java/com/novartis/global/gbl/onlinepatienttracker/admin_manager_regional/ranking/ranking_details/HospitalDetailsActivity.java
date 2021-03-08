@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.novartis.global.gbl.onlinepatienttracker.R;
 import com.novartis.global.gbl.onlinepatienttracker.admin_manager_regional.ranking.Ranking_doctors_adapter;
 import com.novartis.global.gbl.onlinepatienttracker.admin_manager_regional.ranking.Ranking_doctors_item;
-import com.novartis.global.gbl.onlinepatienttracker.login.LoginActivity;
+import com.novartis.global.gbl.onlinepatienttracker.LoginActivity;
 import com.novartis.global.gbl.onlinepatienttracker.network.Webservice;
 
 import org.json.JSONArray;

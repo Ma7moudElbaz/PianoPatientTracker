@@ -1,4 +1,4 @@
-package com.novartis.global.gbl.onlinepatienttracker.login;
+package com.novartis.global.gbl.onlinepatienttracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
-import com.novartis.global.gbl.onlinepatienttracker.R;
 
 public class LoginSsoWebview extends AppCompatActivity {
 
@@ -23,7 +21,8 @@ public class LoginSsoWebview extends AppCompatActivity {
 
         webView = findViewById(R.id.webView);
 
-        url = "https://test.piano-tracker.net/login/azure";
+        url = "https://test.piano-tracker.net/login-sso";
+//        url = "https://test.piano-tracker.net/login/azure";
 //        url = "http://dev.ptracker.org/test";
 
         final ProgressDialog progDailog = ProgressDialog.show(this, "","Loading ,Please wait...", true);

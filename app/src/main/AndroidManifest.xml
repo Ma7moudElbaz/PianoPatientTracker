@@ -51,7 +51,7 @@
             android:name="com.novartis.global.gbl.onlinepatienttracker.rep.home.patients.add_patient.PatientAddAfinitorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.novartis.global.gbl.onlinepatienttracker.login.LoginSsoWebview"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.LoginSsoWebview"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.novartis.global.gbl.onlinepatienttracker.rep.home.patients.add_patient.PatientAddPiqrayActivity"
@@ -72,7 +72,7 @@
             android:name="com.novartis.global.gbl.onlinepatienttracker.admin_manager_regional.Admin_home"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.novartis.global.gbl.onlinepatienttracker.login.LoginActivity"
+            android:name="com.novartis.global.gbl.onlinepatienttracker.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.novartis.global.gbl.onlinepatienttracker.SplashActivity"

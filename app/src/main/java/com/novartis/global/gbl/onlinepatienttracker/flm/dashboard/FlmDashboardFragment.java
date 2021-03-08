@@ -22,7 +22,7 @@ import android.widget.Toast;
 import com.adroitandroid.chipcloud.ChipCloud;
 import com.adroitandroid.chipcloud.ChipListener;
 import com.bumptech.glide.Glide;
-import com.novartis.global.gbl.onlinepatienttracker.login.LoginActivity;
+import com.novartis.global.gbl.onlinepatienttracker.LoginActivity;
 import com.novartis.global.gbl.onlinepatienttracker.R;
 import com.novartis.global.gbl.onlinepatienttracker.admin_manager_regional.shared.bottom_sheets.BottomSheet_country_brand_fragment;
 import com.novartis.global.gbl.onlinepatienttracker.admin_manager_regional.dashboard.brand.Ranking_dashboard_adapter;

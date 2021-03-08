@@ -12,8 +12,6 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 
-import com.novartis.global.gbl.onlinepatienttracker.login.LoginActivity;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Timer;

@@ -6,11 +6,11 @@
     <!-- Official Android N API -->
 <!--    <domain-config>-->
 <!--        <domain includeSubdomains="true">piano-tracker.net</domain>-->
-<!--&lt;!&ndash;        <pin-set>&ndash;&gt;-->
-<!--&lt;!&ndash;            <pin digest="SHA-256">Maisuy/Ckl47BSBJLJXV0329GyhRsluOsShtTOSe/Jg=</pin>&ndash;&gt;-->
-<!--&lt;!&ndash;            &lt;!&ndash; backup pin &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;            <pin digest="SHA-256">P1yz4S40R5VZb5TYAvixsrm471Bcx27BdGK4oOepz+M=</pin>&ndash;&gt;-->
-<!--&lt;!&ndash;        </pin-set>&ndash;&gt;-->
+<!--        <pin-set>-->
+<!--            <pin digest="SHA-256">Maisuy/Ckl47BSBJLJXV0329GyhRsluOsShtTOSe/Jg=</pin>-->
+<!--            &lt;!&ndash; backup pin &ndash;&gt;-->
+<!--            <pin digest="SHA-256">P1yz4S40R5VZb5TYAvixsrm471Bcx27BdGK4oOepz+M=</pin>-->
+<!--        </pin-set>-->
 <!--    </domain-config>-->
 
 </network-security-config>

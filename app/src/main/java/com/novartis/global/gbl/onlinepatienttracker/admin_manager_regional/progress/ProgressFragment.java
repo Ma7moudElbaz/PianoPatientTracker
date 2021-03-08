@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.novartis.global.gbl.onlinepatienttracker.login.LoginActivity;
+import com.novartis.global.gbl.onlinepatienttracker.LoginActivity;
 import com.novartis.global.gbl.onlinepatienttracker.R;
 import com.novartis.global.gbl.onlinepatienttracker.network.Webservice;
 import com.novartis.global.gbl.onlinepatienttracker.admin_manager_regional.Admin_home;
