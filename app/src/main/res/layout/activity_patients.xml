@@ -4,71 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/login_bg"
+    android:orientation="vertical"
     tools:context=".rep.home.patients.PatientsActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/topPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:background="@color/white">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/img_description"
+            android:src="@drawable/ic_add"
+            app:tint="@color/light_blue" />
 
-            <ImageView
-                android:id="@+id/add"
-                android:layout_width="wrap_content"
-                android:layout_height="?android:attr/actionBarSize"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/img_description"
-                android:src="@drawable/ic_add"
-                app:tint="@color/light_blue" />
+        <LinearLayout
+            android:id="@+id/name_con"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/name_con"
+            <TextView
+                android:id="@+id/brandName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/brandName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:text=""
-                    android:textSize="20sp" />
+        </LinearLayout>
 
 
-
-            </LinearLayout>
-
-
-            <ImageView
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
-                android:layout_height="?android:attr/actionBarSize"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="20dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/img_description"
-                android:src="@drawable/ic_back"
-                app:tint="@color/light_blue" />
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/img_description"
+            android:src="@drawable/ic_back"
+            app:tint="@color/light_blue" />
 
 
-        </RelativeLayout>
-
-
-
-
-    </LinearLayout>
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"

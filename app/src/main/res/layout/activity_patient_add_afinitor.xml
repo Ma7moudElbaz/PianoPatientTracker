@@ -22,7 +22,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Patient"
+                android:text="@string/add_patient"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -47,7 +47,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/light_gray"/>
+        android:background="@color/light_gray" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -145,12 +145,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:dropDownWidth="match_parent"
+                        android:entries="@array/afintor_lines"
                         android:paddingStart="5dp"
                         android:paddingTop="10dp"
                         android:paddingEnd="5dp"
                         android:paddingBottom="10dp"
-                        android:spinnerMode="dropdown"
-                        android:entries="@array/afintor_lines"/>
+                        android:spinnerMode="dropdown" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -166,32 +166,31 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+
                         <Spinner
-                            android:layout_toStartOf="@+id/mg"
                             android:id="@+id/dose_spinner"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_toStartOf="@+id/mg"
                             android:dropDownWidth="match_parent"
+                            android:entries="@array/afintor_doses"
                             android:paddingStart="5dp"
                             android:paddingTop="10dp"
                             android:paddingEnd="5dp"
                             android:paddingBottom="10dp"
-                            android:spinnerMode="dropdown"
-                            android:entries="@array/afintor_doses"
-                            />
+                            android:spinnerMode="dropdown" />
+
                         <TextView
                             android:id="@+id/mg"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="mg"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
+                            android:layout_marginEnd="20dp"
+                            android:text="@string/mg"
                             android:textColor="@color/black"
-                            android:textSize="14sp"
-                            android:layout_marginEnd="20dp"/>
+                            android:textSize="14sp" />
                     </RelativeLayout>
-
-
 
                 </androidx.cardview.widget.CardView>
 
@@ -203,12 +202,12 @@
             android:id="@+id/btn_cont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical"
             app:cardCornerRadius="5dp"
-            app:cardElevation="0dp"
-            android:layout_marginBottom="10dp"
-            android:layout_alignParentBottom="true">
+            app:cardElevation="0dp">
 
             <TextView
                 android:id="@+id/add_btn"

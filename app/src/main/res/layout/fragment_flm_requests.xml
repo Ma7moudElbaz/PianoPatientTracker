@@ -7,72 +7,62 @@
     android:orientation="vertical"
     tools:context=".flm.requests.FlmRequestsFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/topPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/novartis_logo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="?android:attr/actionBarSize"
+            android:gravity="center"
+            android:text="@string/requests"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/novartis_logo"
-                android:layout_width="match_parent"
+
+        <ImageView
+            android:id="@+id/selectCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/img_description"
+            android:src="@drawable/ic_location"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/selectCountryBrand_cont"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_alignParentEnd="true"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp">
+
+            <ImageView
+                android:id="@+id/selectedProduct_img"
+                android:layout_width="wrap_content"
                 android:layout_height="?android:attr/actionBarSize"
-                android:gravity="center"
-                android:text="@string/requests"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:contentDescription="@string/img_description"
+                android:src="@drawable/round_jakavi" />
 
 
             <ImageView
-                android:id="@+id/selectCountry"
+                android:id="@+id/selectedCountry_img"
                 android:layout_width="wrap_content"
                 android:layout_height="?android:attr/actionBarSize"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="10dp"
-                android:adjustViewBounds="true"
+                android:layout_marginLeft="15dp"
                 android:contentDescription="@string/img_description"
-                android:src="@drawable/ic_location"
-                android:visibility="gone"/>
-
-            <RelativeLayout
-                android:id="@+id/selectCountryBrand_cont"
-                android:layout_width="wrap_content"
-                android:layout_height="?android:attr/actionBarSize"
-                android:layout_alignParentEnd="true"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp">
-
-                <ImageView
-                    android:id="@+id/selectedProduct_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="?android:attr/actionBarSize"
-                    android:contentDescription="@string/img_description"
-                    android:src="@drawable/round_jakavi" />
-
-
-                <ImageView
-                    android:id="@+id/selectedCountry_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="?android:attr/actionBarSize"
-                    android:layout_marginLeft="15dp"
-                    android:contentDescription="@string/img_description"
-                    android:src="@drawable/round_ksa" />
-
-            </RelativeLayout>
-
-
+                android:src="@drawable/round_ksa" />
 
         </RelativeLayout>
 
 
-    </LinearLayout>
-
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"

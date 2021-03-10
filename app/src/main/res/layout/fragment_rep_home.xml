@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/login_bg"
+    android:orientation="vertical"
     tools:context=".rep.home.RepHomeFragment">
 
     <RelativeLayout
@@ -28,7 +28,7 @@
             android:layout_height="1dp"
             android:layout_below="@+id/novartis_logo"
             android:background="@color/light_gray"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
     </RelativeLayout>
 

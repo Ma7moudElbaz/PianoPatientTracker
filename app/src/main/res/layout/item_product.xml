@@ -21,6 +21,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/img_description"
             android:src="@drawable/jakavi_logo" />
 
 

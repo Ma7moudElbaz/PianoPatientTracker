@@ -7,12 +7,12 @@
 
     <TextView
         android:id="@+id/textView"
+        style="?attr/spinnerDropDownItemStyle"
         android:layout_width="match_parent"
         android:layout_height="?attr/dropdownListPreferredItemHeight"
-        android:text="KSA"
-        style="?attr/spinnerDropDownItemStyle"
+        android:ellipsize="marquee"
         android:singleLine="true"
-        android:ellipsize="marquee"/>
+        android:text="KSA" />
 
 
 </LinearLayout>

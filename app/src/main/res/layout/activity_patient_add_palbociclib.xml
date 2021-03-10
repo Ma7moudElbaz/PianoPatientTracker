@@ -23,10 +23,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Patient"
+                android:text="@string/add_patient"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
-
 
         </LinearLayout>
 
@@ -48,7 +47,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/light_gray"/>
+        android:background="@color/light_gray" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -146,12 +145,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:dropDownWidth="match_parent"
+                        android:entries="@array/palbociclib_pos_pre"
                         android:paddingStart="5dp"
                         android:paddingTop="10dp"
                         android:paddingEnd="5dp"
                         android:paddingBottom="10dp"
-                        android:spinnerMode="dropdown"
-                        android:entries="@array/palbociclib_pos_pre"/>
+                        android:spinnerMode="dropdown" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -169,13 +168,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:dropDownWidth="match_parent"
+                        android:entries="@array/palbociclib_medical_surgical"
                         android:paddingStart="5dp"
                         android:paddingTop="10dp"
                         android:paddingEnd="5dp"
                         android:paddingBottom="10dp"
                         android:spinnerMode="dropdown"
-                        android:entries="@array/palbociclib_medical_surgical"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -193,12 +192,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:dropDownWidth="match_parent"
+                        android:entries="@array/palbociclib_line"
                         android:paddingStart="5dp"
                         android:paddingTop="10dp"
                         android:paddingEnd="5dp"
                         android:paddingBottom="10dp"
-                        android:spinnerMode="dropdown"
-                        android:entries="@array/palbociclib_line"/>
+                        android:spinnerMode="dropdown" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -216,12 +215,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:dropDownWidth="match_parent"
+                        android:entries="@array/palbociclib_ai_ful"
                         android:paddingStart="5dp"
                         android:paddingTop="10dp"
                         android:paddingEnd="5dp"
                         android:paddingBottom="10dp"
-                        android:spinnerMode="dropdown"
-                        android:entries="@array/palbociclib_ai_ful"/>
+                        android:spinnerMode="dropdown" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -233,12 +232,12 @@
             android:id="@+id/btn_cont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical"
             app:cardCornerRadius="5dp"
-            app:cardElevation="0dp"
-            android:layout_marginBottom="10dp"
-            android:layout_alignParentBottom="true">
+            app:cardElevation="0dp">
 
             <TextView
                 android:id="@+id/add_btn"
@@ -255,9 +254,5 @@
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
-
-
-
-
 
 </LinearLayout>

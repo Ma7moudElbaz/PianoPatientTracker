@@ -33,7 +33,7 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/img_description"
             android:src="@drawable/ic_location"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <RelativeLayout
             android:id="@+id/selectCountryBrand_cont"
@@ -78,7 +78,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -112,34 +112,6 @@
                         chipcloud:textSize="16sp"
                         chipcloud:verticalSpacing="10dp" />
 
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Jakavi : 259"
-                        android:textColor="@color/black"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="others : 259"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="total : 259"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:visibility="gone" />
-
-
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -161,7 +133,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Total"
+                                android:text="@string/total"
                                 android:textColor="@color/gray"
                                 android:textSize="14sp" />
 
@@ -208,7 +180,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Doses "
+                        android:text="@string/doses"
                         android:textColor="@color/black"
                         android:textSize="22sp"
                         android:textStyle="bold" />
@@ -234,7 +206,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Total"
+                                android:text="@string/total"
                                 android:textColor="@color/gray"
                                 android:textSize="14sp" />
 
@@ -280,7 +252,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Monthly Target"
+                        android:text="@string/monthly_target"
                         android:textColor="@color/black"
                         android:textSize="22sp"
                         android:textStyle="bold" />
@@ -324,7 +296,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Total"
+                                android:text="@string/total"
                                 android:textColor="@color/gray"
                                 android:textSize="14sp" />
 
@@ -372,7 +344,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ranking "
+                        android:text="@string/ranking"
                         android:textColor="@color/black"
                         android:textSize="22sp"
                         android:textStyle="bold" />
@@ -399,7 +371,7 @@
                                 android:paddingTop="5dp"
                                 android:paddingRight="8dp"
                                 android:paddingBottom="5dp"
-                                android:text="Reps"
+                                android:text="@string/reps"
                                 android:textColor="@color/gray" />
 
                         </androidx.cardview.widget.CardView>
@@ -421,7 +393,7 @@
                                 android:paddingTop="5dp"
                                 android:paddingRight="8dp"
                                 android:paddingBottom="5dp"
-                                android:text="Doctors"
+                                android:text="@string/doctors"
                                 android:textColor="@color/gray" />
 
                         </androidx.cardview.widget.CardView>
@@ -443,7 +415,7 @@
                                 android:paddingTop="5dp"
                                 android:paddingRight="8dp"
                                 android:paddingBottom="5dp"
-                                android:text="HC Sectors"
+                                android:text="@string/hc_sectors"
                                 android:textColor="@color/gray" />
 
                         </androidx.cardview.widget.CardView>
@@ -465,7 +437,7 @@
                                 android:paddingTop="5dp"
                                 android:paddingRight="8dp"
                                 android:paddingBottom="5dp"
-                                android:text="Hospitals"
+                                android:text="@string/hospitals"
                                 android:textColor="@color/gray" />
 
                         </androidx.cardview.widget.CardView>

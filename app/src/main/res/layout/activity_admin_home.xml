@@ -6,13 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".admin_manager_regional.Admin_home">
 
-
-
     <FrameLayout
         android:id="@+id/contentLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/btm_nav"/>
+        android:layout_above="@+id/btm_nav" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/btm_nav"

@@ -28,10 +28,9 @@
             android:layout_height="1dp"
             android:layout_below="@+id/novartis_logo"
             android:background="@color/light_gray"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
     </RelativeLayout>
-
 
 
     <androidx.recyclerview.widget.RecyclerView

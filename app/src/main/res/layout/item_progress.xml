@@ -8,7 +8,6 @@
     app:cardCornerRadius="5dp"
     app:cardElevation="5dp">
 
-
     <LinearLayout
         android:id="@+id/parent_layout"
         android:layout_width="match_parent"
@@ -46,14 +45,13 @@
                     android:layout_height="wrap_content"
                     android:text="AF Reps :"
                     android:textColor="@color/colorAccent"
-                    android:textSize="11sp" />
+                    android:textSize="12sp" />
 
 
                 <TextView
                     android:id="@+id/reps_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
                     android:layout_marginStart="2dp"
                     android:text="11"
                     android:textColor="@color/black"
@@ -81,6 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:baselineAligned="false"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -88,7 +87,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:layout_toStartOf="@+id/rank"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -103,7 +101,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/target"
                         android:textColor="@color/black"
-                        android:textSize="11sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/targetPercent"
@@ -112,7 +110,7 @@
                         android:layout_toStartOf="@id/targetNo"
                         android:text="65%"
                         android:textColor="@color/colorAccent"
-                        android:textSize="11sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/targetNo"
@@ -122,7 +120,7 @@
                         android:layout_marginStart="5dp"
                         android:text="10 of 15"
                         android:textColor="@color/black"
-                        android:textSize="11sp" />
+                        android:textSize="12sp" />
 
                 </RelativeLayout>
 
@@ -133,7 +131,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="5dp"
                     android:layout_marginTop="5dp"
-                    android:layout_weight="2.3"
                     android:progress="66"
                     android:progressBackgroundTint="@color/light_gray" />
 
@@ -144,7 +141,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_toStartOf="@+id/rank"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -157,9 +153,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="MarketShare"
+                        android:text="@string/marketshare"
                         android:textColor="@color/black"
-                        android:textSize="11sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/marketPercent"
@@ -168,7 +164,7 @@
                         android:layout_toStartOf="@id/marketNo"
                         android:text="65%"
                         android:textColor="@color/colorAccent"
-                        android:textSize="11sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/marketNo"
@@ -178,8 +174,7 @@
                         android:layout_marginStart="5dp"
                         android:text="10 of 15"
                         android:textColor="@color/black"
-                        android:textSize="11sp" />
-
+                        android:textSize="12sp" />
 
                 </RelativeLayout>
 
@@ -190,7 +185,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="5dp"
                     android:layout_marginTop="5dp"
-                    android:layout_weight="2.3"
                     android:progress="66"
                     android:progressBackgroundTint="@color/light_gray"
                     android:progressTint="@color/light_blue" />
@@ -198,7 +192,6 @@
 
             </LinearLayout>
         </LinearLayout>
-
 
     </LinearLayout>
 
