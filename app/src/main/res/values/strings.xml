@@ -11,8 +11,6 @@
     <string name="sector">Sector</string>
     <string name="target">Target</string>
     <string name="users">Users</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ranking">Ranking</string>
     <string name="hospitals">Hospitals</string>
     <string name="reps">Reps</string>
@@ -42,15 +40,8 @@
     <string name="mg">mg</string>
     <string name="total">Total</string>
     <string name="marketshare">MarketShare</string>
-    <string name="product">Product</string>
-    <string name="total">Total</string>
     <string name="doses">Doses</string>
     <string name="monthly_target">Monthly Target</string>
-    <string name="ranking">Ranking</string>
-    <string name="reps">Reps</string>
-    <string name="doctors">Doctors</string>
-    <string name="hc_sectors">HC Sectors</string>
-    <string name="hospitals">Hospitals</string>
 
     <string-array name="months">
         <item>January</item>
