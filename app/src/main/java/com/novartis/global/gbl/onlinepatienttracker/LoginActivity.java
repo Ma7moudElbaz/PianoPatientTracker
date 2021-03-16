@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,6 +46,12 @@ public class LoginActivity extends AppCompatActivity {
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading....");
         dialog.setCancelable(false);
+
+
+        //sso
+        accessToken = "bearer "+getIntent().getStringExtra("access_token");
+        Log.e("TAG", accessToken );
+        getMyData(accessToken);
 
         //sso
 //        accessToken = getIntent().getStringExtra("accessToken");
@@ -143,7 +150,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+
                 if (response.code() == 200) {
+
                     JSONObject responseObject = null;
                     try {
                         JSONObject res = new JSONObject(response.body().string());
@@ -154,7 +163,6 @@ public class LoginActivity extends AppCompatActivity {
                         JSONArray roleArr = userData.getJSONArray("role");
                         String role = roleArr.getJSONObject(0).getString("name");
                         String roleName = roleArr.getJSONObject(0).getString("display_name");
-
 
                         if (role.equals("manager") || role.equals("regional")) {
                             Intent i = new Intent(getBaseContext(), Admin_home.class);
@@ -181,6 +189,8 @@ public class LoginActivity extends AppCompatActivity {
                             i.putExtra("userName", userName);
                             startActivity(i);
                             finish();
+                        } else if (role.equals("admin")) {
+                            Toast.makeText(LoginActivity.this, "Admin has no access to this app", Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (Exception e) {

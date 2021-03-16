@@ -3,13 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".LoginSsoWebview">
+
+<!--    <com.asksira.webviewsuite.WebViewSuite-->
+<!--        android:id="@+id/webViewSuite"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:webViewProgressBarStyle="linear"-->
+<!--        app:inflationDelay="100"-->
+<!--        app:enableJavaScript="true"-->
+<!--        app:overrideTelLink="true"-->
+<!--        app:overrideEmailLink="true"-->
+<!--        app:overridePdfLink="true"-->
+<!--        app:showZoomControl="false"-->
+<!--        app:enableVerticalScrollBar="false"-->
+<!--        app:enableHorizontalScrollBar="false"-->
+<!--        android:visibility="gone"/>-->
 
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        android:backgroundTint="@color/colorPrimary" />
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

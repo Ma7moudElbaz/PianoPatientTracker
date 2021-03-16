@@ -73,7 +73,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.novartis.global.gbl.onlinepatienttracker.LoginActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+            <intent-filter android:label="PianoTracker">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="http"
+                    android:host="piano"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.novartis.global.gbl.onlinepatienttracker.SplashActivity"
             android:screenOrientation="portrait">
