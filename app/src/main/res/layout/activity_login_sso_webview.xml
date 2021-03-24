@@ -1,29 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".LoginSsoWebview">
 
-<!--    <com.asksira.webviewsuite.WebViewSuite-->
-<!--        android:id="@+id/webViewSuite"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        app:webViewProgressBarStyle="linear"-->
-<!--        app:inflationDelay="100"-->
-<!--        app:enableJavaScript="true"-->
-<!--        app:overrideTelLink="true"-->
-<!--        app:overrideEmailLink="true"-->
-<!--        app:overridePdfLink="true"-->
-<!--        app:showZoomControl="false"-->
-<!--        app:enableVerticalScrollBar="false"-->
-<!--        app:enableHorizontalScrollBar="false"-->
-<!--        android:visibility="gone"/>-->
+    <!--    <com.asksira.webviewsuite.WebViewSuite-->
+    <!--        android:id="@+id/webViewSuite"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        app:webViewProgressBarStyle="linear"-->
+    <!--        app:inflationDelay="100"-->
+    <!--        app:enableJavaScript="true"-->
+    <!--        app:overrideTelLink="true"-->
+    <!--        app:overrideEmailLink="true"-->
+    <!--        app:overridePdfLink="true"-->
+    <!--        app:showZoomControl="false"-->
+    <!--        app:enableVerticalScrollBar="false"-->
+    <!--        app:enableHorizontalScrollBar="false"-->
+    <!--        android:visibility="gone"/>-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/url_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/go"
+            android:maxLines="5" />
+
+        <TextView
+            android:id="@+id/go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:background="@color/gray"
+            android:padding="10dp"
+            android:text="GO"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
 
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
-</RelativeLayout>
+</LinearLayout>

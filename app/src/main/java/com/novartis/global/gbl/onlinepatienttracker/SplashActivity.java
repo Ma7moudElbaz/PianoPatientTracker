@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -28,8 +27,8 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-//        navigateLogin();
-        navigateLoginRootDetected();
+        navigateLogin();
+//        navigateLoginRootDetected();
 
 
     }
@@ -46,16 +45,19 @@ public class SplashActivity extends AppCompatActivity {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
+                //login username & password
 //                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
-//                Intent i = new Intent(getApplicationContext(), LoginSsoWebview.class);
-//                startActivity(i);
-//                finish();
 
+                //login with external web browser
+//                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://test.piano-tracker.net/login-sso"));
 
-//                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dev.ptracker.org/test"));
+                //login with webView
+                Intent i = new Intent(getApplicationContext(), LoginSsoWebview.class);
 
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://test.piano-tracker.net/login-sso"));
-                startActivity(intent);
+                startActivity(i);
+                finish();
+
+//
             }
         }, SPLASH_TIME_OUT);
     }

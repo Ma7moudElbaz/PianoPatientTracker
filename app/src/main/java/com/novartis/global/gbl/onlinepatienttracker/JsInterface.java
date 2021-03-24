@@ -21,10 +21,10 @@ public class JsInterface {
     public void ssoLoginCallBack(String tokenObj) throws JSONException {
         JSONObject object = new JSONObject(tokenObj);
         Log.e("TAG", object.toString());
-        String accessToken = "Bearer " + object.getString("access_token");
+        String accessToken = object.getString("access_token");
 
         Intent i = new Intent(mContext, LoginActivity.class);
-        i.putExtra("accessToken", accessToken);
+        i.putExtra("access_token", accessToken);
         mContext.startActivity(i);
 
         scanForActivity(mContext).finish();

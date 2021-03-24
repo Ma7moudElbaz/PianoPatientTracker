@@ -49,13 +49,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
         //sso
-        accessToken = "bearer "+getIntent().getStringExtra("access_token");
+        accessToken = "Bearer "+getIntent().getStringExtra("access_token");
         Log.e("TAG", accessToken );
         getMyData(accessToken);
-
-        //sso
-//        accessToken = getIntent().getStringExtra("accessToken");
-//        getMyData(accessToken);
 
         loginBtn = findViewById(R.id.login_btn);
         email = findViewById(R.id.login_email);

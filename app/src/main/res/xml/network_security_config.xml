@@ -19,8 +19,8 @@
 
 
 
-<!--    <domain-config>-->
-<!--        <domain includeSubdomains="true">novartis.com</domain>-->
-<!--    </domain-config>-->
+    <domain-config>
+        <domain includeSubdomains="true">novartis.com</domain>
+    </domain-config>
 
 </network-security-config>
