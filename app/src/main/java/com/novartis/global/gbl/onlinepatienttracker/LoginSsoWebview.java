@@ -4,11 +4,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.net.http.SslError;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
@@ -44,8 +41,8 @@ public class LoginSsoWebview extends AppCompatActivity {
             webView.loadUrl(urlBar.getText().toString());
         });
 
-//        url = "https://test.piano-tracker.net/login-sso";
-        url = "https://cat.piano-tracker.net/api/login/azure";
+        url = "https://test.piano-tracker.net/login-sso";
+//        url = "https://cat.piano-tracker.net/api/login/azure";
 //        url = "https://test.piano-tracker.net/login/azure";
 //        url = "http://dev.ptracker.org/test";
 //        url = "https://test.piano-tracker.net/redirect";
@@ -55,18 +52,17 @@ public class LoginSsoWebview extends AppCompatActivity {
         progDailog.setCancelable(true);
 
         webView.canGoBack();
+
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setUseWideViewPort(true);
-
+        webView.getSettings().setAllowFileAccess(true);
+        webView.getSettings().setAllowContentAccess(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         webView.getSettings().setSupportMultipleWindows(true);
 
-
         webView.addJavascriptInterface(new JsInterface(LoginSsoWebview.this), "AndroidFunction");
-
-//        webView.setWebChromeClient(new WebChromeClient());
 
         webView.setWebViewClient(new WebViewClient() {
 
@@ -99,9 +95,10 @@ public class LoginSsoWebview extends AppCompatActivity {
 //                    Timber.d("isVpnUsing Network List didn't received");
                 }
 
+                String message = networkList.toString() + "\n" + "User Agent : " + webView.getSettings().getUserAgentString();
                 new AlertDialog.Builder(LoginSsoWebview.this)
                         .setTitle("Network List")
-                        .setMessage(networkList.toString())
+                        .setMessage(message)
                         .setCancelable(true)
                         .show();
                 return true;
