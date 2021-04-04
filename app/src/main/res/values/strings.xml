@@ -4,19 +4,14 @@
     <string name="login">Login</string>
     <string name="user_name">User Name</string>
     <string name="password">Password</string>
-    <string name="remember_me">Remember Me</string>
-    <string name="forgot_password">Forgot Password</string>
     <string name="dashboard">Dashboard</string>
     <string name="rank">Rank</string>
-    <string name="sector">Sector</string>
     <string name="target">Target</string>
-    <string name="users">Users</string>
     <string name="ranking">Ranking</string>
     <string name="hospitals">Hospitals</string>
     <string name="reps">Reps</string>
     <string name="hc_sectors">HC Sectors</string>
     <string name="period">Period</string>
-    <string name="filter">Filter</string>
     <string name="doctors">Doctors</string>
     <string name="profile">Profile</string>
     <string name="home">Home</string>
@@ -34,7 +29,6 @@
     <string name="cities">Cities</string>
     <string name="requests">Requests</string>
     <string name="drop">Drop</string>
-    <string name="update">Update</string>
     <string name="add">Add</string>
     <string name="add_patient">Add Patient</string>
     <string name="mg">mg</string>

@@ -39,7 +39,7 @@ android {
         release {
             keyAlias 'pianotracker'
             keyPassword 'pianotracker'
-            storeFile file('Users/elbaz/Desktop/AndroidProjects/PianoPatientTracker')
+            storeFile file('//Users//elbaz//Desktop//AndroidProjects//PianoPatientTracker//pianotracker')
             storePassword 'pianotracker'
         }
     }
@@ -54,13 +54,14 @@ android {
         targetSdkVersion 30
         versionCode 5
         versionName "1.4"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
