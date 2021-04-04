@@ -65,15 +65,14 @@ public class LoginActivity extends AppCompatActivity {
 
 
         //sso
-        accessToken = "Bearer "+getIntent().getStringExtra("access_token");
-        Log.e("TAG", accessToken );
-        getMyData(accessToken);
+//        accessToken = "Bearer " + getIntent().getStringExtra("access_token");
+//        Log.e("TAG", accessToken);
+//        getMyData(accessToken);
+
 
         loginBtn = findViewById(R.id.login_btn);
         email = findViewById(R.id.login_email);
         password = findViewById(R.id.login_password);
-
-
 
 
         // Creates a PublicClientApplication object with res/raw/auth_config_single_account.json
@@ -98,8 +97,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
         loginBtn.setOnClickListener(v -> {
-//                login();
-            loginSsoSdk();});
+//            login();
+            //sso SDK
+            loginSsoSdk();
+        });
     }
 
     public void login() {
@@ -176,12 +177,13 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void loginSsoSdk(){
-
+    public void loginSsoSdk() {
+        signOutSSo();
 
         if (mSingleAccountApp == null) {
             return;
         }
+
         mSingleAccountApp.signIn(LoginActivity.this, null, new String[]{"user.read"}, getAuthInteractiveCallback());
 
 
@@ -256,8 +258,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
-
     private void loadAccount() {
         if (mSingleAccountApp == null) {
             return;
@@ -297,7 +297,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     private void displayError(@NonNull final Exception exception) {
 
-        Log.e("SSO Error", "exception.toString()", exception);
+        Log.e("SSO Error", exception.toString(), exception);
     }
 
     /**
@@ -371,5 +371,23 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("Graph Result", graphResponse.toString());
     }
 
+
+    private void signOutSSo() {
+        if (mSingleAccountApp == null) {
+            return;
+        }
+        mSingleAccountApp.signOut(new ISingleAccountPublicClientApplication.SignOutCallback() {
+            @Override
+            public void onSignOut() {
+//                performOperationOnSignOut();
+            }
+
+            @Override
+            public void onError(@NonNull MsalException exception) {
+                displayError(exception);
+            }
+        });
+
+    }
 
 }

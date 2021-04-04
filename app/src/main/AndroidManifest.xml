@@ -103,7 +103,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="com.cat.pianopatienttracker"
+                    android:host="com.novartis.global.gbl.onlinepatienttracker"
                     android:path="/TOwtRm0r7BbDYXyFuoVUh3YXCbc="
                     android:scheme="msauth" />
             </intent-filter>

@@ -1,7 +1,7 @@
 {
   "client_id": "6ea1bf8e-7a2c-47b7-bd1e-fed4b3c5a514",
   "authorization_user_agent": "DEFAULT",
-  "redirect_uri" : "msauth://com.cat.pianopatienttracker/TOwtRm0r7BbDYXyFuoVUh3YXCbc%3D",
+  "redirect_uri" : "msauth://com.novartis.global.gbl.onlinepatienttracker/TOwtRm0r7BbDYXyFuoVUh3YXCbc%3D",
   "broker_redirect_uri_registered": true,
   "account_mode": "SINGLE",
   "authorities": [
@@ -14,4 +14,3 @@
     }
   ]
 }
-
