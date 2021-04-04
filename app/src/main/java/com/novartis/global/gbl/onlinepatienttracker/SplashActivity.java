@@ -46,13 +46,13 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //login username & password
-//                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
 
                 //login with external web browser
 //                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://test.piano-tracker.net/login-sso"));
 
                 //login with webView
-                Intent i = new Intent(getApplicationContext(), LoginSsoWebview.class);
+//                Intent i = new Intent(getApplicationContext(), LoginSsoWebview.class);
 
                 startActivity(i);
                 finish();

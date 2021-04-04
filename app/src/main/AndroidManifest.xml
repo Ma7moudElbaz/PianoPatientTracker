@@ -92,6 +92,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <!-- Intent filter to capture System Browser or Authenticator calling back to our app after sign-in -->
+        <activity android:name="com.microsoft.identity.client.BrowserTabActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="com.cat.pianopatienttracker"
+                    android:path="/TOwtRm0r7BbDYXyFuoVUh3YXCbc="
+                    android:scheme="msauth" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
